@@ -31,13 +31,11 @@ export default class Tools extends Component {
 }
 
 Tools.propTypes = {
+	fontSize: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,
 	imageWidth: PropTypes.number.isRequired,
-	fontSize: PropTypes.number.isRequired,
 	lyrics: PropTypes.string.isRequired,
 
-	setImageHeight: PropTypes.func.isRequired,
-	setImageWidth: PropTypes.func.isRequired,
 	setFontSize: PropTypes.func.isRequired,
 	setLyrics: PropTypes.func.isRequired
 };
