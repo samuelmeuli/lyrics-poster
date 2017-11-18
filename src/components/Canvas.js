@@ -13,21 +13,13 @@ export default class Canvas extends Component {
 		this.ctx = this.canvas.getContext('2d');
 		this.imageLoader.addEventListener('change', this.handleImageChange.bind(this), false);
 
-		this.drawCanvas(
-			this.props.fontSize,
-			this.props.imageHeight,
-			this.props.imageWidth,
-			this.props.lyrics
-		);
+		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
+		this.drawCanvas(this.props.fontSize, this.props.imageHeight, imageWidth, this.props.lyrics);
 	}
 
 	componentDidUpdate() {
-		this.drawCanvas(
-			this.props.fontSize,
-			this.props.imageHeight,
-			this.props.imageWidth,
-			this.props.lyrics
-		);
+		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
+		this.drawCanvas(this.props.fontSize, this.props.imageHeight, imageWidth, this.props.lyrics);
 	}
 
 	drawCanvas(fontSize, imageHeight, imageWidth, lyrics) {
@@ -51,7 +43,7 @@ export default class Canvas extends Component {
 		// draw image
 		if (this.state.image) {
 			this.ctx.globalCompositeOperation = 'source-in';
-			this.ctx.drawImage(this.state.image, 0, 0);
+			this.ctx.drawImage(this.state.image, 0, 0, imageWidth, imageHeight);
 		}
 
 		// draw background behind text
@@ -92,8 +84,7 @@ export default class Canvas extends Component {
 			const newImage = new Image();
 			newImage.onload = () => {
 				this.setState({ image: newImage });
-				this.props.setImageHeight(newImage.height);
-				this.props.setImageWidth(newImage.width);
+				this.props.setImageAspectRatio(newImage.width / newImage.height);
 			};
 			newImage.src = event.target.result;
 		};
@@ -104,13 +95,15 @@ export default class Canvas extends Component {
 		let displayedHeight;
 		let displayedWidth;
 
-		if (this.props.imageWidth > this.props.imageHeight) {
-			displayedWidth = 750;
-			displayedHeight = displayedWidth / (this.props.imageWidth / this.props.imageHeight);
+		// image orientation: portrait
+		if (this.props.imageAspectRatio < 1) {
+			displayedHeight = 600;
+			displayedWidth = displayedHeight * this.props.imageAspectRatio;
 		}
+		// image orientation: landscape
 		else {
-			displayedHeight = 750;
-			displayedWidth = displayedHeight / (this.props.imageHeight / this.props.imageWidth);
+			displayedWidth = 600;
+			displayedHeight = displayedWidth / this.props.imageAspectRatio;
 		}
 
 		return (
@@ -146,13 +139,12 @@ export default class Canvas extends Component {
 }
 
 Canvas.propTypes = {
-	setDownloadUrl: PropTypes.func.isRequired,
-	setImageHeight: PropTypes.func.isRequired,
-	setImageWidth: PropTypes.func.isRequired,
-
 	downloadUrl: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
+	imageAspectRatio: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,
-	imageWidth: PropTypes.number.isRequired,
-	lyrics: PropTypes.string.isRequired
+	lyrics: PropTypes.string.isRequired,
+
+	setDownloadUrl: PropTypes.func.isRequired,
+	setImageAspectRatio: PropTypes.func.isRequired
 };

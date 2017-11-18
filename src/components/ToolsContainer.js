@@ -8,9 +8,8 @@ import * as actions from '../redux/actions';
 function mapStateToProps(state) {
 	return {
 		fontSize: state.fontSize,
-		image: state.image,
+		imageAspectRatio: state.imageAspectRatio,
 		imageHeight: state.imageHeight,
-		imageWidth: state.imageWidth,
 		lyrics: state.lyrics
 	};
 }
@@ -18,8 +17,9 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setFontSize: event => dispatch(actions.setFontSize(parseInt(event.target.value, 10))),
-		setLyrics: event => dispatch(actions.setLyrics(event.target.value))
+		setFontSize: newFontSize => dispatch(actions.setFontSize(newFontSize)),
+		setImageHeight: newImageHeight => dispatch(actions.setImageHeight(newImageHeight)),
+		setLyrics: newLyrics => dispatch(actions.setLyrics(newLyrics))
 	};
 }
 

@@ -9,8 +9,8 @@ function mapStateToProps(state) {
 	return {
 		downloadUrl: state.downloadUrl,
 		fontSize: state.fontSize,
+		imageAspectRatio: state.imageAspectRatio,
 		imageHeight: state.imageHeight,
-		imageWidth: state.imageWidth,
 		lyrics: state.lyrics
 	};
 }
@@ -19,8 +19,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		setDownloadUrl: newDownloadUrl => dispatch(actions.setDownloadUrl(newDownloadUrl)),
-		setImageHeight: newImageHeight => dispatch(actions.setImageHeight(newImageHeight)),
-		setImageWidth: newImageWidth => dispatch(actions.setImageWidth(newImageWidth))
+		setImageAspectRatio: newImageAspectRatio =>
+			dispatch(actions.setImageAspectRatio(newImageAspectRatio))
 	};
 }
 

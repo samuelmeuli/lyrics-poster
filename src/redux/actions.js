@@ -12,17 +12,17 @@ export function setFontSize(newFontSize) {
 	};
 }
 
+export function setImageAspectRatio(newImageAspectRatio) {
+	return {
+		type: 'SET_IMAGE_ASPECT_RATIO',
+		payload: newImageAspectRatio
+	};
+}
+
 export function setImageHeight(newImageHeight) {
 	return {
 		type: 'SET_IMAGE_HEIGHT',
 		payload: newImageHeight
-	};
-}
-
-export function setImageWidth(newImageWidth) {
-	return {
-		type: 'SET_IMAGE_WIDTH',
-		payload: newImageWidth
 	};
 }
 
