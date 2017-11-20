@@ -21,6 +21,7 @@
     "eslint-plugin-react": "^7.5.1",
     "husky": "^0.14.3",
     "stylelint": "^8.2.0",
+    "stylelint-order": "^0.7.0",
     "stylelint-scss": "^2.1.0"
   },
   "scripts": {

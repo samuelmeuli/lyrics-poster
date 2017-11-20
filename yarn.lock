@@ -5070,6 +5070,13 @@ postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.2, postcss-selector
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
+postcss-sorting@^3.0.2:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-sorting/-/postcss-sorting-3.1.0.tgz#af7c90ee73ad12569a57664eaf06735c2e25bec0"
+  dependencies:
+    lodash "^4.17.4"
+    postcss "^6.0.13"
+
 postcss-svgo@^2.1.1:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/postcss-svgo/-/postcss-svgo-2.1.6.tgz#b6df18aa613b666e133f08adb5219c2684ac108d"
@@ -5108,7 +5115,7 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.3, postcss@^6.0.6, postcss@^6.0.8:
+postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.11, postcss@^6.0.13, postcss@^6.0.14, postcss@^6.0.3, postcss@^6.0.6, postcss@^6.0.8:
   version "6.0.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.14.tgz#5534c72114739e75d0afcf017db853099f562885"
   dependencies:
@@ -6144,6 +6151,14 @@ style-loader@0.19.0:
 style-search@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
+
+stylelint-order@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/stylelint-order/-/stylelint-order-0.7.0.tgz#ceab5cbe24aa33fa63590024995395f6edfc9ab7"
+  dependencies:
+    lodash "^4.17.4"
+    postcss "^6.0.11"
+    postcss-sorting "^3.0.2"
 
 stylelint-scss@^2.1.0:
   version "2.1.0"
