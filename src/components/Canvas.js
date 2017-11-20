@@ -11,18 +11,29 @@ export default class Canvas extends Component {
 
 	componentDidMount() {
 		this.ctx = this.canvas.getContext('2d');
-		this.imageLoader.addEventListener('change', this.handleImageChange.bind(this), false);
 
 		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
-		this.drawCanvas(this.props.fontSize, this.props.imageHeight, imageWidth, this.props.lyrics);
+		this.drawCanvas(
+			this.props.fontSize,
+			this.props.imageURL,
+			this.props.imageHeight,
+			imageWidth,
+			this.props.lyrics
+		);
 	}
 
 	componentDidUpdate() {
 		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
-		this.drawCanvas(this.props.fontSize, this.props.imageHeight, imageWidth, this.props.lyrics);
+		this.drawCanvas(
+			this.props.fontSize,
+			this.props.imageURL,
+			this.props.imageHeight,
+			imageWidth,
+			this.props.lyrics
+		);
 	}
 
-	drawCanvas(fontSize, imageHeight, imageWidth, lyrics) {
+	drawCanvas(fontSize, imageURL, imageHeight, imageWidth, lyrics) {
 		this.canvas.height = imageHeight;
 		this.canvas.width = imageWidth;
 		this.ctx.fillStyle = 'white';
@@ -41,14 +52,20 @@ export default class Canvas extends Component {
 		this.ctx.restore();
 
 		// draw image
-		if (this.state.image) {
-			this.ctx.globalCompositeOperation = 'source-in';
-			this.ctx.drawImage(this.state.image, 0, 0, imageWidth, imageHeight);
-		}
+		this.drawImage(imageURL, imageHeight, imageWidth);
 
 		// draw background behind text
 		this.ctx.globalCompositeOperation = 'destination-over';
 		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
+	}
+
+	drawImage(imageURL, imageHeight, imageWidth) {
+		if (imageURL !== '') {
+			const img = new Image();
+			img.src = imageURL;
+			this.ctx.globalCompositeOperation = 'source-in';
+			this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+		}
 	}
 
 	drawText(fontSize, imageHeight, imageWidth, lyrics) {
@@ -75,22 +92,6 @@ export default class Canvas extends Component {
 		}
 	}
 
-	handleImageChange(e) {
-		// set up FileReader for image
-		const reader = new FileReader();
-
-		// when image is loaded, save it to state
-		reader.onload = (event) => {
-			const newImage = new Image();
-			newImage.onload = () => {
-				this.setState({ image: newImage });
-				this.props.setImageAspectRatio(newImage.width / newImage.height);
-			};
-			newImage.src = event.target.result;
-		};
-		reader.readAsDataURL(e.target.files[0]);
-	}
-
 	render() {
 		let displayedHeight;
 		let displayedWidth;
@@ -108,18 +109,6 @@ export default class Canvas extends Component {
 
 		return (
 			<div className="canvas-container">
-
-				<label htmlFor="image-loader">
-					Select image
-					<input
-						type="file"
-						id="image-loader"
-						ref={(i) => {
-							this.imageLoader = i;
-						}}
-					/>
-				</label>
-
 				<canvas
 					style={{
 						height: `${displayedHeight}px`,
@@ -131,8 +120,8 @@ export default class Canvas extends Component {
 				/>
 				<a
 					download="lyrics-poster.png"
-					href={this.props.downloadUrl}
-					onClick={() => this.props.setDownloadUrl(this.canvas.toDataURL('image/png')
+					href={this.props.downloadURL}
+					onClick={() => this.props.setDownloadURL(this.canvas.toDataURL('image/png')
 						.replace(/^data:image\/[^;]/, 'data:application/octet-stream'))
 					}
 				>
@@ -144,12 +133,12 @@ export default class Canvas extends Component {
 }
 
 Canvas.propTypes = {
-	downloadUrl: PropTypes.string.isRequired,
+	downloadURL: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
+	imageURL: PropTypes.string.isRequired,
 	imageAspectRatio: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,
 	lyrics: PropTypes.string.isRequired,
 
-	setDownloadUrl: PropTypes.func.isRequired,
-	setImageAspectRatio: PropTypes.func.isRequired
+	setDownloadURL: PropTypes.func.isRequired
 };

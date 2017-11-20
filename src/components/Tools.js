@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ImageSelectorContainer from './ImageSelectorContainer';
 
 
 export default class Tools extends Component {
@@ -34,16 +35,24 @@ export default class Tools extends Component {
 	updateSettings(event) {
 		event.preventDefault();
 
-		// update Redux state with form values
-		this.props.setFontSize(this.state.newFontSize);
-		this.props.setImageHeight(this.state.newImageHeight);
-		this.props.setLyrics(this.state.newLyrics);
+		// update Redux state with form values (if they have changed)
+		if (this.state.newFontSize !== this.props.fontSize) {
+			this.props.setFontSize(this.state.newFontSize);
+		}
+		if (this.state.newImageHeight !== this.props.imageHeight) {
+			this.props.setImageHeight(this.state.newImageHeight);
+		}
+		if (this.state.newLyrics !== this.props.lyrics) {
+			this.props.setLyrics(this.state.newLyrics);
+		}
 	}
 
 	render() {
 		return (
 			<div className="tools-container">
 				<form onSubmit={this.updateSettings}>
+
+					<ImageSelectorContainer />
 
 					<label htmlFor="input-font-size">
 						Font size:
@@ -70,7 +79,7 @@ export default class Tools extends Component {
 						<input
 							type="number"
 							id="input-image-height"
-							value={Math.round(this.state.newImageHeight * 10) / 10}
+							value={Math.round(this.state.newImageHeight)}
 							onChange={e => this.setState({ newImageHeight: parseFloat(e.target.value) })}
 							onBlur={e => this.setState({
 								newImageWidth: parseFloat(e.target.value) * this.props.imageAspectRatio
@@ -83,7 +92,7 @@ export default class Tools extends Component {
 						<input
 							type="number"
 							id="input-image-width"
-							value={Math.round(this.state.newImageWidth * 10) / 10}
+							value={Math.round(this.state.newImageWidth)}
 							onChange={e => this.setState({ newImageWidth: parseFloat(e.target.value) })}
 							onBlur={e => this.setState({
 								newImageHeight: parseFloat(e.target.value) / this.props.imageAspectRatio

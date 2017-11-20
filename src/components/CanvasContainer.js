@@ -7,10 +7,11 @@ import * as actions from '../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		downloadUrl: state.downloadUrl,
+		downloadURL: state.downloadURL,
 		fontSize: state.fontSize,
 		imageAspectRatio: state.imageAspectRatio,
 		imageHeight: state.imageHeight,
+		imageURL: state.imageURL,
 		lyrics: state.lyrics
 	};
 }
@@ -18,9 +19,9 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setDownloadUrl: newDownloadUrl => dispatch(actions.setDownloadUrl(newDownloadUrl)),
-		setImageAspectRatio: newImageAspectRatio =>
-			dispatch(actions.setImageAspectRatio(newImageAspectRatio))
+		setDownloadURL: newDownloadURL => dispatch(actions.setDownloadURL(newDownloadURL)),
+		setImage: (newImageAspectRatio, newImageURL) =>
+			dispatch(actions.setImage(newImageAspectRatio, newImageURL))
 	};
 }
 

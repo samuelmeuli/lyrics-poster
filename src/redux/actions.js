@@ -1,7 +1,7 @@
-export function setDownloadUrl(newDownloadUrl) {
+export function setDownloadURL(newDownloadURL) {
 	return {
 		type: 'SET_DOWNLOAD_URL',
-		payload: newDownloadUrl
+		payload: newDownloadURL
 	};
 }
 
@@ -12,10 +12,13 @@ export function setFontSize(newFontSize) {
 	};
 }
 
-export function setImageAspectRatio(newImageAspectRatio) {
+export function setImage(newImageAspectRatio, newImageURL) {
 	return {
-		type: 'SET_IMAGE_ASPECT_RATIO',
-		payload: newImageAspectRatio
+		type: 'SET_IMAGE',
+		payload: {
+			imageAspectRatio: newImageAspectRatio,
+			imageURL: newImageURL
+		}
 	};
 }
 

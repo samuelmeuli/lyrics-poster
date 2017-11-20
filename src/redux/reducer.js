@@ -1,6 +1,7 @@
 export default function reducer(
 	state = {
-		downloadUrl: '',
+		downloadURL: '',
+		imageURL: '',
 		imageAspectRatio: 1.5,
 		imageHeight: 1500,
 		fontSize: 10,
@@ -25,13 +26,17 @@ Lorem ipsum dolor sit amet.`
 ) {
 	switch (action.type) {
 		case 'SET_DOWNLOAD_URL': {
-			return { ...state, downloadUrl: action.payload };
+			return { ...state, downloadURL: action.payload };
 		}
 		case 'SET_FONT_SIZE': {
 			return { ...state, fontSize: action.payload };
 		}
-		case 'SET_IMAGE_ASPECT_RATIO': {
-			return { ...state, imageAspectRatio: action.payload };
+		case 'SET_IMAGE': {
+			return {
+				...state,
+				imageAspectRatio: action.payload.imageAspectRatio,
+				imageURL: action.payload.imageURL
+			};
 		}
 		case 'SET_IMAGE_HEIGHT': {
 			return { ...state, imageHeight: action.payload };
