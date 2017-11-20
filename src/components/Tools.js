@@ -45,43 +45,51 @@ export default class Tools extends Component {
 			<div className="tools-container">
 				<form onSubmit={this.updateSettings}>
 
-					<label htmlFor="font-size">Font size:</label>
-					<input
-						type="number"
-						name="font-size"
-						value={this.state.newFontSize}
-						onChange={e => this.setState({ newFontSize: parseInt(e.target.value, 10) })}
-					/>
+					<label htmlFor="input-font-size">
+						Font size:
+						<input
+							type="number"
+							id="input-font-size"
+							value={this.state.newFontSize}
+							onChange={e => this.setState({ newFontSize: parseInt(e.target.value, 10) })}
+						/>
+					</label>
 
-					<label htmlFor="lyrics">Lyrics:</label>
-					<input
-						type="text"
-						name="lyrics"
-						value={this.state.newLyrics}
-						onChange={e => this.setState({ newLyrics: e.target.value })}
-					/>
+					<label htmlFor="input-lyrics">
+						Lyrics:
+						<input
+							type="text"
+							id="input-lyrics"
+							value={this.state.newLyrics}
+							onChange={e => this.setState({ newLyrics: e.target.value })}
+						/>
+					</label>
 
-					<label htmlFor="image-height">Height:</label>
-					<input
-						type="number"
-						name="image-height"
-						value={Math.round(this.state.newImageHeight * 10) / 10}
-						onChange={e => this.setState({ newImageHeight: parseFloat(e.target.value) })}
-						onBlur={e => this.setState({
-							newImageWidth: parseFloat(e.target.value) * this.props.imageAspectRatio
-						})}
-					/>
+					<label htmlFor="input-image-height">
+						Height:
+						<input
+							type="number"
+							id="input-image-height"
+							value={Math.round(this.state.newImageHeight * 10) / 10}
+							onChange={e => this.setState({ newImageHeight: parseFloat(e.target.value) })}
+							onBlur={e => this.setState({
+								newImageWidth: parseFloat(e.target.value) * this.props.imageAspectRatio
+							})}
+						/>
+					</label>
 
-					<label htmlFor="image-width">Width:</label>
-					<input
-						type="number"
-						name="image-width"
-						value={Math.round(this.state.newImageWidth * 10) / 10}
-						onChange={e => this.setState({ newImageWidth: parseFloat(e.target.value) })}
-						onBlur={e => this.setState({
-							newImageHeight: parseFloat(e.target.value) / this.props.imageAspectRatio
-						})}
-					/>
+					<label htmlFor="input-image-width">
+						Width:
+						<input
+							type="number"
+							id="input-image-width"
+							value={Math.round(this.state.newImageWidth * 10) / 10}
+							onChange={e => this.setState({ newImageWidth: parseFloat(e.target.value) })}
+							onBlur={e => this.setState({
+								newImageHeight: parseFloat(e.target.value) / this.props.imageAspectRatio
+							})}
+						/>
+					</label>
 
 					<input type="submit" value="Apply" />
 

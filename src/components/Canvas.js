@@ -108,13 +108,18 @@ export default class Canvas extends Component {
 
 		return (
 			<div className="canvas-container">
-				<input
-					type="file"
-					name="imageLoader"
-					ref={(i) => {
-						this.imageLoader = i;
-					}}
-				/>
+
+				<label htmlFor="image-loader">
+					Select image
+					<input
+						type="file"
+						id="image-loader"
+						ref={(i) => {
+							this.imageLoader = i;
+						}}
+					/>
+				</label>
+
 				<canvas
 					style={{
 						height: `${displayedHeight}px`,

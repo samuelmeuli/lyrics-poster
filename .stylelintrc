@@ -1,0 +1,21 @@
+{
+	"plugins": [
+		"stylelint-scss"
+	],
+	"rules": {
+		"block-opening-brace-space-before": "always",
+		"comment-empty-line-before": ["always", {
+			"ignore": ["stylelint-commands"]
+		}],
+		"declaration-colon-space-after": "always",
+		"declaration-colon-space-before": "never",
+		"declaration-property-value-blacklist": {
+			"/^border/": ["none"]
+		},
+		"indentation": "tab",
+		"max-nesting-depth": 3,
+		"no-invalid-double-slash-comments": true,
+		"scss/at-extend-no-missing-placeholder": true,
+		"selector-list-comma-newline-after": "always"
+	}
+}

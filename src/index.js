@@ -5,8 +5,11 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import App from './components/App';
-import './styles/styles.css';
 import registerServiceWorker from './registerServiceWorker';
+
+// styles
+import '../node_modules/normalize.css/normalize.css';
+import './styles/styles.css';
 
 
 ReactDOM.render(
