@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ImageSelectorContainer from './ImageSelectorContainer';
+import ImageSelectorContainer from '../elements/ImageSelectorContainer';
 
 
-export default class Tools extends Component {
+export default class Settings extends Component {
 
 	constructor(props) {
 		super(props);
@@ -66,7 +66,7 @@ export default class Tools extends Component {
 
 					<label htmlFor="input-lyrics">
 						Lyrics:
-						<input
+						<textarea
 							type="text"
 							id="input-lyrics"
 							value={this.state.newLyrics}
@@ -108,7 +108,7 @@ export default class Tools extends Component {
 	}
 }
 
-Tools.propTypes = {
+Settings.propTypes = {
 	fontSize: PropTypes.number.isRequired,
 	imageAspectRatio: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,

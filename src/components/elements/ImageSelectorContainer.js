@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ImageSelector from './ImageSelector';
-import * as actions from '../redux/actions';
+import * as actions from '../../redux/actions';
 
 
 // map Redux actions to component props

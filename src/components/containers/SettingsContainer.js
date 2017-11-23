@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Tools from './Tools';
-import * as actions from '../redux/actions';
+import Settings from './Settings';
+import * as actions from '../../redux/actions';
 
 
 // map Redux state to component props
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Tools);
+)(Settings);

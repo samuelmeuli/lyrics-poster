@@ -1,14 +1,14 @@
 import React from 'react';
 
-import CanvasContainer from './CanvasContainer';
-import ToolsContainer from './ToolsContainer';
+import PosterContainer from './containers/PosterContainer';
+import SettingsContainer from './containers/SettingsContainer';
 
 
 export default function App() {
 	return (
 		<main>
-			<CanvasContainer />
-			<ToolsContainer />
+			<PosterContainer />
+			<SettingsContainer />
 		</main>
 	);
 }

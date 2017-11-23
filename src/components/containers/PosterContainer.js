@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Canvas from './Canvas';
-import * as actions from '../redux/actions';
+import Poster from './Poster';
+import * as actions from '../../redux/actions';
 
 
 // map Redux state to component props
@@ -29,4 +29,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Canvas);
+)(Poster);
