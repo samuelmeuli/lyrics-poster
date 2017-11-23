@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FileSaver from 'file-saver';
 
 
 export default class Preview extends Component {
@@ -60,12 +61,16 @@ export default class Preview extends Component {
 		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
 	}
 
-	drawImage(imageURL, imageHeight, imageWidth) {
-		if (imageURL !== '') {
-			const img = new Image();
-			img.src = imageURL;
-			this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+	formatText(lyrics) {
+		// replace line breaks with slashes
+		let lyricsFormatted = lyrics.replace(/(?:\r\n|\r|\n)+/g, ' / ');
+
+		// place slash after last line if it does not exist yet
+		if (!lyricsFormatted.endsWith(' / ')) {
+			lyricsFormatted += ' / ';
 		}
+
+		return lyricsFormatted;
 	}
 
 	drawText(fontSize, imageHeight, imageWidth, lyricsFormatted) {
@@ -93,16 +98,19 @@ export default class Preview extends Component {
 		}
 	}
 
-	formatText(lyrics) {
-		// replace line breaks with slashes
-		let lyricsFormatted = lyrics.replace(/(?:\r\n|\r|\n)+/g, ' / ');
-
-		// place slash after last line if it does not exist yet
-		if (!lyricsFormatted.endsWith(' / ')) {
-			lyricsFormatted += ' / ';
+	drawImage(imageURL, imageHeight, imageWidth) {
+		if (imageURL !== '') {
+			const img = new Image();
+			img.src = imageURL;
+			this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 		}
+	}
 
-		return lyricsFormatted;
+	downloadPoster() {
+		// get canvas as Blob and download it using FileSaver.js
+		this.canvas.toBlob((blob) => {
+			FileSaver.saveAs(blob, 'lyrics-poster');
+		});
 	}
 
 	render() {
@@ -132,27 +140,18 @@ export default class Preview extends Component {
 						this.canvas = c;
 					}}
 				/>
-				<a
-					download="lyrics-poster.png"
-					href={this.props.downloadURL}
-					onClick={() => this.props.setDownloadURL(this.canvas.toDataURL('image/png')
-						.replace(/^data:image\/[^;]/, 'data:application/octet-stream'))
-					}
-				>
+				<button id="download-button" onClick={() => this.downloadPoster()}>
 					Download image
-				</a>
+				</button>
 			</div>
 		);
 	}
 }
 
 Preview.propTypes = {
-	downloadURL: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
 	imageURL: PropTypes.string.isRequired,
 	imageAspectRatio: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,
-	lyrics: PropTypes.string.isRequired,
-
-	setDownloadURL: PropTypes.func.isRequired
+	lyrics: PropTypes.string.isRequired
 };

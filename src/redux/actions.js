@@ -1,10 +1,3 @@
-export function setDownloadURL(newDownloadURL) {
-	return {
-		type: 'SET_DOWNLOAD_URL',
-		payload: newDownloadURL
-	};
-}
-
 export function setFontSize(newFontSize) {
 	return {
 		type: 'SET_FONT_SIZE',

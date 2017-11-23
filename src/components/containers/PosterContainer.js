@@ -7,7 +7,6 @@ import * as actions from '../../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		downloadURL: state.downloadURL,
 		fontSize: state.fontSize,
 		imageAspectRatio: state.imageAspectRatio,
 		imageHeight: state.imageHeight,
@@ -19,7 +18,6 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setDownloadURL: newDownloadURL => dispatch(actions.setDownloadURL(newDownloadURL)),
 		setImage: (newImageAspectRatio, newImageURL) =>
 			dispatch(actions.setImage(newImageAspectRatio, newImageURL))
 	};

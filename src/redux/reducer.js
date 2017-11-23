@@ -1,9 +1,8 @@
 export default function reducer(
 	state = {
-		downloadURL: '',
-		imageURL: '',
 		imageAspectRatio: 1.5,
 		imageHeight: 1500,
+		imageURL: '',
 		fontSize: 10,
 		lyrics: `Lorem ipsum dolor sit amet,
 consetetur sadipscing elitr,
@@ -25,9 +24,6 @@ Lorem ipsum dolor sit amet.`
 	action
 ) {
 	switch (action.type) {
-		case 'SET_DOWNLOAD_URL': {
-			return { ...state, downloadURL: action.payload };
-		}
 		case 'SET_FONT_SIZE': {
 			return { ...state, fontSize: action.payload };
 		}
