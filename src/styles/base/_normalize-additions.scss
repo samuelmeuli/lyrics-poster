@@ -1,4 +1,4 @@
-body {
+* {
 	box-sizing: border-box;
 }
 
@@ -16,4 +16,10 @@ h1 {
 a {
 	color: inherit;
 	text-decoration: none;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
 }

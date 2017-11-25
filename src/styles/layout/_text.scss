@@ -1,0 +1,24 @@
+body,
+input,
+textarea {
+	color: $color-text;
+	font-family: $font;
+	font-size: $font-size;
+	font-weight: $font-normal;
+	line-height: 1.5;
+}
+
+input[type="button"],
+input[type="submit"] {
+	font-weight: $font-bold;
+}
+
+legend {
+	color: $color-input-border;
+	font-size: 80%;
+	text-transform: uppercase;
+}
+
+::selection {
+	background-color: lighten($color-red, 20%);
+}

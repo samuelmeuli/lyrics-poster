@@ -1,10 +1,13 @@
 // base
 @import "base/normalize-additions"; // style reset additions
 @import "base/variables";
+@import "base/mixins";
 
 // layout
 @import "layout/text";
-@import "layout/layout";
+@import "layout/containers";
 
 // elements
+@import "elements/images";
+@import "elements/form";
 @import "elements/input";

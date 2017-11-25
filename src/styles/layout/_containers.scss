@@ -1,0 +1,60 @@
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	background-color: $color-background;
+}
+
+// parent container for settings and poster containers
+// small/medium screens: .container-settings and .container-poster are below each other
+// large screens: .container-settings is on the left, .container-poster on the right (using grid)
+main {
+	width: 100%;
+
+	@include large-screen {
+		height: 100%;
+		display: grid;
+		grid-template-columns: 450px auto;
+		grid-column-gap: $margin-large;
+		justify-content: center; // grid alignment
+		align-items: center; // grid column alignment
+	}
+}
+
+// container with poster configuration options
+.container-settings {
+	background-color: $color-background-settings;
+	max-height: 100%;
+	overflow: scroll;
+
+	@include small-screen {
+		margin-bottom: $margin-small;
+	}
+
+	@include medium-screen {
+		margin-bottom: $margin-medium;
+	}
+}
+
+// container with poster preview
+.container-poster {
+	position: relative;
+}
+
+main,
+.container-settings {
+	@include small-screen {
+		padding: $margin-small;
+	}
+
+	@include medium-screen {
+		padding: $margin-medium;
+	}
+
+	@include large-screen {
+		padding: $margin-large;
+	}
+}

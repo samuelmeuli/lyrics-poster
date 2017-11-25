@@ -3,7 +3,7 @@ export default function reducer(
 		imageAspectRatio: 1.5,
 		imageHeight: 1500,
 		imageURL: '',
-		fontSize: 10,
+		fontSize: 14,
 		lyrics: `Lorem ipsum dolor sit amet,
 consetetur sadipscing elitr,
 sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,

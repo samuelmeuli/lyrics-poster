@@ -1,7 +1,6 @@
 {
-  "name": "lyrics-poster-generator",
+  "name": "lyrics-posters",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "file-saver": "^1.3.3",
     "normalize.css": "^7.0.0",

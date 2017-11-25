@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Poster from './Poster';
-import * as actions from '../../redux/actions';
+import * as actions from '../../../redux/actions';
 
 
 // map Redux state to component props

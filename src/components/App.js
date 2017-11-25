@@ -1,14 +1,14 @@
 import React from 'react';
 
-import PosterContainer from './containers/PosterContainer';
-import SettingsContainer from './containers/SettingsContainer';
+import PosterContainer from './containers/Poster/PosterContainer';
+import SettingsContainer from './containers/Settings/SettingsContainer';
 
 
 export default function App() {
 	return (
 		<main>
-			<PosterContainer />
 			<SettingsContainer />
+			<PosterContainer />
 		</main>
 	);
 }

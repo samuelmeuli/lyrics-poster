@@ -5,34 +5,78 @@ import FileSaver from 'file-saver';
 
 export default class Preview extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			imageWidthScaled: this.calcScaledWidth()
+		};
+
+		// function bindings
+		this.onWindowResize = this.onWindowResize.bind(this);
+
+		// window resize event listener
+		window.addEventListener('resize', this.onWindowResize);
+	}
+
 	componentDidMount() {
 		// get reference to canvas HTML element
 		this.ctx = this.canvas.getContext('2d');
 
-		// draw poster preview on canvas
-		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
-		this.drawPoster(
-			this.props.fontSize,
-			this.props.imageURL,
-			this.props.imageHeight,
-			imageWidth,
-			this.props.lyrics
-		);
+		this.drawPoster();
 	}
 
 	componentDidUpdate() {
-		// draw poster preview on canvas
-		const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
-		this.drawPoster(
-			this.props.fontSize,
-			this.props.imageURL,
-			this.props.imageHeight,
-			imageWidth,
-			this.props.lyrics
-		);
+		this.drawPoster();
+
+		const newScaledWidth = this.calcScaledWidth();
+		if (newScaledWidth !== this.state.imageWidthScaled) {
+			this.setState({
+				imageWidthScaled: newScaledWidth
+			});
+		}
 	}
 
-	drawPoster(fontSize, imageURL, imageHeight, imageWidth, lyrics) {
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.onWindowResize);
+	}
+
+	onWindowResize() {
+		clearTimeout(this.resizeTimeout);
+		this.resizeTimeout = setTimeout(() => {
+			this.setState({
+				imageWidthScaled: this.calcScaledWidth()
+			});
+		}, 100);
+	}
+
+	calcScaledWidth() {
+		const screenWidth = window.innerWidth;
+
+		if (screenWidth <= 1000) {
+			return '100%';
+		}
+		else {
+			const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
+			const margin = '40';
+			const screenHeight = window.innerHeight;
+			const settingsWidth = '450';
+
+			const scaleHeight = (screenHeight - (2 * margin)) / this.props.imageHeight;
+			const scaleWidth = (screenWidth - settingsWidth - (3 * margin)) / imageWidth;
+			if (scaleHeight < scaleWidth) {
+				return imageWidth * scaleHeight;
+			}
+			else {
+				return imageWidth * scaleWidth;
+			}
+		}
+	}
+
+	drawPoster() {
+		const { fontSize, imageAspectRatio, imageHeight, imageURL, lyrics } = this.props;
+		const imageWidth = imageHeight * imageAspectRatio;
+
 		// set canvas size
 		this.canvas.height = imageHeight;
 		this.canvas.width = imageWidth;
@@ -42,7 +86,7 @@ export default class Preview extends Component {
 		this.ctx.fillStyle = 'white';
 		this.ctx.save();
 
-		// format and draw text
+		// format and drawPoster text
 		const formattedLyrics = this.formatText(lyrics);
 		this.ctx.font = `${fontSize}px Verdana`;
 		this.ctx.shadowOffsetX = 1;
@@ -52,11 +96,11 @@ export default class Preview extends Component {
 		this.drawText(fontSize, imageHeight, imageWidth, formattedLyrics);
 		this.ctx.restore();
 
-		// draw image (only where text is)
+		// drawPoster image (only where text is)
 		this.ctx.globalCompositeOperation = 'source-in';
 		this.drawImage(imageURL, imageHeight, imageWidth);
 
-		// draw white background behind text
+		// drawPoster white background behind text
 		this.ctx.globalCompositeOperation = 'destination-over';
 		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
 	}
@@ -114,35 +158,20 @@ export default class Preview extends Component {
 	}
 
 	render() {
-		// scale poster to fit screen size
-		let displayedHeight;
-		let displayedWidth;
-
-		// image orientation: portrait
-		if (this.props.imageAspectRatio < 1) {
-			displayedHeight = 600;
-			displayedWidth = displayedHeight * this.props.imageAspectRatio;
-		}
-		// image orientation: landscape
-		else {
-			displayedWidth = 600;
-			displayedHeight = displayedWidth / this.props.imageAspectRatio;
-		}
-
 		return (
-			<div className="canvas-container">
+			<div className="container-poster">
 				<canvas
-					style={{
-						height: `${displayedHeight}px`,
-						width: `${displayedWidth}px`
-					}}
 					ref={(c) => {
 						this.canvas = c;
 					}}
+					style={{ width: this.state.imageWidthScaled }}
 				/>
-				<button id="download-button" onClick={() => this.downloadPoster()}>
-					Download image
-				</button>
+				<input
+					type="button"
+					value="Download poster"
+					id="download-button"
+					onClick={() => this.downloadPoster()}
+				/>
 			</div>
 		);
 	}
