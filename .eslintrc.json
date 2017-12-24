@@ -18,6 +18,8 @@
 		"react/jsx-filename-extension": 0,
 		"react/jsx-indent": [1, "tab"],
 		"react/jsx-indent-props": [1, "tab"],
+
+		"consistent-return": 0,
 		"react/no-did-update-set-state": 0
 	}
 }

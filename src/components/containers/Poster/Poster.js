@@ -73,20 +73,20 @@ export default class Preview extends Component {
 		}
 	}
 
-	drawPoster() {
+	async drawPoster() {
 		const { fontSize, imageAspectRatio, imageHeight, imageURL, lyrics } = this.props;
 		const imageWidth = imageHeight * imageAspectRatio;
 
 		// set canvas size
+		this.ctx.globalCompositeOperation = 'source-over';
 		this.canvas.height = imageHeight;
 		this.canvas.width = imageWidth;
 
 		// clear canvas
 		this.ctx.clearRect(0, 0, imageWidth, imageHeight);
-		this.ctx.fillStyle = 'white';
 		this.ctx.save();
 
-		// format and drawPoster text
+		// format and draw text
 		const formattedLyrics = this.formatText(lyrics);
 		this.ctx.font = `${fontSize}px Verdana`;
 		this.ctx.shadowOffsetX = 1;
@@ -96,12 +96,13 @@ export default class Preview extends Component {
 		this.drawText(fontSize, imageHeight, imageWidth, formattedLyrics);
 		this.ctx.restore();
 
-		// drawPoster image (only where text is)
+		// draw image (only where text is)
 		this.ctx.globalCompositeOperation = 'source-in';
-		this.drawImage(imageURL, imageHeight, imageWidth);
+		await this.drawImage(imageURL, imageHeight, imageWidth);
 
-		// drawPoster white background behind text
+		// draw white background behind text
 		this.ctx.globalCompositeOperation = 'destination-over';
+		this.ctx.fillStyle = 'white';
 		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
 	}
 
@@ -143,11 +144,20 @@ export default class Preview extends Component {
 	}
 
 	drawImage(imageURL, imageHeight, imageWidth) {
-		if (imageURL !== '') {
-			const img = new Image();
-			img.src = imageURL;
-			this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-		}
+		return new Promise((resolve, reject) => {
+			if (imageURL !== '') {
+				const img = new Image();
+				img.onload = () => {
+					this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+					return resolve();
+				};
+				img.onerror = reject;
+				img.src = imageURL;
+			}
+			else {
+				return resolve();
+			}
+		});
 	}
 
 	downloadPoster() {
