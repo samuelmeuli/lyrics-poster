@@ -19,6 +19,10 @@ legend {
 	text-transform: uppercase;
 }
 
+.text-warning {
+	color: $color-red;
+}
+
 ::selection {
 	background-color: lighten($color-red, 20%);
 }
