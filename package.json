@@ -8,7 +8,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "react-scripts": "1.0.16",
+    "react-scripts": "1.0.17",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
@@ -21,7 +21,7 @@
     "eslint-plugin-react": "^7.5.1",
     "husky": "^0.14.3",
     "stylelint": "^8.2.0",
-    "stylelint-order": "^0.7.0",
+    "stylelint-order": "^0.8.0",
     "stylelint-scss": "^2.1.0"
   },
   "scripts": {
@@ -29,10 +29,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "yarn lint-js; yarn lint-scss",
+    "lint": "npm run lint-js; npm run lint-scss",
     "lint-js": "eslint --ext .jsx,.js src",
     "lint-scss": "stylelint '**/*.scss' --syntax scss",
-    "precommit": "yarn lint",
-    "prepush": "yarn lint"
+    "precommit": "npm run lint",
+    "prepush": "npm run lint"
   }
 }
