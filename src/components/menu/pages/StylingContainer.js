@@ -1,26 +1,24 @@
 import { connect } from 'react-redux';
 
-import Image from './Image';
-import * as actions from '../../../../redux/actions';
+import Styling from './Styling';
+import * as actions from '../../../redux/actions';
 
 
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		imageAspectRatio: state.imageAspectRatio,
-		imageHeight: state.imageHeight,
-		imageURL: state.imageURL
+		fontSize: state.fontSize
 	};
 }
 
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setImageHeight: newImageHeight => dispatch(actions.setImageHeight(newImageHeight))
+		setFontSize: newFontSize => dispatch(actions.setFontSize(newFontSize))
 	};
 }
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Image);
+)(Styling);

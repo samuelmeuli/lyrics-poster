@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import iconError from '../../../../images/icons/error.svg';
+import iconError from '../../../images/icons/error.svg';
 
 
 export default class ImageSelector extends Component {

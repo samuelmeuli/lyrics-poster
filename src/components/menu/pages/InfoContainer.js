@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Download from './Download';
-import * as actions from '../../../../redux/actions';
+import Info from './Info';
+import * as actions from '../../../redux/actions';
 
 
 // map Redux state to component props
@@ -19,4 +19,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Download);
+)(Info);

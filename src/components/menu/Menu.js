@@ -7,7 +7,7 @@ import InfoContainer from './pages/InfoContainer';
 import LyricsContainer from './pages/LyricsContainer';
 import StylingContainer from './pages/StylingContainer';
 
-import logo from '../../../images/logo.svg';
+import logo from '../../images/logo.svg';
 
 
 export default class Menu extends Component {
@@ -37,7 +37,7 @@ export default class Menu extends Component {
 
 	render() {
 		return (
-			<div className="container-menu">
+			<div className="menu-container">
 				<div className="menu-page">
 					<img src={logo} alt="LyricsPosters" className="logo" />
 					{this.getPage()}

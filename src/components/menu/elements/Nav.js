@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import iconDownload from '../../../../images/icons/nav-icons/download.svg';
-import iconImage from '../../../../images/icons/nav-icons/image.svg';
-import iconInfo from '../../../../images/icons/nav-icons/info.svg';
-import iconLyrics from '../../../../images/icons/nav-icons/lyrics.svg';
-import iconStyling from '../../../../images/icons/nav-icons/styling.svg';
+import iconDownload from '../../../images/icons/nav-icons/download.svg';
+import iconImage from '../../../images/icons/nav-icons/image.svg';
+import iconInfo from '../../../images/icons/nav-icons/info.svg';
+import iconLyrics from '../../../images/icons/nav-icons/lyrics.svg';
+import iconStyling from '../../../images/icons/nav-icons/styling.svg';
 
 
 export default class Nav extends Component {

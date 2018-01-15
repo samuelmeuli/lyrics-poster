@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PosterContainer from './containers/poster/PosterContainer';
-import MenuContainer from './containers/menu/MenuContainer';
+import PosterContainer from './poster/PosterContainer';
+import MenuContainer from './menu/MenuContainer';
 
 
 export default function App() {

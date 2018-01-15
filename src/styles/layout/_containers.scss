@@ -25,7 +25,7 @@ main {
 }
 
 // container with poster configuration options
-.container-menu {
+.menu-container {
 	@include small-screen {
 		margin-bottom: $margin-small;
 	}
@@ -36,7 +36,7 @@ main {
 }
 
 // container with poster preview
-.container-poster {
+.poster-container {
 	position: relative;
 }
 

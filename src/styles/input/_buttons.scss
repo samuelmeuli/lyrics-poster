@@ -20,26 +20,6 @@ button,
 	}
 }
 
-// poster download button, placed on top of canvas
-#button-download {
-	position: absolute;
-
-	@include small-screen {
-		bottom: $margin-small;
-		left: $margin-small;
-	}
-
-	@include medium-screen {
-		bottom: $margin-medium;
-		left: $margin-medium;
-	}
-
-	@include large-screen {
-		bottom: $margin-large;
-		right: $margin-large;
-	}
-}
-
 // hide <input type="file"> (label will be styled instead)
 #image-selector {
 	width: .1px;

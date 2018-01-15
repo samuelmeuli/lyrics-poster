@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FileSaver from 'file-saver';
 
 
 export default class Poster extends Component {
@@ -104,6 +103,9 @@ export default class Poster extends Component {
 		this.ctx.globalCompositeOperation = 'destination-over';
 		this.ctx.fillStyle = 'white';
 		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
+
+		// save poster as data URL to Redux store
+		this.props.setPosterURL(this.canvas.toDataURL());
 	}
 
 	formatText(lyrics) {
@@ -160,25 +162,15 @@ export default class Poster extends Component {
 		});
 	}
 
-	downloadPoster() {
-		// get canvas as Blob and download it using FileSaver.js
-		this.canvas.toBlob((blob) => {
-			FileSaver.saveAs(blob, 'lyrics-poster');
-		});
-	}
-
 	render() {
 		return (
-			<div className="container-poster">
+			<div className="poster-container">
 				<canvas
 					ref={(c) => {
 						this.canvas = c;
 					}}
 					style={{ width: this.state.imageWidthScaled }}
 				/>
-				<button id="button-download" onClick={() => this.downloadPoster()}>
-					Download poster
-				</button>
 			</div>
 		);
 	}
@@ -191,5 +183,8 @@ Poster.propTypes = {
 	imageURL: PropTypes.string.isRequired,
 	imageAspectRatio: PropTypes.number.isRequired,
 	imageHeight: PropTypes.number.isRequired,
-	lyrics: PropTypes.string.isRequired
+	lyrics: PropTypes.string.isRequired,
+
+	// Redux functions
+	setPosterURL: PropTypes.func.isRequired
 };

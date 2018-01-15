@@ -9,6 +9,7 @@ export default function reducer(
 		imageHeight: 3000,
 		imageName: '', // name of selected image file
 		imageURL: '', // image file encoded as data URL
+		posterURL: '', // poster (canvas) encoded as data URL
 
 		// text options
 		lyrics: sampleLyrics, // placeholder lyrics from sample-lyrics.js file
@@ -20,9 +21,7 @@ export default function reducer(
 	action
 ) {
 	switch (action.type) {
-
 		// image
-
 		case 'SET_IMAGE': {
 			return {
 				...state,
@@ -31,23 +30,22 @@ export default function reducer(
 				imageURL: action.payload.imageURL
 			};
 		}
-
 		case 'SET_IMAGE_HEIGHT': {
 			return { ...state, imageHeight: action.payload };
 		}
+		case 'SET_POSTER_URL': {
+			return { ...state, posterURL: action.payload };
+		}
 
 		// text
-
 		case 'SET_LYRICS': {
 			return { ...state, lyrics: action.payload };
 		}
-
 		case 'SET_FONT_SIZE': {
 			return { ...state, fontSize: action.payload };
 		}
 
 		// navigation
-
 		case 'NAV_BACK': {
 			const newNavPage = state.navPage - 1;
 			if (newNavPage < 0) {
@@ -57,7 +55,6 @@ export default function reducer(
 				return { ...state, navPage: newNavPage };
 			}
 		}
-
 		case 'NAV_FORWARD': {
 			const newNavPage = state.navPage + 1;
 			if (newNavPage > 4) {
@@ -69,7 +66,6 @@ export default function reducer(
 		}
 
 		// default
-
 		default: {
 			return state;
 		}
