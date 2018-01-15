@@ -1,3 +1,15 @@
+export function navBack() {
+	return {
+		type: 'NAV_BACK'
+	};
+}
+
+export function navForward() {
+	return {
+		type: 'NAV_FORWARD'
+	};
+}
+
 export function setFontSize(newFontSize) {
 	return {
 		type: 'SET_FONT_SIZE',
@@ -5,11 +17,12 @@ export function setFontSize(newFontSize) {
 	};
 }
 
-export function setImage(newImageAspectRatio, newImageURL) {
+export function setImage(newImageURL, newImageAspectRatio, newImageName) {
 	return {
 		type: 'SET_IMAGE',
 		payload: {
 			imageAspectRatio: newImageAspectRatio,
+			imageName: newImageName,
 			imageURL: newImageURL
 		}
 	};

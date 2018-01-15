@@ -1,0 +1,10 @@
+nav {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav-indicator {
+	border-bottom: 1px solid white;
+	transition: .2s;
+}

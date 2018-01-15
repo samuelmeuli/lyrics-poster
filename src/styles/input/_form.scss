@@ -1,0 +1,35 @@
+form {
+	flex: 1; // fill remaining height
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; // align "apply" button to bottom of settings container
+	align-items: flex-start; // align items to the left
+
+	& > * {
+		width: 100%;
+	}
+}
+
+fieldset {
+	border-top: 1px solid $color-input-border;
+	margin: 25px 0 0;
+}
+
+legend {
+	margin: 0 0 10px 10px;
+	padding: 0 10px;
+}
+
+label {
+	display: block;
+}
+
+form li,
+form li label {
+	display: inline;
+}
+
+form li + li {
+	margin-left: 20px;
+}

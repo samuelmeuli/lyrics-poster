@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FileSaver from 'file-saver';
 
 
-export default class Preview extends Component {
+export default class Poster extends Component {
 
 	constructor(props) {
 		super(props);
@@ -176,18 +176,17 @@ export default class Preview extends Component {
 					}}
 					style={{ width: this.state.imageWidthScaled }}
 				/>
-				<input
-					type="button"
-					value="Download poster"
-					id="download-button"
-					onClick={() => this.downloadPoster()}
-				/>
+				<button id="button-download" onClick={() => this.downloadPoster()}>
+					Download poster
+				</button>
 			</div>
 		);
 	}
 }
 
-Preview.propTypes = {
+
+Poster.propTypes = {
+	// Redux attributes
 	fontSize: PropTypes.number.isRequired,
 	imageURL: PropTypes.string.isRequired,
 	imageAspectRatio: PropTypes.number.isRequired,

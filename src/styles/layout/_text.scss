@@ -1,4 +1,5 @@
 body,
+button,
 input,
 textarea {
 	color: $color-text;
@@ -8,8 +9,9 @@ textarea {
 	line-height: 1.5;
 }
 
-input[type="button"],
-input[type="submit"] {
+// buttons
+button,
+#image-selector-label {
 	font-weight: $font-bold;
 }
 
@@ -19,7 +21,7 @@ legend {
 	text-transform: uppercase;
 }
 
-.text-warning {
+.error-wrapper {
 	color: $color-red;
 }
 

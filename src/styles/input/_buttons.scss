@@ -1,0 +1,77 @@
+// buttons
+button,
+#image-selector-label {
+	height: 40px;
+	display: inline-flex;
+	align-items: center;
+	padding: 0 20px;
+	border: 0;
+	border-radius: $border-radius;
+	background-color: $color-red;
+	cursor: pointer;
+
+	&:hover {
+		background-color: lighten($color-red, 5%);
+	}
+
+	&:disabled {
+		background-color: $color-input;
+		cursor: auto;
+	}
+}
+
+// poster download button, placed on top of canvas
+#button-download {
+	position: absolute;
+
+	@include small-screen {
+		bottom: $margin-small;
+		left: $margin-small;
+	}
+
+	@include medium-screen {
+		bottom: $margin-medium;
+		left: $margin-medium;
+	}
+
+	@include large-screen {
+		bottom: $margin-large;
+		right: $margin-large;
+	}
+}
+
+// hide <input type="file"> (label will be styled instead)
+#image-selector {
+	width: .1px;
+	height: .1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#image-selector-label {
+	display: inline-flex;
+	align-items: center;
+	margin-right: 20px;
+}
+
+.button-back,
+.button-next {
+	width: 60px;
+	mask-size: cover;
+}
+
+.button-back {
+	padding: 0 0 0 25px;
+	mask-image: url("../images/buttons/button-back.svg");
+}
+
+.button-next {
+	padding: 0 25px 0 0;
+	mask-image: url("../images/buttons/button-next.svg");
+
+	img {
+		margin: 0 0 0 auto;
+	}
+}

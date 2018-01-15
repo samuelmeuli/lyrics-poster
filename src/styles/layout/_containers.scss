@@ -25,11 +25,7 @@ main {
 }
 
 // container with poster configuration options
-.container-settings {
-	background-color: $color-background-settings;
-	max-height: 100%;
-	overflow: scroll;
-
+.container-menu {
 	@include small-screen {
 		margin-bottom: $margin-small;
 	}
@@ -45,7 +41,7 @@ main {
 }
 
 main,
-.container-settings {
+.menu-page {
 	@include small-screen {
 		padding: $margin-small;
 	}
@@ -57,4 +53,28 @@ main,
 	@include large-screen {
 		padding: $margin-large;
 	}
+}
+
+.menu-page {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start; // align items to the left
+	background-color: $color-background-settings;
+	min-height: 600px;
+	max-height: 100%;
+	overflow: scroll;
+}
+
+.error-wrapper {
+	display: flex;
+	align-items: center;
+
+	img {
+		margin-right: 5px;
+	}
+}
+
+.image-selector-container {
+	display: flex;
+	align-items: center;
 }
