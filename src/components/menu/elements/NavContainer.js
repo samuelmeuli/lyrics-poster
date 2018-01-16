@@ -7,7 +7,7 @@ import * as actions from '../../../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		navPage: state.navPage
+		navPage: state.nav.page
 	};
 }
 

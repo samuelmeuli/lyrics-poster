@@ -7,16 +7,17 @@ import * as actions from '../../../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		imageAspectRatio: state.imageAspectRatio,
-		imageHeight: state.imageHeight,
-		imageURL: state.imageURL
+		image: state.image,
+		posterHeight: state.poster.height
 	};
 }
 
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setImageHeight: newImageHeight => dispatch(actions.setImageHeight(newImageHeight))
+		setImage: (aspectRatio, dataURL, name) =>
+			dispatch(actions.setImage(aspectRatio, dataURL, name)),
+		setPosterHeight: height => dispatch(actions.setPosterHeight(height))
 	};
 }
 

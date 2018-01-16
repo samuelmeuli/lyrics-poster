@@ -4,19 +4,22 @@ const sampleLyrics = require('./sample-lyrics.js');
 export default function reducer(
 	// default state
 	state = {
-		// image options
-		imageAspectRatio: 1.5, // ratio width : height
-		imageHeight: 3000,
-		imageName: '', // name of selected image file
-		imageURL: '', // image file encoded as data URL
-		posterURL: '', // poster (canvas) encoded as data URL
-
-		// text options
-		lyrics: sampleLyrics, // placeholder lyrics from sample-lyrics.js file
-		fontSize: 18,
-
-		// active navigation page (0: info, 1: image, 2: lyrics, 3: styling, 4: download)
-		navPage: 0
+		image: {
+			aspectRatio: 1.5, // ratio width : height
+			dataURL: '', // image file encoded as data URL,
+			name: '' // name of selected image file
+		},
+		poster: {
+			dataURL: '', // poster (canvas) encoded as data URL
+			height: 3000
+		},
+		text: {
+			fontSize: 18,
+			lyrics: sampleLyrics // placeholder lyrics from sample-lyrics.js file
+		},
+		nav: {
+			page: 0 // active navigation page (0: info, 1: image, 2: lyrics, 3: styling, 4: download)
+		}
 	},
 	action
 ) {
@@ -25,43 +28,96 @@ export default function reducer(
 		case 'SET_IMAGE': {
 			return {
 				...state,
-				imageAspectRatio: action.payload.imageAspectRatio,
-				imageName: action.payload.imageName,
-				imageURL: action.payload.imageURL
+				image: {
+					...state.newImage,
+					aspectRatio: action.payload.aspectRatio,
+					dataURL: action.payload.dataURL,
+					name: action.payload.name
+				}
 			};
 		}
-		case 'SET_IMAGE_HEIGHT': {
-			return { ...state, imageHeight: action.payload };
+
+		// poster
+		case 'SET_POSTER_HEIGHT': {
+			return {
+				...state,
+				poster: {
+					...state.newImage,
+					height: action.payload
+				}
+			};
 		}
 		case 'SET_POSTER_URL': {
-			return { ...state, posterURL: action.payload };
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					dataURL: action.payload
+				}
+			};
 		}
 
 		// text
 		case 'SET_LYRICS': {
-			return { ...state, lyrics: action.payload };
+			return {
+				...state,
+				text: {
+					...state.text,
+					lyrics: action.payload
+				}
+			};
 		}
 		case 'SET_FONT_SIZE': {
-			return { ...state, fontSize: action.payload };
+			return {
+				...state,
+				text: {
+					...state.text,
+					fontSize: action.payload
+				}
+			};
 		}
 
 		// navigation
 		case 'NAV_BACK': {
-			const newNavPage = state.navPage - 1;
-			if (newNavPage < 0) {
-				return { ...state, navPage: 0 };
+			const newPage = state.nav.page - 1;
+			if (newPage < 0) {
+				return {
+					...state,
+					nav: {
+						...state.nav,
+						page: 0
+					}
+				};
 			}
 			else {
-				return { ...state, navPage: newNavPage };
+				return {
+					...state,
+					nav: {
+						...state.nav,
+						page: newPage
+					}
+				};
 			}
 		}
 		case 'NAV_FORWARD': {
-			const newNavPage = state.navPage + 1;
-			if (newNavPage > 4) {
-				return { ...state, navPage: 4 };
+			const newPage = state.nav.page + 1;
+			if (newPage > 4) {
+				return {
+					...state,
+					nav: {
+						...state.nav,
+						page: 4
+					}
+				};
 			}
 			else {
-				return { ...state, navPage: newNavPage };
+				return {
+					...state,
+					nav: {
+						...state.nav,
+						page: newPage
+					}
+				};
 			}
 		}
 

@@ -6,7 +6,7 @@ import Download from './Download';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		posterURL: state.posterURL
+		posterURL: state.poster.dataURL
 	};
 }
 

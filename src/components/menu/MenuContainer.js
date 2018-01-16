@@ -6,7 +6,7 @@ import Menu from './Menu';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		navPage: state.navPage
+		navPage: state.nav.page
 	};
 }
 

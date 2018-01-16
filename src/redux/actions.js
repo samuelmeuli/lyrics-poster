@@ -1,45 +1,50 @@
 // image
 
-export function setImage(newImageURL, newImageAspectRatio, newImageName) {
+export function setImage(aspectRatio, dataURL, name) {
 	return {
 		type: 'SET_IMAGE',
 		payload: {
-			imageAspectRatio: newImageAspectRatio,
-			imageName: newImageName,
-			imageURL: newImageURL
+			aspectRatio,
+			dataURL,
+			name
 		}
 	};
 }
 
-export function setImageHeight(newImageHeight) {
+
+// poster
+
+export function setPosterURL(dataURL) {
 	return {
-		type: 'SET_IMAGE_HEIGHT',
-		payload: newImageHeight
+		type: 'SET_POSTER_URL',
+		payload: dataURL
 	};
 }
 
-export function setPosterURL(newPosterURL) {
+export function setPosterHeight(height) {
 	return {
-		type: 'SET_POSTER_URL',
-		payload: newPosterURL
+		type: 'SET_POSTER_HEIGHT',
+		payload: height
 	};
 }
+
 
 // text
 
-export function setFontSize(newFontSize) {
+export function setFontSize(fontSize) {
 	return {
 		type: 'SET_FONT_SIZE',
-		payload: newFontSize
+		payload: fontSize
 	};
 }
 
-export function setLyrics(newLyrics) {
+export function setLyrics(lyrics) {
 	return {
 		type: 'SET_LYRICS',
-		payload: newLyrics
+		payload: lyrics
 	};
 }
+
 
 // navigation
 

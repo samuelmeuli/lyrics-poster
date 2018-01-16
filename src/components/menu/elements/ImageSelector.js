@@ -28,11 +28,11 @@ export default class ImageSelector extends Component {
 
 		// when image is loaded, save it to state
 		reader.onload = (event) => {
-			const imageURL = event.target.result;
+			const dataURL = event.target.result;
 			const newImage = new Image();
-			newImage.src = imageURL;
+			newImage.src = dataURL;
 			newImage.onload = () => {
-				this.props.setImage(imageURL, newImage.width / newImage.height, fileName);
+				this.props.onImageChange(newImage.width / newImage.height, dataURL, fileName);
 			};
 		};
 
@@ -73,7 +73,7 @@ export default class ImageSelector extends Component {
 							<img src={iconError} alt="Error: " width="18px" />
 							Invalid file format
 						</p> :
-						<p>{this.props.imageName !== '' ? this.props.imageName : 'No file selected'}</p>
+						<p>{this.props.newImageName !== '' ? this.props.newImageName : 'No file selected'}</p>
 				}
 			</div>
 		);
@@ -82,9 +82,7 @@ export default class ImageSelector extends Component {
 
 
 ImageSelector.propTypes = {
-	// Redux attributes
-	imageName: PropTypes.string.isRequired,
-
-	// Redux functions
-	setImage: PropTypes.func.isRequired
+	// other props
+	newImageName: PropTypes.string.isRequired,
+	onImageChange: PropTypes.func.isRequired
 };

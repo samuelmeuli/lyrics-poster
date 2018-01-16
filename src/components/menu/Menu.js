@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import DownloadContainer from './pages/DownloadContainer';
 import ImageContainer from './pages/ImageContainer';
-import InfoContainer from './pages/InfoContainer';
+import Info from './pages/Info';
 import LyricsContainer from './pages/LyricsContainer';
 import StylingContainer from './pages/StylingContainer';
 
@@ -15,7 +15,7 @@ export default class Menu extends Component {
 	getPage() {
 		switch (this.props.navPage) {
 			case 0: {
-				return <InfoContainer />;
+				return <Info />;
 			}
 			case 1: {
 				return <ImageContainer />;

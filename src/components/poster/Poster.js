@@ -8,7 +8,7 @@ export default class Poster extends Component {
 		super(props);
 
 		this.state = {
-			imageWidthScaled: this.calcScaledWidth()
+			posterWidthScaled: this.calcScaledWidth()
 		};
 
 		// function bindings
@@ -29,9 +29,9 @@ export default class Poster extends Component {
 		this.drawPoster();
 
 		const newScaledWidth = this.calcScaledWidth();
-		if (newScaledWidth !== this.state.imageWidthScaled) {
+		if (newScaledWidth !== this.state.posterWidthScaled) {
 			this.setState({
-				imageWidthScaled: newScaledWidth
+				posterWidthScaled: newScaledWidth
 			});
 		}
 	}
@@ -44,7 +44,7 @@ export default class Poster extends Component {
 		clearTimeout(this.resizeTimeout);
 		this.resizeTimeout = setTimeout(() => {
 			this.setState({
-				imageWidthScaled: this.calcScaledWidth()
+				posterWidthScaled: this.calcScaledWidth()
 			});
 		}, 100);
 	}
@@ -56,53 +56,52 @@ export default class Poster extends Component {
 			return '100%';
 		}
 		else {
-			const imageWidth = this.props.imageHeight * this.props.imageAspectRatio;
+			const posterWidth = this.props.posterHeight * this.props.image.aspectRatio;
 			const margin = '40';
 			const screenHeight = window.innerHeight;
 			const settingsWidth = '450';
 
-			const scaleHeight = (screenHeight - (2 * margin)) / this.props.imageHeight;
-			const scaleWidth = (screenWidth - settingsWidth - (3 * margin)) / imageWidth;
-			if (scaleHeight < scaleWidth) {
-				return imageWidth * scaleHeight;
+			const heightScaled = (screenHeight - (2 * margin)) / this.props.posterHeight;
+			const widthScaled = (screenWidth - settingsWidth - (3 * margin)) / posterWidth;
+			if (heightScaled < widthScaled) {
+				return posterWidth * heightScaled;
 			}
 			else {
-				return imageWidth * scaleWidth;
+				return posterWidth * widthScaled;
 			}
 		}
 	}
 
 	async drawPoster() {
-		const { fontSize, imageAspectRatio, imageHeight, imageURL, lyrics } = this.props;
-		const imageWidth = imageHeight * imageAspectRatio;
+		const posterWidth = this.props.posterHeight * this.props.image.aspectRatio;
 
 		// set canvas size
 		this.ctx.globalCompositeOperation = 'source-over';
-		this.canvas.height = imageHeight;
-		this.canvas.width = imageWidth;
+		this.canvas.height = this.props.posterHeight;
+		this.canvas.width = posterWidth;
 
 		// clear canvas
-		this.ctx.clearRect(0, 0, imageWidth, imageHeight);
+		this.ctx.clearRect(0, 0, posterWidth, this.props.posterHeight);
 		this.ctx.save();
 
 		// format and draw text
-		const formattedLyrics = this.formatText(lyrics);
-		this.ctx.font = `${fontSize}px Verdana`;
+		const formattedLyrics = this.formatText(this.props.text.lyrics);
+		this.ctx.font = `${this.props.text.fontSize}px Verdana`;
 		this.ctx.shadowOffsetX = 1;
 		this.ctx.shadowOffsetY = 1;
 		this.ctx.shadowColor = 'black';
 		this.ctx.shadowBlur = 1;
-		this.drawText(fontSize, imageHeight, imageWidth, formattedLyrics);
+		this.drawText(this.props.text.fontSize, this.props.posterHeight, posterWidth, formattedLyrics);
 		this.ctx.restore();
 
 		// draw image (only where text is)
 		this.ctx.globalCompositeOperation = 'source-in';
-		await this.drawImage(imageURL, imageHeight, imageWidth);
+		await this.drawImage(this.props.image.dataURL, this.props.posterHeight, posterWidth);
 
 		// draw white background behind text
 		this.ctx.globalCompositeOperation = 'destination-over';
 		this.ctx.fillStyle = 'white';
-		this.ctx.fillRect(0, 0, imageWidth, imageHeight);
+		this.ctx.fillRect(0, 0, posterWidth, this.props.posterHeight);
 
 		// save poster as data URL to Redux store
 		this.props.setPosterURL(this.canvas.toDataURL());
@@ -120,12 +119,12 @@ export default class Poster extends Component {
 		return lyricsFormatted;
 	}
 
-	drawText(fontSize, imageHeight, imageWidth, lyricsFormatted) {
+	drawText(fontSize, posterHeight, posterWidth, lyricsFormatted) {
 		let charNr = 0;
 		let lineNr = 0;
 
 		// write lines to canvas until canvas height is reached
-		while (lineNr * fontSize < imageHeight) {
+		while (lineNr * fontSize < posterHeight) {
 			lineNr += 1;
 			let line = '';
 
@@ -135,7 +134,7 @@ export default class Poster extends Component {
 			}
 
 			// add characters to line until canvas width is reached
-			while (this.ctx.measureText(line).width < imageWidth) {
+			while (this.ctx.measureText(line).width < posterWidth) {
 				line += lyricsFormatted.charAt(charNr % lyricsFormatted.length);
 				charNr += 1;
 			}
@@ -145,16 +144,16 @@ export default class Poster extends Component {
 		}
 	}
 
-	drawImage(imageURL, imageHeight, imageWidth) {
+	drawImage(dataURL, posterHeight, posterWidth) {
 		return new Promise((resolve, reject) => {
-			if (imageURL !== '') {
+			if (dataURL !== '') {
 				const img = new Image();
 				img.onload = () => {
-					this.ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+					this.ctx.drawImage(img, 0, 0, posterWidth, posterHeight);
 					return resolve();
 				};
 				img.onerror = reject;
-				img.src = imageURL;
+				img.src = dataURL;
 			}
 			else {
 				return resolve();
@@ -169,7 +168,7 @@ export default class Poster extends Component {
 					ref={(c) => {
 						this.canvas = c;
 					}}
-					style={{ width: this.state.imageWidthScaled }}
+					style={{ width: this.state.posterWidthScaled }}
 				/>
 			</div>
 		);
@@ -179,11 +178,16 @@ export default class Poster extends Component {
 
 Poster.propTypes = {
 	// Redux attributes
-	fontSize: PropTypes.number.isRequired,
-	imageURL: PropTypes.string.isRequired,
-	imageAspectRatio: PropTypes.number.isRequired,
-	imageHeight: PropTypes.number.isRequired,
-	lyrics: PropTypes.string.isRequired,
+	image: PropTypes.shape({
+		aspectRatio: PropTypes.number.isRequired,
+		dataURL: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired
+	}).isRequired,
+	posterHeight: PropTypes.number.isRequired,
+	text: PropTypes.shape({
+		fontSize: PropTypes.number.isRequired,
+		lyrics: PropTypes.string.isRequired
+	}).isRequired,
 
 	// Redux functions
 	setPosterURL: PropTypes.func.isRequired

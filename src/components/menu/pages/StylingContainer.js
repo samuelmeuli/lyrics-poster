@@ -7,14 +7,14 @@ import * as actions from '../../../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		fontSize: state.fontSize
+		fontSize: state.text.fontSize
 	};
 }
 
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setFontSize: newFontSize => dispatch(actions.setFontSize(newFontSize))
+		setFontSize: fontSize => dispatch(actions.setFontSize(fontSize))
 	};
 }
 
