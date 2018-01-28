@@ -13,6 +13,8 @@ export default class Styling extends Component {
 		// state contains the form values
 		this.state = {
 			newBackgroundColor: this.props.backgroundColor,
+			newBrightness: this.props.brightness,
+			newContrast: this.props.contrast,
 			newFontFamily: this.props.fontFamily,
 			newFontSize: this.props.fontSize,
 			newLineHeight: this.props.lineHeight
@@ -28,6 +30,8 @@ export default class Styling extends Component {
 		if (nextProps !== this.props) {
 			this.setState({
 				newBackgroundColor: nextProps.backgroundColor,
+				newBrightness: nextProps.brightness,
+				newContrast: nextProps.contrast,
 				newFontFamily: nextProps.fontFamily,
 				newFontSize: nextProps.fontSize,
 				newLineHeight: nextProps.lineHeight
@@ -54,6 +58,12 @@ export default class Styling extends Component {
 		// update Redux state with form values (if they have changed)
 		if (this.state.newBackgroundColor !== this.props.backgroundColor) {
 			this.props.setBackgroundColor(this.state.newBackgroundColor);
+		}
+		if (this.state.newBrightness !== this.props.contrast) {
+			this.props.setBrightness(this.state.newBrightness);
+		}
+		if (this.state.newContrast !== this.props.contrast) {
+			this.props.setContrast(this.state.newContrast);
 		}
 		if (this.state.newFontFamily !== this.props.fontFamily) {
 			this.props.setFontFamily(this.state.newFontFamily);
@@ -100,8 +110,33 @@ export default class Styling extends Component {
 					<fieldset>
 						<legend>Image style</legend>
 
-						<p>TODO Brightness</p>
-						<p>TODO Contrast</p>
+						<label htmlFor="input-brightness">
+							Brightness:
+							<input
+								type="range"
+								min="0"
+								max="200"
+								step="10"
+								value={this.state.newBrightness}
+								onChange={e => this.setState({ newBrightness: parseInt(e.target.value, 10) })}
+								id="input-brightness"
+							/>
+							{this.state.newBrightness} %
+						</label>
+
+						<label htmlFor="input-contrast">
+							Contrast:
+							<input
+								type="range"
+								min="0"
+								max="200"
+								step="10"
+								value={this.state.newContrast}
+								onChange={e => this.setState({ newContrast: parseInt(e.target.value, 10) })}
+								id="input-contrast"
+							/>
+							{this.state.newContrast} %
+						</label>
 					</fieldset>
 
 					<fieldset>
@@ -158,12 +193,16 @@ export default class Styling extends Component {
 Styling.propTypes = {
 	// Redux attributes
 	backgroundColor: PropTypes.string.isRequired,
+	brightness: PropTypes.number.isRequired,
+	contrast: PropTypes.number.isRequired,
 	fontFamily: PropTypes.string.isRequired,
 	fontSize: PropTypes.number.isRequired,
 	lineHeight: PropTypes.number.isRequired,
 
 	// Redux functions
 	setBackgroundColor: PropTypes.func.isRequired,
+	setBrightness: PropTypes.func.isRequired,
+	setContrast: PropTypes.func.isRequired,
 	setFontFamily: PropTypes.func.isRequired,
 	setFontSize: PropTypes.func.isRequired,
 	setLineHeight: PropTypes.func.isRequired

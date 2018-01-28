@@ -26,6 +26,30 @@ export function setBackgroundColor(backgroundColor) {
 	}
 }
 
+export function setBrightness(brightness) {
+	if (brightness >= 0 && brightness <= 200) {
+		return {
+			type: 'SET_POSTER_BRIGHTNESS',
+			payload: brightness
+		};
+	}
+	else {
+		throw Error('Brightness value must be between 0 and 200');
+	}
+}
+
+export function setContrast(contrast) {
+	if (contrast >= 0 && contrast <= 200) {
+		return {
+			type: 'SET_POSTER_CONTRAST',
+			payload: contrast
+		};
+	}
+	else {
+		throw Error('Contrast value must be between 0 and 200');
+	}
+}
+
 export function setPosterURL(dataURL) {
 	return {
 		type: 'SET_POSTER_URL',

@@ -82,6 +82,9 @@ export default class Poster extends Component {
 		// clear canvas
 		this.ctx.clearRect(0, 0, posterWidth, posterHeight);
 
+		// apply brightness/contrast filters
+		this.ctx.filter = `brightness(${this.props.posterBrightness}%) contrast(${this.props.posterContrast}%)`;
+
 		// draw text
 		this.ctx.font = `900 ${fontSize}px ${fontFamily}`;
 		this.drawText(fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
@@ -194,6 +197,8 @@ Poster.propTypes = {
 		name: PropTypes.string.isRequired
 	}).isRequired,
 	posterBackground: PropTypes.string.isRequired,
+	posterBrightness: PropTypes.number.isRequired,
+	posterContrast: PropTypes.number.isRequired,
 	posterHeight: PropTypes.number.isRequired,
 	text: PropTypes.shape({
 		fontFamily: PropTypes.string.isRequired,

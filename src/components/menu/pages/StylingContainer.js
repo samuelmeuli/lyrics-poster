@@ -8,6 +8,8 @@ import * as actions from '../../../redux/actions';
 function mapStateToProps(state) {
 	return {
 		backgroundColor: state.poster.backgroundColor,
+		brightness: state.poster.brightness,
+		contrast: state.poster.contrast,
 		fontFamily: state.text.fontFamily,
 		fontSize: state.text.fontSize,
 		lineHeight: state.text.lineHeight
@@ -18,6 +20,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		setBackgroundColor: backgroundColor => dispatch(actions.setBackgroundColor(backgroundColor)),
+		setBrightness: brightness => dispatch(actions.setBrightness(brightness)),
+		setContrast: contrast => dispatch(actions.setContrast(contrast)),
 		setFontFamily: fontFamily => dispatch(actions.setFontFamily(fontFamily)),
 		setFontSize: fontSize => dispatch(actions.setFontSize(fontSize)),
 		setLineHeight: lineHeight => dispatch(actions.setLineHeight(lineHeight))

@@ -9,6 +9,8 @@ function mapStateToProps(state) {
 	return {
 		image: state.image,
 		posterBackground: state.poster.backgroundColor,
+		posterBrightness: state.poster.brightness,
+		posterContrast: state.poster.contrast,
 		posterHeight: state.poster.height,
 		text: state.text
 	};

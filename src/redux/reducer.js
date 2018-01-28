@@ -11,6 +11,8 @@ export default function reducer(
 		},
 		poster: {
 			backgroundColor: 'black',
+			brightness: 100,
+			contrast: 100,
 			dataURL: '', // poster (canvas) encoded as data URL
 			height: 3000
 		},
@@ -47,6 +49,24 @@ export default function reducer(
 				poster: {
 					...state.poster,
 					backgroundColor: action.payload
+				}
+			};
+		}
+		case 'SET_POSTER_BRIGHTNESS': {
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					brightness: action.payload
+				}
+			};
+		}
+		case 'SET_POSTER_CONTRAST': {
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					contrast: action.payload
 				}
 			};
 		}
