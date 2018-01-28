@@ -25,11 +25,11 @@ label {
 	display: block;
 }
 
-form li,
-form li label {
+fieldset > ul > li,
+label {
 	display: inline;
 }
 
-form li + li {
+form > li + li {
 	margin-left: 20px;
 }

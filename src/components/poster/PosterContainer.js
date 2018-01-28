@@ -8,6 +8,7 @@ import * as actions from '../../redux/actions';
 function mapStateToProps(state) {
 	return {
 		image: state.image,
+		posterBackground: state.poster.backgroundColor,
 		posterHeight: state.poster.height,
 		text: state.text
 	};

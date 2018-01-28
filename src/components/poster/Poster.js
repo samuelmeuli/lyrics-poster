@@ -8,7 +8,8 @@ export default class Poster extends Component {
 		super(props);
 
 		this.state = {
-			posterWidthScaled: this.calcScaledWidth()
+			screenHeight: window.innerHeight,
+			screenWidth: window.innerWidth
 		};
 
 		// function bindings
@@ -22,18 +23,8 @@ export default class Poster extends Component {
 		// get reference to canvas HTML element
 		this.ctx = this.canvas.getContext('2d');
 
+		// draw canvas for the first time (this.ctx has been initialized)
 		this.drawPoster();
-	}
-
-	componentDidUpdate() {
-		this.drawPoster();
-
-		const newScaledWidth = this.calcScaledWidth();
-		if (newScaledWidth !== this.state.posterWidthScaled) {
-			this.setState({
-				posterWidthScaled: newScaledWidth
-			});
-		}
 	}
 
 	componentWillUnmount() {
@@ -43,26 +34,29 @@ export default class Poster extends Component {
 	onWindowResize() {
 		clearTimeout(this.resizeTimeout);
 		this.resizeTimeout = setTimeout(() => {
-			this.setState({
-				posterWidthScaled: this.calcScaledWidth()
-			});
+			const newScreenWidth = window.innerWidth;
+			const newScreenHeight = window.innerHeight;
+			if (newScreenWidth !== this.state.screenWidth ||
+					newScreenHeight !== this.state.screenHeight) {
+				this.setState({
+					screenHeight: newScreenHeight,
+					screenWidth: newScreenWidth
+				});
+			}
 		}, 100);
 	}
 
 	calcScaledWidth() {
-		const screenWidth = window.innerWidth;
-
-		if (screenWidth <= 1000) {
+		if (this.state.screenWidth <= 1000) {
 			return '100%';
 		}
 		else {
 			const posterWidth = this.props.posterHeight * this.props.image.aspectRatio;
 			const margin = '40';
-			const screenHeight = window.innerHeight;
 			const settingsWidth = '450';
 
-			const heightScaled = (screenHeight - (2 * margin)) / this.props.posterHeight;
-			const widthScaled = (screenWidth - settingsWidth - (3 * margin)) / posterWidth;
+			const heightScaled = (this.state.screenHeight - (2 * margin)) / this.props.posterHeight;
+			const widthScaled = (this.state.screenWidth - settingsWidth - (3 * margin)) / posterWidth;
 			if (heightScaled < widthScaled) {
 				return posterWidth * heightScaled;
 			}
@@ -73,35 +67,46 @@ export default class Poster extends Component {
 	}
 
 	async drawPoster() {
-		const posterWidth = this.props.posterHeight * this.props.image.aspectRatio;
+		const { aspectRatio, dataURL } = this.props.image;
+		const { posterBackground, posterHeight } = this.props;
+		const { fontFamily, fontSize, lineHeight, lyrics } = this.props.text;
+
+		const posterWidth = posterHeight * aspectRatio;
+		const formattedLyrics = this.formatText(lyrics);
 
 		// set canvas size
 		this.ctx.globalCompositeOperation = 'source-over';
-		this.canvas.height = this.props.posterHeight;
+		this.canvas.height = posterHeight;
 		this.canvas.width = posterWidth;
 
 		// clear canvas
-		this.ctx.clearRect(0, 0, posterWidth, this.props.posterHeight);
-		this.ctx.save();
+		this.ctx.clearRect(0, 0, posterWidth, posterHeight);
 
-		// format and draw text
-		const formattedLyrics = this.formatText(this.props.text.lyrics);
-		this.ctx.font = `${this.props.text.fontSize}px Verdana`;
-		this.ctx.shadowOffsetX = 1;
-		this.ctx.shadowOffsetY = 1;
-		this.ctx.shadowColor = 'black';
-		this.ctx.shadowBlur = 1;
-		this.drawText(this.props.text.fontSize, this.props.posterHeight, posterWidth, formattedLyrics);
-		this.ctx.restore();
+		// draw text
+		this.ctx.font = `900 ${fontSize}px ${fontFamily}`;
+		this.drawText(fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
 
 		// draw image (only where text is)
 		this.ctx.globalCompositeOperation = 'source-in';
-		await this.drawImage(this.props.image.dataURL, this.props.posterHeight, posterWidth);
+		await this.drawImage(dataURL, posterHeight, posterWidth);
 
-		// draw white background behind text
+		// draw shadow behind text if background should be white
+		if (posterBackground === 'white') {
+			this.ctx.save();
+			this.ctx.globalCompositeOperation = 'destination-over';
+			this.ctx.shadowColor = 'rgba(0, 0, 0, .25)';
+			this.ctx.shadowOffsetX = 1;
+			this.ctx.shadowOffsetY = 1;
+			this.ctx.shadowBlur = 5;
+			this.ctx.fillStyle = 'black';
+			this.drawText(fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
+			this.ctx.restore();
+		}
+
+		// draw background behind text
 		this.ctx.globalCompositeOperation = 'destination-over';
-		this.ctx.fillStyle = 'white';
-		this.ctx.fillRect(0, 0, posterWidth, this.props.posterHeight);
+		this.ctx.fillStyle = posterBackground;
+		this.ctx.fillRect(0, 0, posterWidth, posterHeight);
 
 		// save poster as data URL to Redux store
 		this.props.setPosterURL(this.canvas.toDataURL());
@@ -119,12 +124,12 @@ export default class Poster extends Component {
 		return lyricsFormatted;
 	}
 
-	drawText(fontSize, posterHeight, posterWidth, lyricsFormatted) {
+	drawText(fontSize, lineHeight, posterHeight, posterWidth, lyricsFormatted) {
 		let charNr = 0;
 		let lineNr = 0;
 
 		// write lines to canvas until canvas height is reached
-		while (lineNr * fontSize < posterHeight) {
+		while (lineNr * lineHeight * fontSize < posterHeight) {
 			lineNr += 1;
 			let line = '';
 
@@ -140,7 +145,7 @@ export default class Poster extends Component {
 			}
 
 			// write line to canvas below the previous line
-			this.ctx.fillText(line, 0, lineNr * fontSize);
+			this.ctx.fillText(line, 0, lineNr * lineHeight * fontSize);
 		}
 	}
 
@@ -162,13 +167,18 @@ export default class Poster extends Component {
 	}
 
 	render() {
+		// draw poster (except on initial render, because canvas has not been initialized yet)
+		if (this.ctx) {
+			this.drawPoster();
+		}
+
 		return (
 			<div className="poster-container">
 				<canvas
 					ref={(c) => {
 						this.canvas = c;
 					}}
-					style={{ width: this.state.posterWidthScaled }}
+					style={{ width: this.calcScaledWidth() }}
 				/>
 			</div>
 		);
@@ -183,9 +193,12 @@ Poster.propTypes = {
 		dataURL: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired
 	}).isRequired,
+	posterBackground: PropTypes.string.isRequired,
 	posterHeight: PropTypes.number.isRequired,
 	text: PropTypes.shape({
+		fontFamily: PropTypes.string.isRequired,
 		fontSize: PropTypes.number.isRequired,
+		lineHeight: PropTypes.number.isRequired,
 		lyrics: PropTypes.string.isRequired
 	}).isRequired,
 

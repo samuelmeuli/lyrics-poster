@@ -14,6 +14,18 @@ export function setImage(aspectRatio, dataURL, name) {
 
 // poster
 
+export function setBackgroundColor(backgroundColor) {
+	if (backgroundColor === 'white' || backgroundColor === 'black') {
+		return {
+			type: 'SET_POSTER_BACKGROUND',
+			payload: backgroundColor
+		};
+	}
+	else {
+		throw Error('Error changing poster background: must either be white or black');
+	}
+}
+
 export function setPosterURL(dataURL) {
 	return {
 		type: 'SET_POSTER_URL',
@@ -31,10 +43,24 @@ export function setPosterHeight(height) {
 
 // text
 
+export function setFontFamily(fontFamily) {
+	return {
+		type: 'SET_FONT_FAMILY',
+		payload: fontFamily
+	};
+}
+
 export function setFontSize(fontSize) {
 	return {
 		type: 'SET_FONT_SIZE',
 		payload: fontSize
+	};
+}
+
+export function setLineHeight(lineHeight) {
+	return {
+		type: 'SET_LINE_HEIGHT',
+		payload: lineHeight
 	};
 }
 

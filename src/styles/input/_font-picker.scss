@@ -1,0 +1,25 @@
+#font-picker {
+
+	#dropdown-button {
+		background-color: $color-input-border;
+
+		&:hover,
+		&.expanded,
+		&:focus {
+			background-color: lighten($color-input-border, 5%);
+		}
+	}
+
+	ul {
+		background-color: $color-input;
+
+		li a:hover,
+		li a:focus {
+			background-color: lighten($color-input, 10%);
+		}
+
+		li a.active-font {
+			background-color: lighten($color-input, 15%);
+		}
+	}
+}

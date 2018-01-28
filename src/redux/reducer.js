@@ -10,11 +10,14 @@ export default function reducer(
 			name: '' // name of selected image file
 		},
 		poster: {
+			backgroundColor: 'black',
 			dataURL: '', // poster (canvas) encoded as data URL
 			height: 3000
 		},
 		text: {
+			fontFamily: 'Maven Pro',
 			fontSize: 18,
+			lineHeight: 0.9,
 			lyrics: sampleLyrics // placeholder lyrics from sample-lyrics.js file
 		},
 		nav: {
@@ -38,11 +41,20 @@ export default function reducer(
 		}
 
 		// poster
+		case 'SET_POSTER_BACKGROUND': {
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					backgroundColor: action.payload
+				}
+			};
+		}
 		case 'SET_POSTER_HEIGHT': {
 			return {
 				...state,
 				poster: {
-					...state.newImage,
+					...state.poster,
 					height: action.payload
 				}
 			};
@@ -58,12 +70,12 @@ export default function reducer(
 		}
 
 		// text
-		case 'SET_LYRICS': {
+		case 'SET_FONT_FAMILY': {
 			return {
 				...state,
 				text: {
 					...state.text,
-					lyrics: action.payload
+					fontFamily: action.payload
 				}
 			};
 		}
@@ -73,6 +85,24 @@ export default function reducer(
 				text: {
 					...state.text,
 					fontSize: action.payload
+				}
+			};
+		}
+		case 'SET_LINE_HEIGHT': {
+			return {
+				...state,
+				text: {
+					...state.text,
+					lineHeight: action.payload
+				}
+			};
+		}
+		case 'SET_LYRICS': {
+			return {
+				...state,
+				text: {
+					...state.text,
+					lyrics: action.payload
 				}
 			};
 		}
