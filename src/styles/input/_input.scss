@@ -9,6 +9,17 @@ input {
 	width: 80px;
 	margin-left: 10px;
 	padding: 0 10px;
+
+	&[type="number"] {
+		-webkit-appearance: textfield;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+
+	&[type=number]::-webkit-inner-spin-button,
+	&[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+	}
 }
 
 textarea {

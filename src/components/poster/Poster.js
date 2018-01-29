@@ -82,16 +82,18 @@ export default class Poster extends Component {
 		// clear canvas
 		this.ctx.clearRect(0, 0, posterWidth, posterHeight);
 
-		// apply brightness/contrast filters
-		this.ctx.filter = `brightness(${this.props.posterBrightness}%) contrast(${this.props.posterContrast}%)`;
-
 		// draw text
 		this.ctx.font = `900 ${fontSize}px ${fontFamily}`;
 		this.drawText(fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
 
+		// apply brightness/contrast filters
+		this.ctx.save();
+		this.ctx.filter = `brightness(${this.props.posterBrightness}%) contrast(${this.props.posterContrast}%)`;
+
 		// draw image (only where text is)
 		this.ctx.globalCompositeOperation = 'source-in';
 		await this.drawImage(dataURL, posterHeight, posterWidth);
+		this.ctx.restore();
 
 		// draw shadow behind text if background should be white
 		if (posterBackground === 'white') {

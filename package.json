@@ -1,6 +1,7 @@
 {
   "name": "lyrics-posters",
   "version": "0.1.0",
+	"private": true,
   "dependencies": {
     "file-saver": "^1.3.3",
     "font-picker-react": "^1.0.1",

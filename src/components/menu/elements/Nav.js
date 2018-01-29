@@ -23,7 +23,11 @@ export default class Nav extends Component {
 	getButtonBack() {
 		if (this.props.navPage > 0) {
 			return (
-				<button className="button-back" onClick={this.navBack}>
+				<button
+					type="button"
+					className="button-back"
+					onClick={this.navBack}
+				>
 					<img src={this.icons[this.props.navPage - 1]} alt="Back" width="18px" />
 				</button>
 			);
@@ -36,7 +40,12 @@ export default class Nav extends Component {
 	getButtonNext() {
 		if (this.props.navPage < 4) {
 			return (
-				<button className="button-next" onClick={this.navForward} disabled={this.props.disableNext}>
+				<button
+					type="button"
+					className="button-next"
+					onClick={this.navForward}
+					disabled={this.props.disableNext}
+				>
 					<img src={this.icons[this.props.navPage + 1]} alt="Next" width="18px" />
 				</button>
 			);
@@ -60,7 +69,7 @@ export default class Nav extends Component {
 		return (
 			<nav>
 				{this.getButtonBack()}
-				{this.props.showApply && <button>Apply</button>}
+				{this.props.showApply && <button type="submit">Apply</button>}
 				{this.getButtonNext()}
 			</nav>
 		);

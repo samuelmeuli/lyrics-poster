@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FontPicker from 'font-picker-react';
 
 import NavContainer from '../elements/NavContainer';
+import NumberInput from '../elements/NumberInput';
 
 
 export default class Styling extends Component {
@@ -159,24 +160,26 @@ export default class Styling extends Component {
 							<li>
 								<label htmlFor="input-font-size">
 									Font size:
-									<input
-										type="number"
+									<NumberInput
 										id="input-font-size"
+										step={1}
+										min={5}
+										max={50}
 										value={this.state.newFontSize}
-										onChange={e => this.setState({ newFontSize: parseInt(e.target.value, 10) })}
+										onChange={f => this.setState({ newFontSize: f })}
 									/>
 								</label>
 							</li>
 							<li>
 								<label htmlFor="input-line-height">
 									Line height:
-									<input
-										type="number"
+									<NumberInput
 										id="input-line-height"
+										step={0.1}
+										min={0.1}
+										max={3}
 										value={this.state.newLineHeight}
-										onChange={e =>
-											this.setState({ newLineHeight: Math.round(e.target.value * 10) / 10 })
-										}
+										onChange={l => this.setState({ newLineHeight: Math.round(l * 10) / 10 })}
 									/>
 								</label>
 							</li>

@@ -38,7 +38,7 @@ export default class Download extends Component {
 	render() {
 		return (
 			<div>
-				<button onClick={() => this.downloadPoster()}>
+				<button type="button" onClick={() => this.downloadPoster()}>
 					Download poster
 				</button>
 				<NavContainer />
