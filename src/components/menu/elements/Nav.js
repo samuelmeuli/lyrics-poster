@@ -69,7 +69,12 @@ export default class Nav extends Component {
 		return (
 			<nav>
 				{this.getButtonBack()}
-				{this.props.showApply && <button type="submit">Apply</button>}
+				{
+					this.props.showApply &&
+						<button type="submit" disabled={this.props.disableApply}>
+							Apply
+						</button>
+				}
 				{this.getButtonNext()}
 			</nav>
 		);
@@ -86,11 +91,13 @@ Nav.propTypes = {
 	navForward: PropTypes.func.isRequired,
 
 	// other props
+	disableApply: PropTypes.bool,
 	disableNext: PropTypes.bool,
 	showApply: PropTypes.bool
 };
 
 Nav.defaultProps = {
+	disableApply: false,
 	disableNext: false,
 	showApply: false
 };

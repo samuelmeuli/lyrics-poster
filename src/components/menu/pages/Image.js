@@ -32,6 +32,13 @@ export default class Image extends Component {
 		}
 	}
 
+	hasChanged() {
+		return (
+			this.state.newImage.dataURL !== this.props.image.dataURL ||
+			this.state.newPosterHeight !== this.props.posterHeight
+		);
+	}
+
 	handleImageChange(aspectRatio, dataURL, name) {
 		this.setState({
 			newImage: {
@@ -106,7 +113,7 @@ export default class Image extends Component {
 					</fieldset>
 				</div>
 
-				<NavContainer	disableNext={disableNext}	showApply	/>
+				<NavContainer	showApply disableApply={!this.hasChanged()} disableNext={disableNext} />
 			</form>
 		);
 	}

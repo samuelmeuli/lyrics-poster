@@ -53,6 +53,17 @@ export default class Styling extends Component {
 		}
 	}
 
+	hasChanged() {
+		return (
+			this.state.newBackgroundColor !== this.props.backgroundColor ||
+			this.state.newBrightness !== this.props.brightness ||
+			this.state.newContrast !== this.props.contrast ||
+			this.state.newFontFamily !== this.props.fontFamily ||
+			this.state.newFontSize !== this.props.fontSize ||
+			this.state.newLineHeight !== this.props.lineHeight
+		);
+	}
+
 	updateSettings(event) {
 		event.preventDefault();
 
@@ -184,7 +195,7 @@ export default class Styling extends Component {
 						</label>
 					</fieldset>
 				</div>
-				<NavContainer showApply />
+				<NavContainer showApply disableApply={!this.hasChanged()} />
 			</form>
 		);
 	}

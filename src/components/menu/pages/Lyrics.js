@@ -25,6 +25,10 @@ export default class Lyrics extends Component {
 		}
 	}
 
+	hasChanged() {
+		return this.state.newLyrics !== this.props.lyrics;
+	}
+
 	updateSettings(event) {
 		event.preventDefault();
 
@@ -48,7 +52,7 @@ export default class Lyrics extends Component {
 						/>
 					</label>
 				</fieldset>
-				<NavContainer showApply />
+				<NavContainer showApply disableApply={!this.hasChanged()} />
 			</form>
 		);
 	}
