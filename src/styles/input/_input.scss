@@ -1,38 +1,26 @@
-input,
+input[type="number"],
 textarea {
-	background-color: $color-input;
+	background: $color-input;
 	border: 1px solid #7D7D7D;
-}
 
-input {
-	height: 35px;
-	width: 80px;
-	margin-left: 10px;
-	padding: 0 10px;
-
-	&[type="number"] {
-		-webkit-appearance: textfield;
-		-moz-appearance: textfield;
-		appearance: textfield;
-	}
-
-	&[type=number]::-webkit-inner-spin-button,
-	&[type=number]::-webkit-outer-spin-button {
-		-webkit-appearance: none;
+	&:focus {
+		background: $color-input-focus;
+		border-color: $color-input-border-focus;
 	}
 }
 
 textarea {
-	height: 300px;
+	height: 325px;
 	width: 100%;
 	padding: 5px 10px;
 	resize: none;
+	margin-top: 10px;
 }
 
 :focus {
 	outline: 0;
 }
 
-input:focus {
-	background-color: lighten($color-input, 8%);
+.unit {
+	margin-left: 5px;
 }

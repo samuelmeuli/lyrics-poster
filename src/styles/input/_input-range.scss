@@ -1,0 +1,98 @@
+// RANGE STYLE RESET
+// based on https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+
+input[type=range] {
+	-webkit-appearance: none; /* hides the slider so custom styles can be added */
+	background: transparent; /* otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]::-ms-track {
+	width: 100%;
+	cursor: pointer;
+
+	/* hides the slider so custom styles can be added */
+	background: transparent;
+	border-color: transparent;
+	color: transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+}
+
+
+// INPUT
+
+input[type=range] {
+	height: 25px;
+	width: 100%;
+	flex: 1;
+}
+
+
+// THUMB
+
+// styles for slider thumb (selectors for different browsers cannot be combined, because browsers
+// ignore the entire selector if they do not understand some part of it)
+@mixin thumb-styling {
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	background: $color-input-circle;
+	border: 0;
+	cursor: pointer;
+	margin-top: -7.5px;
+	line-height: 0;
+
+	&:active,
+	&:hover {
+		background: $color-input-circle-focus;
+	}
+}
+
+input[type=range]::-webkit-slider-thumb {
+	@include thumb-styling;
+}
+
+input[type=range]::-moz-range-thumb {
+	@include thumb-styling;
+}
+
+input[type=range]::-ms-thumb {
+	@include thumb-styling;
+}
+
+
+// TRACK
+
+@mixin track-styling {
+	height: 0;
+	width: 100%;
+	border-top: 1px solid $color-input-border;
+	cursor: pointer;
+
+	&:active,
+	&:hover {
+		border-color: $color-input-border-focus;
+	}
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	@include track-styling;
+}
+
+input[type=range]::-moz-range-track {
+	@include track-styling;
+}
+
+input[type=range]::-ms-track {
+	@include track-styling;
+}

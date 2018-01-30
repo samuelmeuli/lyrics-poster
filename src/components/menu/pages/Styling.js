@@ -60,7 +60,7 @@ export default class Styling extends Component {
 		if (this.state.newBackgroundColor !== this.props.backgroundColor) {
 			this.props.setBackgroundColor(this.state.newBackgroundColor);
 		}
-		if (this.state.newBrightness !== this.props.contrast) {
+		if (this.state.newBrightness !== this.props.brightness) {
 			this.props.setBrightness(this.state.newBrightness);
 		}
 		if (this.state.newContrast !== this.props.contrast) {
@@ -81,38 +81,42 @@ export default class Styling extends Component {
 		return (
 			<form onSubmit={this.updateSettings}>
 				<div>
-					<fieldset>
+					<fieldset id="fieldset-background">
 						<legend>Background</legend>
-						Background color:
-						<label htmlFor="input-background-black">
-							<input
-								type="radio"
-								name="input-background"
-								value="male"
-								id="input-background-black"
-								checked={this.state.newBackgroundColor === 'black'}
-								onChange={this.onChangeBackground}
-							/>
-							black
-						</label>
-						<label htmlFor="input-background-white">
-							<input
-								type="radio"
-								name="input-background"
-								value="female"
-								id="input-background-white"
-								checked={this.state.newBackgroundColor === 'white'}
-								onChange={this.onChangeBackground}
-							/>
-							white
-						</label>
+						<div className="labels-inline">
+							<span className="label-left">Background color:</span>
+							<label htmlFor="input-background-black">
+								<input
+									type="radio"
+									name="input-background"
+									value="male"
+									id="input-background-black"
+									checked={this.state.newBackgroundColor === 'black'}
+									onChange={this.onChangeBackground}
+								/>
+								<span className="radio-button" />
+								black
+							</label>
+							<label htmlFor="input-background-white">
+								<input
+									type="radio"
+									name="input-background"
+									value="female"
+									id="input-background-white"
+									checked={this.state.newBackgroundColor === 'white'}
+									onChange={this.onChangeBackground}
+								/>
+								<span className="radio-button" />
+								white
+							</label>
+						</div>
 					</fieldset>
 
-					<fieldset>
+					<fieldset id="fieldset-image-style">
 						<legend>Image style</legend>
 
 						<label htmlFor="input-brightness">
-							Brightness:
+							<span className="label-left">Brightness:</span>
 							<input
 								type="range"
 								min="0"
@@ -122,11 +126,11 @@ export default class Styling extends Component {
 								onChange={e => this.setState({ newBrightness: parseInt(e.target.value, 10) })}
 								id="input-brightness"
 							/>
-							{this.state.newBrightness} %
+							<span className="unit">{this.state.newBrightness} %</span>
 						</label>
 
 						<label htmlFor="input-contrast">
-							Contrast:
+							<span className="label-left">Contrast:</span>
 							<input
 								type="range"
 								min="0"
@@ -136,54 +140,48 @@ export default class Styling extends Component {
 								onChange={e => this.setState({ newContrast: parseInt(e.target.value, 10) })}
 								id="input-contrast"
 							/>
-							{this.state.newContrast} %
+							<span className="unit">{this.state.newContrast} %</span>
 						</label>
 					</fieldset>
 
-					<fieldset>
+					<fieldset id="fieldset-text-style">
 						<legend>Text style</legend>
-						<ul>
-							<li>
-								<label htmlFor="input-font">
-									Font:
-									<FontPicker
-										apiKey="AIzaSyAOkdDlx49HCSBdu86oe8AD1Q7piIxlR6k"
-										defaultFont={this.props.fontFamily}
-										options={{
-											variants: ['900']
-										}}
-										onChange={newFont => this.setState({ newFontFamily: newFont.family })}
-										id="input-font"
-									/>
-								</label>
-							</li>
-							<li>
-								<label htmlFor="input-font-size">
-									Font size:
-									<NumberInput
-										id="input-font-size"
-										step={1}
-										min={5}
-										max={50}
-										value={this.state.newFontSize}
-										onChange={f => this.setState({ newFontSize: f })}
-									/>
-								</label>
-							</li>
-							<li>
-								<label htmlFor="input-line-height">
-									Line height:
-									<NumberInput
-										id="input-line-height"
-										step={0.1}
-										min={0.1}
-										max={3}
-										value={this.state.newLineHeight}
-										onChange={l => this.setState({ newLineHeight: Math.round(l * 10) / 10 })}
-									/>
-								</label>
-							</li>
-						</ul>
+						<label htmlFor="input-font">
+							<span className="label-left">Font:</span>
+							<FontPicker
+								apiKey="AIzaSyAOkdDlx49HCSBdu86oe8AD1Q7piIxlR6k"
+								defaultFont={this.props.fontFamily}
+								options={{
+									variants: ['900']
+								}}
+								onChange={newFont => this.setState({ newFontFamily: newFont.family })}
+								id="input-font"
+							/>
+						</label>
+						<label htmlFor="input-font-size">
+							<span className="label-left">Font size:</span>
+							<NumberInput
+								id="input-font-size"
+								step={1}
+								min={5}
+								max={50}
+								value={this.state.newFontSize}
+								onChange={f => this.setState({ newFontSize: f })}
+							/>
+							<span className="unit">px</span>
+						</label>
+						<label htmlFor="input-line-height">
+							<span className="label-left">Line height:</span>
+							<NumberInput
+								id="input-line-height"
+								step={0.1}
+								min={0.1}
+								max={3}
+								value={this.state.newLineHeight}
+								onChange={l => this.setState({ newLineHeight: Math.round(l * 10) / 10 })}
+							/>
+							<span className="unit">px</span>
+						</label>
 					</fieldset>
 				</div>
 				<NavContainer showApply />

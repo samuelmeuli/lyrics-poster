@@ -53,7 +53,7 @@ export default class Poster extends Component {
 		else {
 			const posterWidth = this.props.posterHeight * this.props.image.aspectRatio;
 			const margin = '40';
-			const settingsWidth = '450';
+			const settingsWidth = '440';
 
 			const heightScaled = (this.state.screenHeight - (2 * margin)) / this.props.posterHeight;
 			const widthScaled = (this.state.screenWidth - settingsWidth - (3 * margin)) / posterWidth;

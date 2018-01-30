@@ -5,7 +5,7 @@
 	],
 	"rules": {
 		"indentation": "tab",
-		"number-leading-zero": "never",
+		"number-leading-zero": "always",
 		"string-quotes": "double",
 		"selector-list-comma-newline-after": "always",
 		"rule-empty-line-before": [

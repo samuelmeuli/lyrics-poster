@@ -13,23 +13,10 @@ form {
 
 fieldset {
 	border-top: 1px solid $color-input-border;
-	margin: 25px 0 0;
+	margin: $margin-label 0 0;
 }
 
 legend {
 	margin: 0 0 10px 10px;
 	padding: 0 10px;
-}
-
-label {
-	display: block;
-}
-
-fieldset > ul > li,
-label {
-	display: inline;
-}
-
-form > li + li {
-	margin-left: 20px;
 }

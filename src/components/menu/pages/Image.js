@@ -75,37 +75,34 @@ export default class Image extends Component {
 
 					<fieldset>
 						<legend>Image size</legend>
-						<ul>
-							<li>
-								<label htmlFor="input-image-height">
-									Height:
-									<input
-										type="number"
-										id="input-image-height"
-										value={Math.round(this.state.newPosterHeight)}
-										onChange={e => this.setState({ newPosterHeight: parseFloat(e.target.value) })}
-										onBlur={e => this.setState({
-											newPosterWidth: parseFloat(e.target.value) * this.props.image.aspectRatio
-										})}
-									/>
-								</label>
-							</li>
-
-							<li>
-								<label htmlFor="input-image-width">
-									Width:
-									<input
-										type="number"
-										id="input-image-width"
-										value={Math.round(this.state.newPosterWidth)}
-										onChange={e => this.setState({ newPosterWidth: parseFloat(e.target.value) })}
-										onBlur={e => this.setState({
-											newPosterHeight: parseFloat(e.target.value) / this.props.image.aspectRatio
-										})}
-									/>
-								</label>
-							</li>
-						</ul>
+						<div className="labels-inline">
+							<label htmlFor="input-image-height">
+								Height:
+								<input
+									type="number"
+									id="input-image-height"
+									value={Math.round(this.state.newPosterHeight)}
+									onChange={e => this.setState({ newPosterHeight: parseFloat(e.target.value) })}
+									onBlur={e => this.setState({
+										newPosterWidth: parseFloat(e.target.value) * this.props.image.aspectRatio
+									})}
+								/>
+								<span className="unit">px</span>
+							</label>
+							<label htmlFor="input-image-width">
+								Width:
+								<input
+									type="number"
+									id="input-image-width"
+									value={Math.round(this.state.newPosterWidth)}
+									onChange={e => this.setState({ newPosterWidth: parseFloat(e.target.value) })}
+									onBlur={e => this.setState({
+										newPosterHeight: parseFloat(e.target.value) / this.props.image.aspectRatio
+									})}
+								/>
+								<span className="unit">px</span>
+							</label>
+						</div>
 					</fieldset>
 				</div>
 

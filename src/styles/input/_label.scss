@@ -1,0 +1,49 @@
+label {
+	display: block;
+
+	&:not(#image-selector-label) {
+		margin-bottom: 10px;
+	}
+}
+
+.labels-inline {
+	margin-right: -$margin-label;
+
+	label {
+		display: inline-block;
+	}
+
+	input {
+		margin-left: 10px;
+	}
+}
+
+.labels-inline label,
+.label-left {
+	margin-right: $margin-label;
+}
+
+.label-left {
+	display: inline-block;
+}
+
+#fieldset-background .label-left {
+	width: 130px;
+}
+
+#fieldset-image-style .label-left,
+#fieldset-text-style .label-left {
+	width: 85px;
+}
+
+#fieldset-image-style {
+
+	label {
+		display: flex;
+	}
+
+	.unit {
+		text-align: right;
+		width: 50px;
+	}
+}

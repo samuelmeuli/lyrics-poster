@@ -1,38 +1,32 @@
 // buttons
 button,
 #image-selector-label {
-	height: 40px;
+	height: $height-button;
 	display: inline-flex;
 	align-items: center;
 	padding: 0 20px;
 	border: 0;
 	border-radius: $border-radius;
-	background-color: $color-red;
+	background: $color-red;
 	cursor: pointer;
+	line-height: 0;
 
 	&:hover {
-		background-color: lighten($color-red, 5%);
+		background: lighten($color-red, 5%);
 	}
 
 	&:disabled {
-		background-color: $color-input;
+		background: $color-input;
 		cursor: auto;
 	}
 }
 
 // hide <input type="file"> (label will be styled instead)
 #image-selector {
-	width: .1px;
-	height: .1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+	@include hide-element;
 }
 
 #image-selector-label {
-	display: inline-flex;
-	align-items: center;
 	margin-right: 20px;
 }
 

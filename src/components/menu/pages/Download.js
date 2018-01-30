@@ -37,12 +37,15 @@ export default class Download extends Component {
 
 	render() {
 		return (
-			<div>
-				<button type="button" onClick={() => this.downloadPoster()}>
-					Download poster
-				</button>
-				<NavContainer />
-			</div>
+			<form onSubmit={this.updateSettings}>
+				<fieldset>
+					<legend>Download</legend>
+					<button type="button" onClick={() => this.downloadPoster()}>
+						Download poster
+					</button>
+				</fieldset>
+				<NavContainer showApply={false} />
+			</form>
 		);
 	}
 }

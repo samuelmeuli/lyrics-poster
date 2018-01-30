@@ -17,3 +17,16 @@
 		@content;
 	}
 }
+
+
+// other mixins
+
+@mixin hide-element {
+	position: absolute;
+	display: block;
+	height: 0.1px;
+	width: 0.1px;
+	overflow: hidden;
+	opacity: 0;
+	z-index: -1;
+}

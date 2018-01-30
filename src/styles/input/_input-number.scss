@@ -1,0 +1,46 @@
+// number input fields
+input[type="number"] {
+	height: $height-input;
+	width: 70px;
+	padding: 0 10px;
+
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+	}
+}
+
+// number input component (with plus/minus buttons)
+.number-input {
+	display: inline-flex;
+	align-items: center;
+
+	input {
+		border-right: 0;
+		width: 60px;
+	}
+
+	.plus-minus-buttons {
+		display: inline-flex;
+		flex-direction: column;
+	}
+
+	button {
+		justify-content: center;
+		height: calc(#{$height-input} / 2);
+		width: calc(#{$height-input} / 2);
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: $color-input-border;
+		text-align: center;
+
+		&:hover {
+			background: lighten($color-input-border, 10%);
+		}
+	}
+}

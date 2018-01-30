@@ -1,0 +1,42 @@
+// hide default radio buttons
+input[type="radio"] {
+	@include hide-element;
+}
+
+// custom radio buttons (<span>)
+.radio-button {
+	position: relative;
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	margin-right: 5px;
+	border: 1px solid $color-input-border;
+	background: $color-input;
+	border-radius: 50%;
+	cursor: pointer;
+	box-sizing: content-box;
+	margin-bottom: -0.35em;
+
+	&:hover {
+		border-color: $color-input-border-focus;
+	}
+}
+
+// place pseudo element inside custom radio button if checked
+input[type="radio"]:checked + .radio-button:before {
+	display: block;
+	content: "";
+	position: absolute;
+	height: 75%;
+	width: 75%;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	border-radius: 50%;
+	background: $color-input-circle;
+}
+
+// on hover
+input[type="radio"]:checked + .radio-button:hover:before {
+	background: $color-input-circle-focus;
+}
