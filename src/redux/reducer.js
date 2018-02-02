@@ -14,7 +14,8 @@ export default function reducer(
 			brightness: 100,
 			contrast: 100,
 			dataURL: '', // poster (canvas) encoded as data URL
-			height: 3000
+			height: 3000,
+			isLoading: false
 		},
 		text: {
 			fontFamily: 'Maven Pro',
@@ -76,6 +77,15 @@ export default function reducer(
 				poster: {
 					...state.poster,
 					height: action.payload
+				}
+			};
+		}
+		case 'SET_POSTER_IS_LOADING': {
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					isLoading: action.payload
 				}
 			};
 		}

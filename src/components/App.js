@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PosterContainer from './poster/PosterContainer';
+import Poster from './poster/Poster';
 import MenuContainer from './menu/MenuContainer';
 
 
@@ -8,7 +8,7 @@ export default function App() {
 	return (
 		<main>
 			<MenuContainer />
-			<PosterContainer />
+			<Poster />
 		</main>
 	);
 }

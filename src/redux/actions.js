@@ -64,6 +64,13 @@ export function setPosterHeight(height) {
 	};
 }
 
+export function setIsLoading(isLoading) {
+	return {
+		type: 'SET_POSTER_IS_LOADING',
+		payload: isLoading
+	};
+}
+
 
 // text
 

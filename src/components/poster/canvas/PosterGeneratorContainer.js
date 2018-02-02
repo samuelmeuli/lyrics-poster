@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import Poster from './Poster';
-import * as actions from '../../redux/actions';
+import PosterGenerator from './PosterGenerator';
+import * as actions from '../../../redux/actions';
 
 
 // map Redux state to component props
@@ -19,6 +19,7 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
+		setIsLoading: isLoading => dispatch(actions.setIsLoading(isLoading)),
 		setPosterURL: dataURL => dispatch(actions.setPosterURL(dataURL))
 	};
 }
@@ -27,4 +28,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Poster);
+)(PosterGenerator);
