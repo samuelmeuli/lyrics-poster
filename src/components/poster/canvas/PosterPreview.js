@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Magnifier from 'react-magnifier';
 import Spinner from 'react-spinkit';
 
 
@@ -88,10 +89,10 @@ export default class PosterPreview extends Component {
 		}
 		else {
 			return (
-				<img
+				<Magnifier
 					src={this.props.posterURL}
-					width={this.calcScaledWidth()}
 					alt="Poster preview"
+					width={this.calcScaledWidth()}
 				/>
 			);
 		}

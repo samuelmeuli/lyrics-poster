@@ -1,7 +1,7 @@
 input[type="number"],
 textarea {
 	background: $color-input;
-	border: 1px solid #7D7D7D;
+	border: 1px solid $color-input-border;
 	border-radius: 5px;
 
 	&:focus {
