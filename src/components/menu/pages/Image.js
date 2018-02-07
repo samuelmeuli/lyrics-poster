@@ -80,36 +80,34 @@ export default class Image extends Component {
 						/>
 					</fieldset>
 
-					<fieldset>
+					<fieldset id="fieldset-image-options">
 						<legend>Image size</legend>
-						<div className="labels-inline">
-							<label htmlFor="input-image-height">
-								Height:
-								<input
-									type="number"
-									id="input-image-height"
-									value={Math.round(this.state.newPosterHeight)}
-									onChange={e => this.setState({ newPosterHeight: parseFloat(e.target.value) })}
-									onBlur={e => this.setState({
-										newPosterWidth: parseFloat(e.target.value) * this.props.image.aspectRatio
-									})}
-								/>
-								<span className="unit">px</span>
-							</label>
-							<label htmlFor="input-image-width">
-								Width:
-								<input
-									type="number"
-									id="input-image-width"
-									value={Math.round(this.state.newPosterWidth)}
-									onChange={e => this.setState({ newPosterWidth: parseFloat(e.target.value) })}
-									onBlur={e => this.setState({
-										newPosterHeight: parseFloat(e.target.value) / this.props.image.aspectRatio
-									})}
-								/>
-								<span className="unit">px</span>
-							</label>
-						</div>
+						<label htmlFor="input-image-height">
+							<span className="label-left">Height:</span>
+							<input
+								type="number"
+								id="input-image-height"
+								value={Math.round(this.state.newPosterHeight)}
+								onChange={e => this.setState({ newPosterHeight: parseFloat(e.target.value) })}
+								onBlur={e => this.setState({
+									newPosterWidth: parseFloat(e.target.value) * this.props.image.aspectRatio
+								})}
+							/>
+							<span className="unit">px</span>
+						</label>
+						<label htmlFor="input-image-width">
+							<span className="label-left">Width:</span>
+							<input
+								type="number"
+								id="input-image-width"
+								value={Math.round(this.state.newPosterWidth)}
+								onChange={e => this.setState({ newPosterWidth: parseFloat(e.target.value) })}
+								onBlur={e => this.setState({
+									newPosterHeight: parseFloat(e.target.value) / this.props.image.aspectRatio
+								})}
+							/>
+							<span className="unit">px</span>
+						</label>
 					</fieldset>
 				</div>
 

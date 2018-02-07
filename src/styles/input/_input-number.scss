@@ -20,22 +20,17 @@ input[type="number"] {
 	align-items: center;
 
 	input {
-		border-right: 0;
 		width: 60px;
-	}
-
-	.plus-minus-buttons {
-		display: inline-flex;
-		flex-direction: column;
+		text-align: center;
+		margin: 0 3px;
 	}
 
 	button {
 		justify-content: center;
-		height: calc(#{$height-input} / 2);
-		width: calc(#{$height-input} / 2);
+		height: $height-input;
+		width: $height-input;
 		padding: 0;
 		border: 0;
-		border-radius: 0;
 		background: $color-input-border;
 		text-align: center;
 

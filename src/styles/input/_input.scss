@@ -2,6 +2,7 @@ input[type="number"],
 textarea {
 	background: $color-input;
 	border: 1px solid #7D7D7D;
+	border-radius: 5px;
 
 	&:focus {
 		background: $color-input-focus;
@@ -15,6 +16,7 @@ textarea {
 	padding: 5px 10px;
 	resize: none;
 	margin-top: 10px;
+	-webkit-overflow-scrolling: touch;
 }
 
 :focus {

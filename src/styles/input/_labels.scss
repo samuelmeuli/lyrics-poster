@@ -1,0 +1,56 @@
+label {
+	display: block;
+
+	&:not(#image-selector-label) {
+		margin-bottom: 10px;
+	}
+}
+
+.label-left {
+	display: inline-block;
+	margin-right: $margin-label;
+}
+
+#fieldset-background {
+
+	.label-left {
+		white-space: nowrap;
+	}
+
+	#background-settings {
+		display: flex;
+
+		label {
+			display: inline-block;
+			margin-right: 20px;
+		}
+	}
+}
+
+#fieldset-image-style {
+
+	label {
+		display: flex;
+	}
+
+	.unit {
+		text-align: right;
+		width: 50px;
+	}
+}
+
+
+// label-left widths
+
+#fieldset-image-options .label-left {
+	width: 55px;
+}
+
+#fieldset-background .label-left {
+	width: 130px;
+}
+
+#fieldset-image-style .label-left,
+#fieldset-text-style .label-left {
+	width: 85px;
+}

@@ -77,4 +77,8 @@ main,
 .image-selector-container {
 	display: flex;
 	align-items: center;
+
+	& > p {
+		overflow: hidden;
+	}
 }

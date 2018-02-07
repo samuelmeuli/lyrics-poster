@@ -68,6 +68,9 @@ export default class NumberInput extends Component {
 	render() {
 		return (
 			<div className="number-input">
+				<button	type="button" onClick={() => this.decrement()}>
+					–
+				</button>
 				<input
 					type="number"
 					value={this.state.value}
@@ -75,14 +78,9 @@ export default class NumberInput extends Component {
 					onBlur={e => this.onBlur(e.target.value)}
 					onChange={e => this.setState({ value: e.target.value })}
 				/>
-				<div className="plus-minus-buttons">
-					<button type="button" onClick={() => this.increment()}>
-						<p>+</p>
-					</button>
-					<button	type="button" onClick={() => this.decrement()}>
-						<p>–</p>
-					</button>
-				</div>
+				<button type="button" onClick={() => this.increment()}>
+					+
+				</button>
 			</div>
 		);
 	}

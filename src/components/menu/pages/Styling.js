@@ -94,32 +94,34 @@ export default class Styling extends Component {
 				<div>
 					<fieldset id="fieldset-background">
 						<legend>Background</legend>
-						<div className="labels-inline">
+						<div id="background-settings">
 							<span className="label-left">Background color:</span>
-							<label htmlFor="input-background-black">
-								<input
-									type="radio"
-									name="input-background"
-									value="male"
-									id="input-background-black"
-									checked={this.state.newBackgroundColor === 'black'}
-									onChange={this.onChangeBackground}
-								/>
-								<span className="radio-button" />
-								black
-							</label>
-							<label htmlFor="input-background-white">
-								<input
-									type="radio"
-									name="input-background"
-									value="female"
-									id="input-background-white"
-									checked={this.state.newBackgroundColor === 'white'}
-									onChange={this.onChangeBackground}
-								/>
-								<span className="radio-button" />
-								white
-							</label>
+							<div>
+								<label htmlFor="input-background-black">
+									<input
+										type="radio"
+										name="input-background"
+										value="male"
+										id="input-background-black"
+										checked={this.state.newBackgroundColor === 'black'}
+										onChange={this.onChangeBackground}
+									/>
+									<span className="radio-button" />
+									black
+								</label>
+								<label htmlFor="input-background-white">
+									<input
+										type="radio"
+										name="input-background"
+										value="female"
+										id="input-background-white"
+										checked={this.state.newBackgroundColor === 'white'}
+										onChange={this.onChangeBackground}
+									/>
+									<span className="radio-button" />
+									white
+								</label>
+							</div>
 						</div>
 					</fieldset>
 
