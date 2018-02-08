@@ -34,7 +34,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "npm run lint-js && npm run lint-scss",
-    "lint-js": "eslint --ext .jsx,.js src",
+    "lint-js": "eslint .",
     "lint-scss": "stylelint '**/*.scss' --syntax scss",
     "precommit": "npm run lint",
     "prepush": "npm run lint"
