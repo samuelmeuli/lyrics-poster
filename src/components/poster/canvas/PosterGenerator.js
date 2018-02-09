@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import sampleLyrics from '../../../sample-lyrics';
+
 
 export default class PosterGenerator extends Component {
 
@@ -15,7 +17,8 @@ export default class PosterGenerator extends Component {
 	async generatePoster() {
 		const { posterBackground, posterBrightness, posterContrast, posterHeight } = this.props;
 		const { aspectRatio, dataURL } = this.props.image;
-		const { fontFamily, fontSize, lineHeight, lyrics } = this.props.text;
+		const { fontFamily, fontSize, lineHeight } = this.props.text;
+		const lyrics = this.props.text.lyrics || sampleLyrics;
 
 		const posterWidth = posterHeight * aspectRatio;
 		const formattedLyrics = this.formatText(lyrics);

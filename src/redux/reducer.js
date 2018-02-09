@@ -1,6 +1,3 @@
-const sampleLyrics = require('./sample-lyrics.js');
-
-
 export default function reducer(
 	// default state
 	state = {
@@ -21,7 +18,7 @@ export default function reducer(
 			fontFamily: 'Maven Pro',
 			fontSize: 18,
 			lineHeight: 0.9,
-			lyrics: sampleLyrics // placeholder lyrics from sample-lyrics.js file
+			lyrics: ''
 		},
 		nav: {
 			page: 0 // active navigation page (0: info, 1: image, 2: lyrics, 3: styling, 4: download)

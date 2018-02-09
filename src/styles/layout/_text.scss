@@ -40,6 +40,15 @@ legend {
 	@include hide-element
 }
 
+::placeholder {
+	color: $color-text;
+}
+
+:focus::placeholder {
+	visibility: hidden;
+	line-height: 0; // to disable scrolling when there is a lot of placeholder text
+}
+
 ::selection {
 	background: $color-selection;
 }

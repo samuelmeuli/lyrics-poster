@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import NavContainer from '../elements/NavContainer';
+import sampleLyrics from '../../../sample-lyrics';
 
 
 export default class Lyrics extends Component {
@@ -48,6 +49,7 @@ export default class Lyrics extends Component {
 						<textarea
 							id="input-lyrics"
 							value={this.state.newLyrics}
+							placeholder={sampleLyrics}
 							onChange={e => this.setState({ newLyrics: e.target.value })}
 						/>
 					</label>
