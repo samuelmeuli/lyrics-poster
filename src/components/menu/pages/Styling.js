@@ -163,7 +163,7 @@ export default class Styling extends Component {
 							<span className="label-left">Font:</span>
 							<FontPicker
 								apiKey="AIzaSyAOkdDlx49HCSBdu86oe8AD1Q7piIxlR6k"
-								defaultFont={this.props.fontFamily}
+								activeFont={this.state.newFontFamily}
 								options={{
 									variants: ['900']
 								}}

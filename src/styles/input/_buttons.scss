@@ -9,7 +9,7 @@ button,
 	border-radius: $border-radius-large;
 	background: $color-red;
 	cursor: pointer;
-	line-height: 0;
+	line-height: 1;
 
 	&:hover {
 		background: lighten($color-red, 5%);

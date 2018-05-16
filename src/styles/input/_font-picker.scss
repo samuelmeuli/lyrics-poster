@@ -4,6 +4,7 @@
 
 	.dropdown-button {
 		background: $color-input-border;
+		border-radius: $border-radius-small;
 
 		&:hover,
 		&.expanded,
@@ -12,16 +13,25 @@
 		}
 	}
 
+	.dropdown-icon::before {
+		border-top-color: $color-text;
+	}
+
 	ul {
 		background: $color-input;
 		box-shadow: none;
+		border-radius: $border-radius-small;
+	}
 
-		li a:hover,
-		li a:focus {
+	li button {
+		border-radius: 0;
+
+		&:hover,
+		&:focus {
 			background: lighten($color-input, 10%);
 		}
 
-		li a.active-font {
+		&.active-font {
 			background: lighten($color-input, 15%);
 		}
 	}
