@@ -6,7 +6,7 @@ button,
 	align-items: center;
 	padding: 0 20px;
 	border: 0;
-	border-radius: $border-radius;
+	border-radius: $border-radius-large;
 	background: $color-red;
 	cursor: pointer;
 	line-height: 0;
@@ -48,5 +48,20 @@ button,
 
 	img {
 		margin: 0 0 0 auto;
+	}
+}
+
+.input-numeric button {
+	height: $height-input;
+	width: $height-input;
+	justify-content: center;
+	background: $color-input-border;
+	border: 0;
+	border-radius: $border-radius-large;
+
+	&:hover,
+	&.expanded,
+	&:focus {
+		background: $color-input-border-focus !important;
 	}
 }

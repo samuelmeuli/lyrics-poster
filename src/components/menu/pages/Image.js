@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InputNumeric from 'react-input-numeric';
 
 import ImageSelector from '../elements/ImageSelector';
 import NavContainer from '../elements/NavContainer';
@@ -9,6 +10,9 @@ export default class Image extends Component {
 
 	constructor(props) {
 		super(props);
+
+		this.min = 100;
+		this.max = 10000;
 
 		// state contains the form values
 		this.state = {
@@ -84,27 +88,57 @@ export default class Image extends Component {
 						<legend>Image size</legend>
 						<label htmlFor="input-image-height">
 							<span className="label-left">Height:</span>
-							<input
-								type="number"
+							<InputNumeric
 								id="input-image-height"
-								value={Math.round(this.state.newPosterHeight)}
-								onChange={e => this.setState({ newPosterHeight: parseFloat(e.target.value) })}
-								onBlur={e => this.setState({
-									newPosterWidth: parseFloat(e.target.value) * this.props.image.aspectRatio
-								})}
+								value={this.state.newPosterHeight}
+								decimals={0}
+								min={this.min}
+								max={this.max}
+								onBlur={(h) => {
+									let newPosterHeight = h;
+									let newPosterWidth = Math.round(newPosterHeight * this.props.image.aspectRatio);
+									if (newPosterWidth > this.max) {
+										newPosterWidth = this.max;
+										newPosterHeight = Math.round(newPosterWidth / this.props.image.aspectRatio);
+									}
+									else if (newPosterWidth < this.min) {
+										newPosterWidth = this.min;
+										newPosterHeight = Math.round(newPosterWidth / this.props.image.aspectRatio);
+									}
+									this.setState({
+										newPosterHeight,
+										newPosterWidth
+									});
+								}}
+								showButtons={false}
 							/>
 							<span className="unit">px</span>
 						</label>
 						<label htmlFor="input-image-width">
 							<span className="label-left">Width:</span>
-							<input
-								type="number"
+							<InputNumeric
 								id="input-image-width"
-								value={Math.round(this.state.newPosterWidth)}
-								onChange={e => this.setState({ newPosterWidth: parseFloat(e.target.value) })}
-								onBlur={e => this.setState({
-									newPosterHeight: parseFloat(e.target.value) / this.props.image.aspectRatio
-								})}
+								value={this.state.newPosterWidth}
+								decimals={0}
+								min={this.min}
+								max={this.max}
+								onBlur={(w) => {
+									let newPosterWidth = w;
+									let newPosterHeight = Math.round(newPosterWidth / this.props.image.aspectRatio);
+									if (newPosterHeight > this.max) {
+										newPosterHeight = this.max;
+										newPosterWidth = Math.round(newPosterHeight * this.props.image.aspectRatio);
+									}
+									else if (newPosterHeight < this.min) {
+										newPosterHeight = this.min;
+										newPosterWidth = Math.round(newPosterHeight * this.props.image.aspectRatio);
+									}
+									this.setState({
+										newPosterHeight,
+										newPosterWidth
+									});
+								}}
+								showButtons={false}
 							/>
 							<span className="unit">px</span>
 						</label>

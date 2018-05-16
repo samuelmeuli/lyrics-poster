@@ -1,11 +1,15 @@
-input[type="number"],
+.input-numeric input,
 textarea {
 	background: $color-input;
 	border: 1px solid $color-input-border;
-	border-radius: 5px;
+	border-radius: $border-radius-small;
 
 	&:focus {
 		background: $color-input-focus;
+	}
+
+	&:focus,
+	&:hover {
 		border-color: $color-input-border-focus;
 	}
 }
@@ -17,6 +21,10 @@ textarea {
 	resize: none;
 	margin-top: 10px;
 	-webkit-overflow-scrolling: touch;
+}
+
+.input-numeric input {
+	height: $height-input;
 }
 
 :focus {

@@ -17,10 +17,6 @@ export default class ImageSelector extends Component {
 		this.handleImageChange = this.handleImageChange.bind(this);
 	}
 
-	componentDidMount() {
-		this.imageLoader.addEventListener('change', this.handleImageChange, false);
-	}
-
 	handleImageChange(e) {
 		// set up FileReader for image
 		const reader = new FileReader();
@@ -62,6 +58,7 @@ export default class ImageSelector extends Component {
 						type="file"
 						accept=".png, .jpg, .jpeg, .gif"
 						id="image-selector"
+						onChange={this.handleImageChange}
 						ref={(i) => {
 							this.imageLoader = i;
 						}}

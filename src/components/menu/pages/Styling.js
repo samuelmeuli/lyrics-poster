@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FontPicker from 'font-picker-react';
+import InputNumeric from 'react-input-numeric';
 
 import NavContainer from '../elements/NavContainer';
-import NumberInput from '../elements/NumberInput';
 
 
 export default class Styling extends Component {
@@ -173,25 +173,28 @@ export default class Styling extends Component {
 						</label>
 						<label htmlFor="input-font-size">
 							<span className="label-left">Font size:</span>
-							<NumberInput
+							<InputNumeric
 								id="input-font-size"
-								step={1}
+								value={this.state.newFontSize}
 								min={5}
 								max={50}
-								value={this.state.newFontSize}
-								onChange={f => this.setState({ newFontSize: f })}
+								snapToStep
+								step={1}
+								onChange={newFontSize => this.setState({ newFontSize })}
 							/>
 							<span className="unit">px</span>
 						</label>
 						<label htmlFor="input-line-height">
 							<span className="label-left">Line height:</span>
-							<NumberInput
+							<InputNumeric
 								id="input-line-height"
-								step={0.1}
-								min={0.1}
-								max={3}
 								value={this.state.newLineHeight}
-								onChange={l => this.setState({ newLineHeight: Math.round(l * 10) / 10 })}
+								min={0.5}
+								max={5}
+								snapToStep
+								step={0.1}
+								decimals={1}
+								onChange={newLineHeight => this.setState({ newLineHeight })}
 							/>
 							<span className="unit">px</span>
 						</label>
