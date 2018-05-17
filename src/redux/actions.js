@@ -102,6 +102,18 @@ export function setLyrics(lyrics) {
 	};
 }
 
+export function setSeparator(separator) {
+	if (separator === ' ' || separator === ' / ' || separator === ', ') {
+		return {
+			type: 'SET_SEPARATOR',
+			payload: separator
+		};
+	}
+	else {
+		throw Error('Error changing text separator: new value is not one of the allowed values');
+	}
+}
+
 
 // navigation
 

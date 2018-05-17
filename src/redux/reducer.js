@@ -20,7 +20,8 @@ export default function reducer(
 			fontFamily: 'Maven Pro',
 			fontSize: Math.round(defaultPosterHeight / 60),
 			lineHeight: 0.9,
-			lyrics: ''
+			lyrics: '',
+			separator: ' '
 		},
 		nav: {
 			page: 0 // active navigation page (0: info, 1: image, 2: lyrics, 3: styling, 4: download)
@@ -132,6 +133,15 @@ export default function reducer(
 				text: {
 					...state.text,
 					lyrics: action.payload
+				}
+			};
+		}
+		case 'SET_SEPARATOR': {
+			return {
+				...state,
+				text: {
+					...state.text,
+					separator: action.payload
 				}
 			};
 		}

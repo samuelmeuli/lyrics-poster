@@ -94,7 +94,7 @@ export default class Styling extends Component {
 				<div>
 					<fieldset id="fieldset-background">
 						<legend>Background</legend>
-						<div id="background-settings">
+						<div id="settings-background">
 							<span className="label-left">Background color:</span>
 							<div>
 								<label htmlFor="input-background-black">

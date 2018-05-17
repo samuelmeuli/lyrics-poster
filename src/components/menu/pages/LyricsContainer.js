@@ -7,14 +7,16 @@ import * as actions from '../../../redux/actions';
 // map Redux state to component props
 function mapStateToProps(state) {
 	return {
-		lyrics: state.text.lyrics
+		lyrics: state.text.lyrics,
+		separator: state.text.separator
 	};
 }
 
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
-		setLyrics: lyrics => dispatch(actions.setLyrics(lyrics))
+		setLyrics: lyrics => dispatch(actions.setLyrics(lyrics)),
+		setSeparator: separator => dispatch(actions.setSeparator(separator))
 	};
 }
 

@@ -11,19 +11,28 @@ label {
 	margin-right: $margin-label;
 }
 
-#fieldset-background {
+#fieldset-background,
+#fieldset-lyrics {
 
 	.label-left {
 		white-space: nowrap;
 	}
 
-	#background-settings {
+	#settings-background,
+	#settings-separator {
 		display: flex;
 
 		label {
-			display: inline-block;
 			margin-right: 20px;
 		}
+	}
+
+	#settings-background label {
+		display: inline-block;
+	}
+
+	#settings-separator label {
+		display: block;
 	}
 }
 

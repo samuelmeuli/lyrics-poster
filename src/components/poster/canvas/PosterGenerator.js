@@ -17,11 +17,11 @@ export default class PosterGenerator extends Component {
 	async generatePoster() {
 		const { posterBackground, posterBrightness, posterContrast, posterHeight } = this.props;
 		const { aspectRatio, dataURL } = this.props.image;
-		const { fontFamily, fontSize, lineHeight } = this.props.text;
+		const { fontFamily, fontSize, lineHeight, separator } = this.props.text;
 		const lyrics = this.props.text.lyrics || sampleLyrics;
 
 		const posterWidth = posterHeight * aspectRatio;
-		const formattedLyrics = this.formatText(lyrics);
+		const formattedLyrics = this.formatText(lyrics, separator);
 
 		// initialize canvas
 		const canvas = document.createElement('canvas');
@@ -68,13 +68,13 @@ export default class PosterGenerator extends Component {
 		this.props.setPosterURL(canvas.toDataURL());
 	}
 
-	formatText(lyrics) {
-		// replace line breaks with slashes
-		let lyricsFormatted = lyrics.replace(/(?:\r\n|\r|\n)+/g, ' / ');
+	formatText(lyrics, separator) {
+		// replace line breaks with specified separator
+		let lyricsFormatted = lyrics.replace(/(?:\r\n|\r|\n)+/g, separator);
 
-		// place slash after last line if it does not exist yet
-		if (!lyricsFormatted.endsWith(' / ')) {
-			lyricsFormatted += ' / ';
+		// place separator after last line of lyrics if it does not exist yet
+		if (!lyricsFormatted.endsWith(separator)) {
+			lyricsFormatted += separator;
 		}
 
 		return lyricsFormatted;
