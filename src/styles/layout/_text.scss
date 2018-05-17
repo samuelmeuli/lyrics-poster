@@ -2,11 +2,11 @@ body,
 button,
 input,
 textarea {
-	color: $color-text;
 	font-family: $font;
 	font-size: $font-size;
 	font-weight: $font-normal;
 	line-height: 1.5;
+	color: $color-text;
 }
 
 // buttons
@@ -20,8 +20,8 @@ button,
 }
 
 legend {
-	color: $color-input-border;
 	font-size: 80%;
+	color: $color-input-border;
 	text-transform: uppercase;
 }
 
@@ -37,7 +37,7 @@ legend {
 .preload-font {
 	font-family: "Maven Pro", sans-serif;
 	font-weight: 900;
-	@include hide-element
+	@include hide-element;
 }
 
 ::placeholder {
@@ -45,8 +45,8 @@ legend {
 }
 
 :focus::placeholder {
-	visibility: hidden;
 	line-height: 0; // to disable scrolling when there is a lot of placeholder text
+	visibility: hidden;
 }
 
 ::selection {

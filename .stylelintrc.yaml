@@ -1,0 +1,14 @@
+extends: stylelint-config-primer
+rules:
+  # Default settings
+  color-hex-case: upper
+  color-hex-length: long
+  indentation: tab
+  max-empty-lines: 2
+
+  # Project-specific settings
+  plugin/no-unsupported-browser-features: null
+  selector-max-id: null
+  selector-max-type: null
+  selector-max-specificity: null
+  selector-no-qualifying-type: null

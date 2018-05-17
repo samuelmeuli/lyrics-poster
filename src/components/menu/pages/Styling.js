@@ -92,9 +92,9 @@ export default class Styling extends Component {
 		return (
 			<form onSubmit={this.updateSettings}>
 				<div>
-					<fieldset id="fieldset-background">
+					<fieldset className="fieldset-background">
 						<legend>Background</legend>
-						<div id="settings-background">
+						<div className="settings-background">
 							<span className="label-left">Background color:</span>
 							<div>
 								<label htmlFor="input-background-black">
@@ -125,7 +125,7 @@ export default class Styling extends Component {
 						</div>
 					</fieldset>
 
-					<fieldset id="fieldset-image-style">
+					<fieldset className="fieldset-image-style">
 						<legend>Image style</legend>
 
 						<label htmlFor="input-brightness">
@@ -157,7 +157,7 @@ export default class Styling extends Component {
 						</label>
 					</fieldset>
 
-					<fieldset id="fieldset-text-style">
+					<fieldset className="fieldset-text-style">
 						<legend>Text style</legend>
 						<label htmlFor="input-font">
 							<span className="label-left">Font:</span>

@@ -15,8 +15,8 @@ main {
 	width: 100%;
 
 	@include large-screen {
-		height: 100%;
 		display: grid;
+		height: 100%;
 		grid-template-columns: 440px auto;
 		grid-column-gap: $margin-large;
 		justify-content: center; // grid alignment
@@ -57,12 +57,12 @@ main,
 
 .menu-page {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start; // align items to the left
-	background: $color-background-settings;
 	height: 650px;
 	max-height: 100%;
 	overflow-y: auto;
+	flex-direction: column;
+	align-items: flex-start; // align items to the left
+	background: $color-background-settings;
 }
 
 .error-wrapper {
@@ -78,7 +78,7 @@ main,
 	display: flex;
 	align-items: center;
 
-	& > p {
+	> p {
 		overflow: hidden;
 	}
 }

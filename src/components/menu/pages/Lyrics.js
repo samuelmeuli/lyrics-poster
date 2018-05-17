@@ -59,7 +59,7 @@ export default class Lyrics extends Component {
 	render() {
 		return (
 			<form onSubmit={this.updateSettings}>
-				<fieldset id="fieldset-lyrics">
+				<fieldset className="fieldset-lyrics">
 					<legend>Lyrics</legend>
 					<label htmlFor="input-lyrics">
 						Enter your song lyrics:
@@ -70,7 +70,7 @@ export default class Lyrics extends Component {
 							onChange={e => this.setState({ newLyrics: e.target.value })}
 						/>
 					</label>
-					<div id="settings-separator">
+					<div className="settings-separator">
 						<span className="label-left">Line separator:</span>
 						<div>
 							<label htmlFor="separator-dash">

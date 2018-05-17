@@ -1,22 +1,22 @@
 form {
 	flex: 1; // fill remaining height
-	width: 100%;
 	display: flex;
+	width: 100%;
 	flex-direction: column;
 	justify-content: space-between; // align "apply" button to bottom of settings container
 	align-items: flex-start; // align items to the left
 
-	& > * {
+	> * {
 		width: 100%;
 	}
 }
 
 fieldset {
-	border-top: 1px solid $color-input-border;
 	margin: $margin-label 0 0;
+	border-top: 1px solid $color-input-border;
 }
 
 legend {
-	margin: 0 0 10px 10px;
 	padding: 0 10px;
+	margin: 0 0 10px 10px;
 }

@@ -11,15 +11,14 @@ label {
 	margin-right: $margin-label;
 }
 
-#fieldset-background,
-#fieldset-lyrics {
-
+.fieldset-background,
+.fieldset-lyrics {
 	.label-left {
 		white-space: nowrap;
 	}
 
-	#settings-background,
-	#settings-separator {
+	.settings-background,
+	.settings-separator {
 		display: flex;
 
 		label {
@@ -27,39 +26,38 @@ label {
 		}
 	}
 
-	#settings-background label {
+	.settings-background label {
 		display: inline-block;
 	}
 
-	#settings-separator label {
+	.settings-separator label {
 		display: block;
 	}
 }
 
-#fieldset-image-style {
-
+.fieldset-image-style {
 	label {
 		display: flex;
 	}
 
 	.unit {
-		text-align: right;
 		width: 50px;
+		text-align: right;
 	}
 }
 
 
 // label-left widths
 
-#fieldset-image-options .label-left {
+.fieldset-image-options .label-left {
 	width: 55px;
 }
 
-#fieldset-background .label-left {
+.fieldset-background .label-left {
 	width: 130px;
 }
 
-#fieldset-image-style .label-left,
-#fieldset-text-style .label-left {
+.fieldset-image-style .label-left,
+.fieldset-text-style .label-left {
 	width: 85px;
 }

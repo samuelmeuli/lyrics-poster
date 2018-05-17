@@ -1,23 +1,23 @@
 // buttons
 button,
 #image-selector-label {
-	height: $height-button;
 	display: inline-flex;
 	align-items: center;
+	height: $height-button;
 	padding: 0 20px;
+	line-height: 1;
+	cursor: pointer;
+	background: $color-red;
 	border: 0;
 	border-radius: $border-radius-large;
-	background: $color-red;
-	cursor: pointer;
-	line-height: 1;
 
 	&:hover {
 		background: lighten($color-red, 5%);
 	}
 
 	&:disabled {
-		background: $color-input;
 		cursor: auto;
+		background: $color-input;
 	}
 }
 
@@ -52,8 +52,8 @@ button,
 }
 
 .input-numeric button {
-	height: $height-input;
 	width: $height-input;
+	height: $height-input;
 	justify-content: center;
 	background: $color-input-border;
 	border: 0;

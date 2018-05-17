@@ -1,6 +1,6 @@
 #font-picker {
-	box-shadow: none;
 	width: 220px;
+	box-shadow: none;
 
 	.dropdown-button {
 		background: $color-input-border;
@@ -19,8 +19,8 @@
 
 	ul {
 		background: $color-input;
-		box-shadow: none;
 		border-radius: $border-radius-small;
+		box-shadow: none;
 	}
 
 	li button {

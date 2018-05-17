@@ -96,7 +96,7 @@ export default class Image extends Component {
 						/>
 					</fieldset>
 
-					<fieldset id="fieldset-image-options">
+					<fieldset className="fieldset-image-options">
 						<legend>Image size</legend>
 						<label htmlFor="input-image-height">
 							<span className="label-left">Height:</span>

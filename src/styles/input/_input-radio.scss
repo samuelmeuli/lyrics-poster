@@ -7,15 +7,15 @@ input[type="radio"] {
 .radio-button {
 	position: relative;
 	display: inline-block;
-	height: 20px;
 	width: 20px;
-	margin-right: 5px;
-	border: 1px solid $color-input-border;
-	background: $color-input;
-	border-radius: 50%;
-	cursor: pointer;
+	height: 20px;
 	box-sizing: content-box;
+	margin-right: 5px;
 	margin-bottom: -0.35em;
+	cursor: pointer;
+	background: $color-input;
+	border: 1px solid $color-input-border;
+	border-radius: 50%;
 
 	&:hover {
 		border-color: $color-input-border-focus;
@@ -23,20 +23,20 @@ input[type="radio"] {
 }
 
 // place pseudo element inside custom radio button if checked
-input[type="radio"]:checked + .radio-button:before {
-	display: block;
-	content: "";
+input[type="radio"]:checked + .radio-button::before {
 	position: absolute;
-	height: 75%;
-	width: 75%;
 	top: 50%;
 	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	border-radius: 50%;
+	display: block;
+	width: 75%;
+	height: 75%;
+	content: "";
 	background: $color-input-circle;
+	border-radius: 50%;
+	transform: translateX(-50%) translateY(-50%);
 }
 
 // on hover
-input[type="radio"]:checked + .radio-button:hover:before {
+input[type="radio"]:checked + .radio-button:hover::before {
 	background: $color-input-circle-focus;
 }
