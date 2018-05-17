@@ -49,7 +49,8 @@ export default class Image extends Component {
 				aspectRatio,
 				dataURL,
 				name
-			}
+			},
+			newPosterWidth: this.state.newPosterHeight * aspectRatio
 		});
 	}
 
