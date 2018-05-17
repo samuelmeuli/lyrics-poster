@@ -67,6 +67,17 @@ export default class Image extends Component {
 		if (this.state.newPosterHeight !== this.props.posterHeight) {
 			this.props.setPosterHeight(this.state.newPosterHeight);
 		}
+		if (this.state.newImage.dataURL !== this.props.image.dataURL ||
+				this.state.newPosterHeight !== this.props.posterHeight) {
+			// Portrait
+			if (this.props.image.aspectRatio > 1) {
+				this.props.setFontSize(Math.round(this.state.newPosterHeight / 100));
+			}
+			// Landscape
+			else {
+				this.props.setFontSize(Math.round(this.state.newPosterHeight / 60));
+			}
+		}
 	}
 
 	render() {
@@ -162,6 +173,7 @@ Image.propTypes = {
 	posterHeight: PropTypes.number.isRequired,
 
 	// Redux functions
+	setFontSize: PropTypes.func.isRequired,
 	setImage: PropTypes.func.isRequired,
 	setPosterHeight: PropTypes.func.isRequired
 };

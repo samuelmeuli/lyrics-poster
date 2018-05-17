@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
+		setFontSize: fontSize => dispatch(actions.setFontSize(fontSize)),
 		setImage: (aspectRatio, dataURL, name) =>
 			dispatch(actions.setImage(aspectRatio, dataURL, name)),
 		setPosterHeight: height => dispatch(actions.setPosterHeight(height))

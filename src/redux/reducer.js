@@ -1,3 +1,5 @@
+const defaultPosterHeight = 3000;
+
 export default function reducer(
 	// default state
 	state = {
@@ -11,12 +13,12 @@ export default function reducer(
 			brightness: 100,
 			contrast: 100,
 			dataURL: '', // poster (canvas) encoded as data URL
-			height: 3000,
+			height: defaultPosterHeight,
 			isLoading: false
 		},
 		text: {
 			fontFamily: 'Maven Pro',
-			fontSize: 18,
+			fontSize: Math.round(defaultPosterHeight / 60),
 			lineHeight: 0.9,
 			lyrics: ''
 		},

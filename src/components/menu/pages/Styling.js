@@ -177,7 +177,7 @@ export default class Styling extends Component {
 								id="input-font-size"
 								value={this.state.newFontSize}
 								min={5}
-								max={50}
+								max={100}
 								snapToStep
 								step={1}
 								onChange={newFontSize => this.setState({ newFontSize })}
