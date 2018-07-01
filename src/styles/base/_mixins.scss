@@ -18,6 +18,12 @@
 	}
 }
 
+@mixin medium-or-large-screen {
+	@media (min-width: 701px) {
+		@content;
+	}
+}
+
 
 // other mixins
 

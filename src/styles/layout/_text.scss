@@ -40,6 +40,21 @@ legend {
 	@include hide-element;
 }
 
+.info-container {
+	@include small-screen {
+		text-align: center;
+	}
+}
+
+.zoom-info {
+	color: $color-input-border;
+}
+
+.credits-container {
+	font-size: 70%;
+	color: $color-input;
+}
+
 ::placeholder {
 	color: $color-text;
 }

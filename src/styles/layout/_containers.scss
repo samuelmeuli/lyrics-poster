@@ -65,6 +65,36 @@ main,
 	background: $color-background-settings;
 }
 
+.info-container {
+	@include medium-or-large-screen {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	margin-top: calc(#{$margin-small} / 2);
+}
+
+.zoom-info {
+	display: inline-flex;
+	align-items: center;
+}
+
+.credits-container > * {
+	@include small-screen {
+		display: block;
+	}
+
+	@include medium-or-large-screen {
+		display: flex;
+		align-items: center;
+	}
+
+	img {
+		margin-right: 5px;
+	}
+}
+
 .error-wrapper {
 	display: flex;
 	align-items: center;
