@@ -57,12 +57,12 @@ export default class Nav extends Component {
 
 	navBack(e) {
 		e.preventDefault();
-		this.props.navBack();
+		this.props.navigate(this.props.navPage - 1);
 	}
 
 	navForward(e) {
 		e.preventDefault();
-		this.props.navForward();
+		this.props.navigate(this.props.navPage + 1);
 	}
 
 	render() {
@@ -86,14 +86,13 @@ Nav.propTypes = {
 	// Redux attributes
 	navPage: PropTypes.number.isRequired,
 
-	// Redux functions
-	navBack: PropTypes.func.isRequired,
-	navForward: PropTypes.func.isRequired,
-
 	// other props
 	disableApply: PropTypes.bool,
 	disableNext: PropTypes.bool,
-	showApply: PropTypes.bool
+	showApply: PropTypes.bool,
+
+	// other props
+	navigate: PropTypes.func.isRequired
 };
 
 Nav.defaultProps = {

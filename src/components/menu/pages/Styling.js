@@ -200,7 +200,11 @@ export default class Styling extends Component {
 						</label>
 					</fieldset>
 				</div>
-				<NavContainer showApply disableApply={!this.hasChanged()} />
+				<NavContainer
+					disableApply={!this.hasChanged()}
+					navigate={this.props.navigate}
+					showApply
+				/>
 			</form>
 		);
 	}
@@ -222,5 +226,8 @@ Styling.propTypes = {
 	setContrast: PropTypes.func.isRequired,
 	setFontFamily: PropTypes.func.isRequired,
 	setFontSize: PropTypes.func.isRequired,
-	setLineHeight: PropTypes.func.isRequired
+	setLineHeight: PropTypes.func.isRequired,
+
+	// other props
+	navigate: PropTypes.func.isRequired
 };

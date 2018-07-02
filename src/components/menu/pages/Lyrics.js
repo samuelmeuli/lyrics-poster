@@ -112,7 +112,11 @@ export default class Lyrics extends Component {
 						</div>
 					</div>
 				</fieldset>
-				<NavContainer showApply disableApply={!this.hasChanged()} />
+				<NavContainer
+					disableApply={!this.hasChanged()}
+					navigate={this.props.navigate}
+					showApply
+				/>
 			</form>
 		);
 	}
@@ -126,5 +130,8 @@ Lyrics.propTypes = {
 
 	// Redux functions
 	setLyrics: PropTypes.func.isRequired,
-	setSeparator: PropTypes.func.isRequired
+	setSeparator: PropTypes.func.isRequired,
+
+	// other props
+	navigate: PropTypes.func.isRequired
 };

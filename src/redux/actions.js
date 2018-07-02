@@ -117,14 +117,9 @@ export function setSeparator(separator) {
 
 // navigation
 
-export function navBack() {
+export function setNavPage(navPage) {
 	return {
-		type: 'NAV_BACK'
-	};
-}
-
-export function navForward() {
-	return {
-		type: 'NAV_FORWARD'
+		type: 'SET_NAV_PAGE',
+		payload: navPage
 	};
 }

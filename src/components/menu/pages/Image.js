@@ -157,7 +157,12 @@ export default class Image extends Component {
 					</fieldset>
 				</div>
 
-				<NavContainer	showApply disableApply={!this.hasChanged()} disableNext={disableNext} />
+				<NavContainer
+					disableApply={!this.hasChanged()}
+					disableNext={disableNext}
+					navigate={this.props.navigate}
+					showApply
+				/>
 			</form>
 		);
 	}
@@ -176,5 +181,8 @@ Image.propTypes = {
 	// Redux functions
 	setFontSize: PropTypes.func.isRequired,
 	setImage: PropTypes.func.isRequired,
-	setPosterHeight: PropTypes.func.isRequired
+	setPosterHeight: PropTypes.func.isRequired,
+
+	// other props
+	navigate: PropTypes.func.isRequired
 };

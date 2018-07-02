@@ -147,47 +147,14 @@ export default function reducer(
 		}
 
 		// navigation
-		case 'NAV_BACK': {
-			const newPage = state.nav.page - 1;
-			if (newPage < 0) {
-				return {
-					...state,
-					nav: {
-						...state.nav,
-						page: 0
-					}
-				};
-			}
-			else {
-				return {
-					...state,
-					nav: {
-						...state.nav,
-						page: newPage
-					}
-				};
-			}
-		}
-		case 'NAV_FORWARD': {
-			const newPage = state.nav.page + 1;
-			if (newPage > 4) {
-				return {
-					...state,
-					nav: {
-						...state.nav,
-						page: 4
-					}
-				};
-			}
-			else {
-				return {
-					...state,
-					nav: {
-						...state.nav,
-						page: newPage
-					}
-				};
-			}
+		case 'SET_NAV_PAGE': {
+			return {
+				...state,
+				nav: {
+					...state.nav,
+					page: action.payload
+				}
+			};
 		}
 
 		// default

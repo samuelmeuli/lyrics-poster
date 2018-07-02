@@ -44,7 +44,7 @@ export default class Download extends Component {
 						Download poster
 					</button>
 				</fieldset>
-				<NavContainer showApply={false} />
+				<NavContainer navigate={this.props.navigate} showApply={false} />
 			</form>
 		);
 	}
@@ -53,5 +53,8 @@ export default class Download extends Component {
 
 Download.propTypes = {
 	// Redux attributes
-	posterURL: PropTypes.string.isRequired
+	posterURL: PropTypes.string.isRequired,
+
+	// other props
+	navigate: PropTypes.func.isRequired
 };
