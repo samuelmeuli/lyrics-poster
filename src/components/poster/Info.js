@@ -14,7 +14,7 @@ export default function Info() {
 			</p>
 			<div className="credits-container">
 				<a
-					href="https://github.com/samuelmeuli/lyrics-posters"
+					href="https://github.com/samuelmeuli/lyrics-poster"
 					target="_blank"
 					rel="noreferrer noopener"
 				>

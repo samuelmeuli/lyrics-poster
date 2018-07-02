@@ -39,7 +39,7 @@ export default class Menu extends Component {
 		return (
 			<div className="menu-container">
 				<div className="menu-page">
-					<img src={logo} alt="LyricsPosters" className="logo" />
+					<img src={logo} alt="LyricsPoster" className="logo" />
 					{this.getPage()}
 				</div>
 				<div
