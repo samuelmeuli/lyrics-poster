@@ -1,20 +1,12 @@
 # OS
 .DS_Store
-Thumbs.db
 
-# WebStorm (IDE)
-.idea
-
-# logs
+# Logs
 *.log
 
 # Node
 node_modules/
 
 # Webpack
-build/
-
-# Sass
-sass-cache/
-*.css
-*.css.map
+public/bundle.js
+public/images/
