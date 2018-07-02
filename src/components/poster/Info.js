@@ -21,7 +21,11 @@ export default function Info() {
 					<img src={iconGitHub} alt="Next" width="13px" />
 					Source code on GitHub
 				</a>
-				<a href="https://www.zondicons.com">
+				<a
+					href="https://www.zondicons.com"
+					target="_blank"
+					rel="noreferrer noopener"
+				>
 					<img src={iconZondicons} alt="Next" width="13px" />
 					Zondicons by Steve Schoger
 				</a>
