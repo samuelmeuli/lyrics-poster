@@ -5716,10 +5716,10 @@ react-input-numeric@^1.0.0:
     prop-types "^15.6.1"
 
 react-magnifier@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-magnifier/-/react-magnifier-1.0.3.tgz#577d6cf92a795a5fadd73c0608dfa253769d0155"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-magnifier/-/react-magnifier-1.0.5.tgz#b39b072615665459db8d7f8b8fa3d017b112c1c9"
   dependencies:
-    prop-types "^15.6.0"
+    prop-types "^15.6.2"
 
 react-redux@^5.0.7:
   version "5.0.7"
