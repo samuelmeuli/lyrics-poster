@@ -12,8 +12,11 @@ form {
 }
 
 fieldset {
-	margin: $margin-label 0 0;
 	border-top: 1px solid $color-input-border;
+}
+
+fieldset + fieldset {
+	margin-top: $margin-label;
 }
 
 legend {

@@ -1,30 +1,31 @@
 // colors
-$color-text:                #F8F8F8;
-$color-red:                 #D14949;
-$color-selection:           lighten($color-red, 20%);
-$color-background:          #1B1B1B;
+$color-text: #F8F8F8;
+$color-red: #D14949;
+$color-selection: lighten($color-red, 20%);
+$color-background: #1B1B1B;
 $color-background-settings: #323232;
-$color-input:               #585858;
-$color-input-focus:         lighten($color-input, 8%);
-$color-input-border:        #7D7D7D;
-$color-input-border-focus:  lighten($color-input-border, 10%);
-$color-input-circle:        #C8C8C8;
-$color-input-circle-focus:  lighten($color-input-circle, 15%);
+$color-input: #585858;
+$color-input-focus: lighten($color-input, 8%);
+$color-input-border: #7D7D7D;
+$color-input-border-focus: lighten($color-input-border, 10%);
+$color-input-circle: #C8C8C8;
+$color-input-circle-focus: lighten($color-input-circle, 15%);
 
 // fonts
-$font:          "Barlow", sans-serif;
-$font-size:     16px;
-$font-normal:   400;
-$font-bold:     700;
+$font: "Barlow", sans-serif;
+$font-size: 16px;
+$font-normal: 400;
+$font-bold: 700;
 
 // spacing
-$margin-small:  20px;
+$margin-small: 20px;
 $margin-medium: 30px;
-$margin-large:  40px;
-$margin-label:  25px;
+$margin-large: 40px;
+$margin-label: 25px;
+$margin-input: 10px;
 
 // input
 $border-radius-small: 5px;
 $border-radius-large: 10px;
-$height-input:  35px;
+$height-input: 35px;
 $height-button: 40px;

@@ -1,9 +1,9 @@
 label {
 	display: block;
+}
 
-	&:not(#image-selector-label) {
-		margin-bottom: 10px;
-	}
+label + label {
+	margin-top: $margin-input;
 }
 
 .label-left {
@@ -24,6 +24,10 @@ label {
 		label {
 			margin-right: 20px;
 		}
+	}
+
+	.settings-separator {
+		margin-top: $margin-input;
 	}
 
 	.settings-background label {

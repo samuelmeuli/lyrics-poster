@@ -45,7 +45,7 @@
 		"webpack-dev-server": "^3.1.4"
 	},
 	"scripts": {
-		"start": "webpack-dev-server --content-base public --mode development --port 3000",
+		"start": "webpack-dev-server --content-base public --host 0.0.0.0 --mode development --port 3000",
 		"build": "webpack --mode production",
 		"lint": "run-s lint:*",
 		"lint:css": "stylelint '**/*.scss' --syntax scss",
