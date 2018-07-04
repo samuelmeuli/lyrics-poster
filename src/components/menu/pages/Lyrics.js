@@ -12,12 +12,14 @@ export default class Lyrics extends Component {
 
 		// state contains the form values
 		this.state = {
+			hasFocus: false,
 			newLyrics: this.props.lyrics,
 			newSeparator: this.props.separator
 		};
 
 		// function bindings
 		this.onChangeSeparator = this.onChangeSeparator.bind(this);
+		this.getDisplayedLyrics = this.getDisplayedLyrics.bind(this);
 		this.updateSettings = this.updateSettings.bind(this);
 	}
 
@@ -34,6 +36,15 @@ export default class Lyrics extends Component {
 			this.setState({
 				newSeparator
 			});
+		}
+	}
+
+	getDisplayedLyrics() {
+		if (this.state.hasFocus === false && this.state.newLyrics === '') {
+			return sampleLyrics;
+		}
+		else {
+			return this.state.newLyrics;
 		}
 	}
 
@@ -57,6 +68,7 @@ export default class Lyrics extends Component {
 	}
 
 	render() {
+		const value = this.getDisplayedLyrics();
 		return (
 			<form onSubmit={this.updateSettings}>
 				<fieldset className="fieldset-lyrics">
@@ -65,9 +77,20 @@ export default class Lyrics extends Component {
 						Enter your song lyrics:
 						<textarea
 							id="input-lyrics"
-							value={this.state.newLyrics}
-							placeholder={sampleLyrics}
+							className={(this.state.newLyrics === '' && !this.state.hasFocus === true) ?
+								'lyrics-placeholder' : ''}
+							value={value}
 							onChange={e => this.setState({ newLyrics: e.target.value })}
+							onFocus={() => {
+								this.setState({
+									hasFocus: true
+								});
+							}}
+							onBlur={() => {
+								this.setState({
+									hasFocus: false
+								});
+							}}
 						/>
 					</label>
 					<div className="settings-separator">

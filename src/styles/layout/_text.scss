@@ -65,13 +65,8 @@ legend {
 	}
 }
 
-::placeholder {
-	color: $color-text;
-}
-
-:focus::placeholder {
-	line-height: 0; // to disable scrolling when there is a lot of placeholder text
-	visibility: hidden;
+.lyrics-placeholder {
+	color: darken($color-text, 30%);
 }
 
 ::selection {

@@ -18,7 +18,7 @@ export default class PosterGenerator extends Component {
 		const { posterBackground, posterBrightness, posterContrast, posterHeight } = this.props;
 		const { aspectRatio, dataURL } = this.props.image;
 		const { fontFamily, fontSize, lineHeight, separator } = this.props.text;
-		const lyrics = this.props.text.lyrics || sampleLyrics;
+		const lyrics = this.props.text.lyrics === '' ? sampleLyrics : this.props.text.lyrics;
 
 		const posterWidth = posterHeight * aspectRatio;
 		const formattedLyrics = this.formatText(lyrics, separator);
