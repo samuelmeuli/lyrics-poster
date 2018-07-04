@@ -14,6 +14,14 @@ body {
 main {
 	width: 100%;
 
+	@include small-screen {
+		padding: $margin-small;
+	}
+
+	@include medium-screen {
+		padding: $margin-medium;
+	}
+
 	@include large-screen {
 		display: grid;
 		height: 100%;
@@ -33,14 +41,12 @@ main {
 	@include medium-screen {
 		margin-bottom: $margin-medium;
 	}
+
+	@include large-screen {
+		margin: $margin-large 0;
+	}
 }
 
-// container with poster preview
-.poster-container {
-	position: relative;
-}
-
-main,
 .menu-page {
 	@include small-screen {
 		padding: $margin-small;
@@ -53,9 +59,7 @@ main,
 	@include large-screen {
 		padding: $margin-large;
 	}
-}
 
-.menu-page {
 	@include medium-or-large-screen {
 		height: 650px;
 		max-height: 100%;
@@ -66,6 +70,11 @@ main,
 	flex-direction: column;
 	align-items: flex-start; // align items to the left
 	background: $color-background-settings;
+}
+
+// container with poster preview
+.poster-container {
+	position: relative;
 }
 
 .info-container {
@@ -89,14 +98,8 @@ main,
 }
 
 .credits-container > * {
-	@include small-screen {
-		display: block;
-	}
-
-	@include medium-or-large-screen {
-		display: flex;
-		align-items: center;
-	}
+	display: flex;
+	align-items: center;
 
 	img {
 		margin-right: 5px;
