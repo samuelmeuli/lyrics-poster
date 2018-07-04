@@ -9,6 +9,11 @@ export default class PosterPreview extends Component {
 	constructor(props) {
 		super(props);
 
+		this.marginLarge = 40;
+		this.infoContainerHeight = 35;
+		this.infoContainerMargin = 10;
+		this.settingsWidth = 440;
+
 		this.state = {
 			screenHeight: window.innerHeight,
 			screenWidth: window.innerWidth
@@ -41,16 +46,20 @@ export default class PosterPreview extends Component {
 	}
 
 	calcScaledWidth() {
+		// on small and medium-sized screens: full width
 		if (this.state.screenWidth <= 1000) {
 			return '100%';
 		}
+		// on large screens: calculate scaled width
 		else {
+			// absolute canvas width
 			const posterWidth = this.props.posterHeight * this.props.aspectRatio;
-			const margin = '40';
-			const settingsWidth = '440';
 
-			const heightScaled = (this.state.screenHeight - (2 * margin)) / this.props.posterHeight;
-			const widthScaled = (this.state.screenWidth - settingsWidth - (3 * margin)) / posterWidth;
+			// scaled canvas height and width
+			const heightScaled = (this.state.screenHeight - this.infoContainerHeight -
+				this.infoContainerMargin - (2 * this.marginLarge)) / this.props.posterHeight;
+			const widthScaled = (this.state.screenWidth - this.settingsWidth - (3 * this.marginLarge)) /
+				posterWidth;
 			if (heightScaled < widthScaled) {
 				return posterWidth * heightScaled;
 			}

@@ -40,6 +40,10 @@ legend {
 	@include hide-element;
 }
 
+.poster-container {
+	line-height: 0;
+}
+
 .info-container {
 	@include small-screen {
 		text-align: center;
