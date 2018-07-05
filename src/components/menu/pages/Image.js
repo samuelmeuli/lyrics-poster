@@ -57,6 +57,13 @@ export default class Image extends Component {
 	updateSettings(event) {
 		event.preventDefault();
 
+		if (this.state.newImage.dataURL === '') {
+			this.props.setCompletedPage(this.props.navPage, false);
+		}
+		else {
+			this.props.setCompletedPage(this.props.navPage, true);
+		}
+
 		// update Redux state with form values (if they have changed)
 		if (this.state.newImage.dataURL !== this.props.image.dataURL) {
 			this.props.setImage(
@@ -82,9 +89,6 @@ export default class Image extends Component {
 	}
 
 	render() {
-		// disable "next" button if no image is selected
-		const disableNext = (this.props.image.dataURL === '');
-
 		return (
 			<form onSubmit={this.updateSettings}>
 				<div>
@@ -159,7 +163,7 @@ export default class Image extends Component {
 
 				<NavContainer
 					disableApply={!this.hasChanged()}
-					disableNext={disableNext}
+					disableNext={this.props.completedPages[this.props.navPage] === false}
 					navigate={this.props.navigate}
 					showApply
 				/>
@@ -171,14 +175,17 @@ export default class Image extends Component {
 
 Image.propTypes = {
 	// Redux attributes
+	completedPages: PropTypes.arrayOf(PropTypes.bool).isRequired,
 	image: PropTypes.shape({
 		aspectRatio: PropTypes.number.isRequired,
 		dataURL: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired
 	}).isRequired,
+	navPage: PropTypes.number.isRequired,
 	posterHeight: PropTypes.number.isRequired,
 
 	// Redux functions
+	setCompletedPage: PropTypes.func.isRequired,
 	setFontSize: PropTypes.func.isRequired,
 	setImage: PropTypes.func.isRequired,
 	setPosterHeight: PropTypes.func.isRequired,

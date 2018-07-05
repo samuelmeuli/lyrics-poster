@@ -123,3 +123,13 @@ export function setNavPage(navPage) {
 		payload: navPage
 	};
 }
+
+export function setCompletedPage(navPage, isCompleted) {
+	return {
+		type: 'SET_COMPLETED_PAGE',
+		payload: {
+			navPage,
+			isCompleted
+		}
+	};
+}

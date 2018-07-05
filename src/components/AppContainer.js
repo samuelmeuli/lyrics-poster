@@ -4,6 +4,13 @@ import App from './App';
 import * as actions from '../redux/actions';
 
 
+// map Redux state to component props
+function mapStateToProps(state) {
+	return {
+		completedPages: state.nav.completedPages
+	};
+}
+
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
@@ -11,4 +18,4 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

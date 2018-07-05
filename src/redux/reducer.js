@@ -24,7 +24,8 @@ export default function reducer(
 			separator: ' '
 		},
 		nav: {
-			page: 0 // active navigation page (0: info, 1: image, 2: lyrics, 3: styling, 4: download)
+			completedPages: [true, false, true, true, true],
+			page: 0 // active navigation page
 		}
 	},
 	action
@@ -147,6 +148,22 @@ export default function reducer(
 		}
 
 		// navigation
+		case 'SET_COMPLETED_PAGE': {
+			const completedPages = state.nav.completedPages.map((item, index) => {
+				if (index !== action.payload.navPage) {
+					return item;
+				}
+				return action.payload.isCompleted;
+			});
+			return {
+				...state,
+				nav: {
+					...state.nav,
+					completedPages
+				}
+			};
+		}
+
 		case 'SET_NAV_PAGE': {
 			return {
 				...state,

@@ -27,7 +27,7 @@ export default function Menu(props) {
 			</div>
 			<div
 				className="nav-indicator"
-				style={{ width: `${props.navPage * 25}%` }}
+				style={{ width: `${props.navPage * (100 / (pages.length - 1))}%` }}
 			/>
 		</div>
 	);

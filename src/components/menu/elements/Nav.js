@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import iconDownload from '../../../images/icons/nav/download.svg';
-import iconImage from '../../../images/icons/nav/image.svg';
-import iconInfo from '../../../images/icons/nav/info.svg';
-import iconLyrics from '../../../images/icons/nav/lyrics.svg';
-import iconStyling from '../../../images/icons/nav/styling.svg';
+import iconButtonBack from '../../../images/icons/buttons/arrow-left.svg';
+import iconButtonNext from '../../../images/icons/buttons/arrow-right.svg';
 
 
 export default class Nav extends Component {
@@ -13,7 +10,7 @@ export default class Nav extends Component {
 	constructor(props) {
 		super(props);
 
-		this.icons = [iconInfo, iconImage, iconLyrics, iconStyling, iconDownload];
+		this.nrOfNavPages = 5;
 
 		// function bindings
 		this.navBack = this.navBack.bind(this);
@@ -25,10 +22,9 @@ export default class Nav extends Component {
 			return (
 				<button
 					type="button"
-					className="button-back"
 					onClick={this.navBack}
 				>
-					<img src={this.icons[this.props.navPage - 1]} alt="Back" width="18px" />
+					<img src={iconButtonBack} alt="Back" width="10px" />
 				</button>
 			);
 		}
@@ -38,15 +34,27 @@ export default class Nav extends Component {
 	}
 
 	getButtonNext() {
-		if (this.props.navPage < 4) {
+		if (this.props.navPage === 0) {
 			return (
 				<button
 					type="button"
-					className="button-next"
+					className="start-button"
+					onClick={this.navForward}
+				>
+					Start
+					<img src={iconButtonNext} alt="Start" width="10px" />
+				</button>
+			);
+		}
+
+		if (this.props.navPage < (this.nrOfNavPages - 1)) {
+			return (
+				<button
+					type="button"
 					onClick={this.navForward}
 					disabled={this.props.disableNext}
 				>
-					<img src={this.icons[this.props.navPage + 1]} alt="Next" width="18px" />
+					<img src={iconButtonNext} alt="Next" width="10px" />
 				</button>
 			);
 		}

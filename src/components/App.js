@@ -6,22 +6,11 @@ import MenuContainer from './menu/MenuContainer';
 
 
 export default class App extends Component {
-	/**
-	 * Make sure the requested page is within the existing range
-	 */
-	static validatePage(newPage) {
-		let validatedPage = newPage;
-		if (newPage < 0) {
-			validatedPage = 0;
-		}
-		else if (newPage > 4) {
-			validatedPage = 4;
-		}
-		return validatedPage;
-	}
 
 	constructor(props) {
 		super(props);
+
+		this.nrOfNavPages = 5;
 
 		// Detect requested page
 		const path = window.location.hash;
@@ -51,7 +40,7 @@ export default class App extends Component {
 			this.props.setNavPage(0);
 		}
 		else {
-			const validatedPage = App.validatePage(newPage);
+			const validatedPage = this.validatePage(newPage);
 			window.history.replaceState(null, null, `#${validatedPage}`);
 			this.props.setNavPage(validatedPage);
 		}
@@ -61,9 +50,33 @@ export default class App extends Component {
 	 * Navigate to requested page and push new state to history stack
 	 */
 	navigate(newPage) {
-		const validatedPage = App.validatePage(newPage);
+		const validatedPage = this.validatePage(newPage);
 		window.history.pushState(null, null, `#${validatedPage}`);
 		this.props.setNavPage(validatedPage);
+	}
+
+	/**
+	 * Make sure the requested page is within the existing range
+	 */
+	validatePage(newPage) {
+		let validatedPage = newPage;
+		if (newPage < 0) {
+			validatedPage = 0;
+		}
+		else if (newPage > (this.nrOfNavPages - 1)) {
+			validatedPage = (this.nrOfNavPages - 1);
+		}
+
+		let lastAccessiblePage = 0;
+		for (let i = 1; i <= validatedPage; i += 1) {
+			if (this.props.completedPages[i - 1] === true) {
+				lastAccessiblePage = i;
+			}
+			else {
+				break;
+			}
+		}
+		return lastAccessiblePage;
 	}
 
 	render() {
@@ -77,6 +90,9 @@ export default class App extends Component {
 }
 
 App.propTypes = {
+	// Redux attributes
+	completedPages: PropTypes.arrayOf(PropTypes.bool).isRequired,
+
 	// Redux functions
 	setNavPage: PropTypes.func.isRequired
 };

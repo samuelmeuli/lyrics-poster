@@ -21,6 +21,10 @@ button,
 	}
 }
 
+.start-button img {
+	margin-left: 8px;
+}
+
 // hide <input type="file"> (label will be styled instead)
 #image-selector {
 	@include hide-element;
@@ -29,26 +33,6 @@ button,
 #image-selector-label {
 	margin-right: 20px;
 	white-space: nowrap;
-}
-
-.button-back,
-.button-next {
-	width: 60px;
-	mask-size: cover;
-}
-
-.button-back {
-	padding: 0 0 0 25px;
-	mask-image: url("../images/buttons/button-back.svg");
-}
-
-.button-next {
-	padding: 0 25px 0 0;
-	mask-image: url("../images/buttons/button-next.svg");
-
-	img {
-		margin: 0 0 0 auto;
-	}
 }
 
 .input-numeric button {

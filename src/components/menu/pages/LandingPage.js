@@ -6,10 +6,12 @@ import NavContainer from '../elements/NavContainer';
 
 export default function LandingPage(props) {
 	return (
-		<div>
-			<p>TODO info page with poster example</p>
+		<form>
+			<div>
+				<p>TODO info page with poster example</p>
+			</div>
 			<NavContainer navigate={props.navigate} />
-		</div>
+		</form>
 	);
 }
 
