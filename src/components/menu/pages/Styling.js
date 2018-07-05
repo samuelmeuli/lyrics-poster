@@ -162,7 +162,7 @@ export default class Styling extends Component {
 						<label htmlFor="input-font">
 							<span className="label-left">Font:</span>
 							<FontPicker
-								apiKey="AIzaSyAOkdDlx49HCSBdu86oe8AD1Q7piIxlR6k"
+								apiKey="AIzaSyBNOuGCNLPNRhK-yIuKYFoGNaQTvBjF3Uc"
 								activeFont={this.state.newFontFamily}
 								options={{
 									variants: ['900']
