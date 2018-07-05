@@ -40,6 +40,13 @@ export default class Download extends Component {
 			<form onSubmit={this.updateSettings}>
 				<fieldset>
 					<legend>Download</legend>
+					<p>
+						Congrats, you have finished your lyrics poster! You can now download the image and
+						use it with a poster printing service.
+					</p>
+					<p>
+						Thank you for using LyricsPoster!
+					</p>
 					<button type="button" onClick={() => this.downloadPoster()}>
 						Download poster
 					</button>

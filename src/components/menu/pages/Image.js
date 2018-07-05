@@ -94,6 +94,10 @@ export default class Image extends Component {
 				<div>
 					<fieldset>
 						<legend>Image</legend>
+						<p>
+							Please upload an artist image. High contrast photos work best, e.g. images with a
+							bright foreground and dark background.
+						</p>
 						<ImageSelector
 							newImageName={this.state.newImage.name}
 							onImageChange={this.handleImageChange}

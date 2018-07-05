@@ -9,6 +9,14 @@ textarea {
 	color: $color-text;
 }
 
+p:not(.zoom-info) {
+	margin-bottom: 15px;
+}
+
+.image-selector-container p {
+	margin-bottom: 0;
+}
+
 // buttons
 button,
 #image-selector-label {
