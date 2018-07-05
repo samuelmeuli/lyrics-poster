@@ -1,7 +1,21 @@
 {
 	"name": "lyrics-poster",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"private": true,
+	"description": "Create posters of your favorite artists written in their lyrics",
+	"author": "Samuel Meuli <dev@samuelmeuli.com>",
+	"repository": "github:samuelmeuli/lyrics-poster",
+	"homepage": "https://lyricsposter.net",
+	"license": "MIT",
+	"scripts": {
+		"start": "webpack-dev-server --content-base public --host 0.0.0.0 --mode development --port 3000",
+		"build": "webpack --mode production",
+		"lint": "run-s lint:*",
+		"lint:css": "stylelint '**/*.scss' --syntax scss",
+		"lint:js": "eslint .",
+		"precommit": "npm run lint",
+		"prepush": "npm run lint"
+	},
 	"dependencies": {
 		"file-saver": "^1.3.8",
 		"font-picker-react": "^2.0.3",
@@ -43,14 +57,5 @@
 		"webpack": "^4.12.1",
 		"webpack-cli": "^3.0.8",
 		"webpack-dev-server": "^3.1.4"
-	},
-	"scripts": {
-		"start": "webpack-dev-server --content-base public --host 0.0.0.0 --mode development --port 3000",
-		"build": "webpack --mode production",
-		"lint": "run-s lint:*",
-		"lint:css": "stylelint '**/*.scss' --syntax scss",
-		"lint:js": "eslint .",
-		"precommit": "npm run lint",
-		"prepush": "npm run lint"
 	}
 }
