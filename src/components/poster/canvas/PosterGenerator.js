@@ -37,11 +37,9 @@ export default class PosterGenerator extends Component {
 		ctx.font = `900 ${fontSize}px ${fontFamily}`;
 		this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
 
-		// apply brightness/contrast filters
+		// apply brightness/contrast filters and draw image (only where text is)
 		ctx.save();
 		ctx.filter = `brightness(${posterBrightness}%) contrast(${posterContrast}%)`;
-
-		// draw image (only where text is)
 		ctx.globalCompositeOperation = 'source-in';
 		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
 		ctx.restore();
@@ -58,6 +56,18 @@ export default class PosterGenerator extends Component {
 			this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
 			ctx.restore();
 		}
+
+		// draw transparent image behind text
+		ctx.save();
+		ctx.globalCompositeOperation = 'destination-over';
+		if (posterBackground === 'white') {
+			ctx.globalAlpha = 0.2;
+		}
+		else {
+			ctx.globalAlpha = 0.3;
+		}
+		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
+		ctx.restore();
 
 		// draw background behind text
 		ctx.globalCompositeOperation = 'destination-over';
