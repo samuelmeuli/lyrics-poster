@@ -37,7 +37,7 @@ export default class Download extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.updateSettings}>
+			<form onSubmit={this.updateSettings} noValidate>
 				<fieldset>
 					<legend>Download</legend>
 					<p>

@@ -6,7 +6,7 @@ import NavContainer from '../elements/NavContainer';
 
 export default function LandingPage(props) {
 	return (
-		<form>
+		<form noValidate>
 			<div>
 				<p>
 					Create posters of your favorite artists written in their lyrics!

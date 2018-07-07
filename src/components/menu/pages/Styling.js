@@ -90,7 +90,7 @@ export default class Styling extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.updateSettings}>
+			<form onSubmit={this.updateSettings} noValidate>
 				<div>
 					<fieldset className="fieldset-background">
 						<legend>Background</legend>

@@ -90,7 +90,7 @@ export default class Image extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.updateSettings}>
+			<form onSubmit={this.updateSettings} noValidate>
 				<div>
 					<fieldset>
 						<legend>Image</legend>

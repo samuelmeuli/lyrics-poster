@@ -70,7 +70,7 @@ export default class Lyrics extends Component {
 	render() {
 		const value = this.getDisplayedLyrics();
 		return (
-			<form onSubmit={this.updateSettings}>
+			<form onSubmit={this.updateSettings} noValidate>
 				<fieldset className="fieldset-lyrics">
 					<legend>Lyrics</legend>
 					<label htmlFor="input-lyrics">
