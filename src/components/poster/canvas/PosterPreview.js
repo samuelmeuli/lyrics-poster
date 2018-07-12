@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import Magnifier from 'react-magnifier';
 import Spinner from 'react-spinkit';
 
+import samplePoster1 from '../../../images/sample-posters/sample-poster-1.png';
+import samplePoster2 from '../../../images/sample-posters/sample-poster-2.png';
+import samplePoster3 from '../../../images/sample-posters/sample-poster-3.png';
+
 
 export default class PosterPreview extends Component {
 
@@ -13,6 +17,12 @@ export default class PosterPreview extends Component {
 		this.infoContainerHeight = 35;
 		this.infoContainerMargin = 10;
 		this.settingsWidth = 440;
+
+		this.samplePosters = [
+			{ src: samplePoster1, height: 1500, aspectRatio: 1 },
+			{ src: samplePoster2, height: 1335, aspectRatio: 1.5 },
+			{ src: samplePoster3, height: 1333, aspectRatio: 0.667 }
+		];
 
 		this.state = {
 			screenHeight: window.innerHeight,
@@ -45,7 +55,12 @@ export default class PosterPreview extends Component {
 		}, 100);
 	}
 
-	calcScaledWidth() {
+	getRandomSamplePoster() {
+		const randomIndex = Math.floor(Math.random() * this.samplePosters.length);
+		return this.samplePosters[randomIndex];
+	}
+
+	calcScaledWidth(posterHeight, aspectRatio) {
 		// on small and medium-sized screens: full width
 		if (this.state.screenWidth <= 1000) {
 			return '100%';
@@ -53,11 +68,11 @@ export default class PosterPreview extends Component {
 		// on large screens: calculate scaled width
 		else {
 			// absolute canvas width
-			const posterWidth = this.props.posterHeight * this.props.aspectRatio;
+			const posterWidth = posterHeight * aspectRatio;
 
 			// scaled canvas height and width
 			const heightScaled = (this.state.screenHeight - this.infoContainerHeight -
-				this.infoContainerMargin - (2 * this.marginLarge)) / this.props.posterHeight;
+				this.infoContainerMargin - (2 * this.marginLarge)) / posterHeight;
 			const widthScaled = (this.state.screenWidth - this.settingsWidth - (3 * this.marginLarge)) /
 				posterWidth;
 			if (heightScaled < widthScaled) {
@@ -70,23 +85,38 @@ export default class PosterPreview extends Component {
 	}
 
 	render() {
-		if (this.props.posterURL === '') {
+		const { aspectRatio, isLoading, navPage, posterHeight, posterURL } = this.props;
+
+		// sample poster (random)
+		if (navPage === 0) {
+			const samplePoster = this.getRandomSamplePoster();
+			return (
+				<Magnifier
+					src={samplePoster.src}
+					alt="Sample poster"
+					width={this.calcScaledWidth(samplePoster.height, samplePoster.aspectRatio)}
+				/>
+			);
+		}
+		// black image placeholder (used during image selection step)
+		else if (posterURL === '') {
 			return (
 				<div
 					style={{
-						height: this.calcScaledWidth() / this.props.aspectRatio,
-						width: this.calcScaledWidth(),
+						height: this.calcScaledWidth(posterHeight, aspectRatio) / aspectRatio,
+						width: this.calcScaledWidth(posterHeight, aspectRatio),
 						backgroundColor: 'black'
 					}}
 				/>
 			);
 		}
-		else if (this.props.isLoading) {
+		// loading spinner
+		else if (isLoading) {
 			return (
 				<div
 					style={{
-						height: this.calcScaledWidth() / this.props.aspectRatio,
-						width: this.calcScaledWidth(),
+						height: this.calcScaledWidth(posterHeight, aspectRatio) / aspectRatio,
+						width: this.calcScaledWidth(posterHeight, aspectRatio),
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center'
@@ -96,12 +126,13 @@ export default class PosterPreview extends Component {
 				</div>
 			);
 		}
+		// poster preview
 		else {
 			return (
 				<Magnifier
-					src={this.props.posterURL}
+					src={posterURL}
 					alt="Poster preview"
-					width={this.calcScaledWidth()}
+					width={this.calcScaledWidth(posterHeight, aspectRatio)}
 				/>
 			);
 		}
@@ -113,6 +144,7 @@ PosterPreview.propTypes = {
 	// Redux attributes
 	aspectRatio: PropTypes.number.isRequired,
 	isLoading: PropTypes.bool.isRequired,
+	navPage: PropTypes.number.isRequired,
 	posterHeight: PropTypes.number.isRequired,
 	posterURL: PropTypes.string.isRequired
 };
