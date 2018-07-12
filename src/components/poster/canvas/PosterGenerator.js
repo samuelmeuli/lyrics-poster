@@ -64,7 +64,7 @@ export default class PosterGenerator extends Component {
 			ctx.globalAlpha = 0.2;
 		}
 		else {
-			ctx.globalAlpha = 0.3;
+			ctx.globalAlpha = 0.1;
 		}
 		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
 		ctx.restore();
