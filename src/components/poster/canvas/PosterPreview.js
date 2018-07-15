@@ -13,6 +13,8 @@ export default class PosterPreview extends Component {
 	constructor(props) {
 		super(props);
 
+		this.marginSmall = 20;
+		this.marginMedium = 30;
 		this.marginLarge = 40;
 		this.infoContainerHeight = 35;
 		this.infoContainerMargin = 10;
@@ -61,9 +63,13 @@ export default class PosterPreview extends Component {
 	}
 
 	calcScaledWidth(posterHeight, aspectRatio) {
-		// on small and medium-sized screens: full width
-		if (this.state.screenWidth <= 1000) {
-			return '100%';
+		// on small screens: full width
+		if (this.state.screenWidth <= 700) {
+			return this.state.screenWidth - (2 * this.marginSmall);
+		}
+		// on medium-sized screens: full width
+		else if (this.state.screenWidth <= 1000) {
+			return this.state.screenWidth - (2 * this.marginMedium);
 		}
 		// on large screens: calculate scaled width
 		else {
