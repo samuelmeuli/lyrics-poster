@@ -19,6 +19,7 @@
 	"dependencies": {
 		"file-saver": "^1.3.8",
 		"font-picker-react": "^2.0.3",
+		"imagedata-filters": "^1.0.1",
 		"normalize.css": "^8.0.0",
 		"prop-types": "^15.6.1",
 		"react": "^16.3.1",

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import ImageFilters from 'imagedata-filters';
 
 import sampleLyrics from '../../../sample-lyrics';
 
@@ -37,9 +38,8 @@ export default class PosterGenerator extends Component {
 		ctx.font = `900 ${fontSize}px ${fontFamily}`;
 		this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
 
-		// apply brightness/contrast filters and draw image (only where text is)
+		// draw image (only where there is text)
 		ctx.save();
-		ctx.filter = `brightness(${posterBrightness}%) contrast(${posterContrast}%)`;
 		ctx.globalCompositeOperation = 'source-in';
 		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
 		ctx.restore();
@@ -73,6 +73,12 @@ export default class PosterGenerator extends Component {
 		ctx.globalCompositeOperation = 'destination-over';
 		ctx.fillStyle = posterBackground;
 		ctx.fillRect(0, 0, posterWidth, posterHeight);
+
+		// apply brightness/contrast filters
+		const imageData = ctx.getImageData(0, 0, posterWidth, posterHeight);
+		ImageFilters.brightness(imageData, { amount: posterBrightness / 100 });
+		ImageFilters.contrast(imageData, { amount: posterContrast / 100 });
+		ctx.putImageData(imageData, 0, 0);
 
 		// save poster as data URL to Redux store
 		this.props.setPosterURL(canvas.toDataURL());
