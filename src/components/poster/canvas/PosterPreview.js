@@ -25,6 +25,7 @@ export default class PosterPreview extends Component {
 			{ src: samplePoster2, height: 1335, aspectRatio: 1.5 },
 			{ src: samplePoster3, height: 1333, aspectRatio: 0.667 }
 		];
+		this.randomSamplePoster = this.getRandomSamplePoster();
 
 		this.state = {
 			screenHeight: window.innerHeight,
@@ -95,7 +96,7 @@ export default class PosterPreview extends Component {
 
 		// sample poster (random)
 		if (navPage === 0) {
-			const samplePoster = this.getRandomSamplePoster();
+			const samplePoster = this.randomSamplePoster;
 			return (
 				<Magnifier
 					src={samplePoster.src}
