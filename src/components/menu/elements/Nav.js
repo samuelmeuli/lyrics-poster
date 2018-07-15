@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import iconButtonBack from '../../../images/icons/buttons/arrow-left.svg';
-import iconButtonNext from '../../../images/icons/buttons/arrow-right.svg';
+import iconButtonBack from '../../../images/icons/arrow-left.svg';
+import iconButtonNext from '../../../images/icons/arrow-right.svg';
 
 
 export default class Nav extends Component {
@@ -24,7 +24,7 @@ export default class Nav extends Component {
 					type="button"
 					onClick={this.navBack}
 				>
-					<img src={iconButtonBack} alt="Back" width="10px" />
+					<img src={iconButtonBack} alt="Back" height={12} />
 				</button>
 			);
 		}
@@ -42,7 +42,7 @@ export default class Nav extends Component {
 					onClick={this.navForward}
 				>
 					Start
-					<img src={iconButtonNext} alt="Start" width="10px" />
+					<img src={iconButtonNext} alt="Start" height={12} />
 				</button>
 			);
 		}
@@ -54,7 +54,7 @@ export default class Nav extends Component {
 					onClick={this.navForward}
 					disabled={this.props.disableNext}
 				>
-					<img src={iconButtonNext} alt="Next" width="10px" />
+					<img src={iconButtonNext} alt="Next" height={12} />
 				</button>
 			);
 		}

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import iconGitHub from '../../images/icons/credits/github.svg';
-import iconZondicons from '../../images/icons/credits/icons.svg';
+import iconGitHub from '../../images/icons/github.svg';
 import iconZoom from '../../images/icons/zoom.svg';
 
 
@@ -13,22 +12,25 @@ export default function Info() {
 				Hover/touch on poster to zoom
 			</p>
 			<div className="credits-container">
-				<a
-					href="https://github.com/samuelmeuli/lyrics-poster"
-					target="_blank"
-					rel="noreferrer noopener"
-				>
-					<img src={iconGitHub} alt="Next" width="13px" />
-					Source code on GitHub
-				</a>
-				<a
-					href="https://www.zondicons.com"
-					target="_blank"
-					rel="noreferrer noopener"
-				>
-					<img src={iconZondicons} alt="Next" width="13px" />
-					Zondicons by Steve Schoger
-				</a>
+				<p>
+					<a
+						href="https://samuelmeuli.com"
+						target="_blank"
+						rel="noreferrer noopener"
+					>
+						Created by Samuel Meuli
+					</a>
+				</p>
+				<p>
+					<a
+						href="https://github.com/samuelmeuli/lyrics-poster"
+						target="_blank"
+						rel="noreferrer noopener"
+					>
+						<img src={iconGitHub} alt="Next" width="13px" />
+						Source code on GitHub
+					</a>
+				</p>
 			</div>
 		</div>
 	);

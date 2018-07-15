@@ -97,17 +97,13 @@ main {
 	}
 }
 
-.credits-container > * {
-	display: flex;
+.credits-container a {
+	display: inline-flex;
 	align-items: center;
 
 	img {
-		margin-right: 5px;
+		margin-right: 3px;
 	}
-}
-
-.credits-container a + a {
-	margin-top: 3px;
 }
 
 .error-wrapper {
