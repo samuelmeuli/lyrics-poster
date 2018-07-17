@@ -6,7 +6,7 @@
 	"author": "Samuel Meuli <dev@samuelmeuli.com>",
 	"repository": "github:samuelmeuli/lyrics-poster",
 	"homepage": "https://lyricsposter.net",
-	"license": "MIT",
+	"license": "GPL-3.0",
 	"scripts": {
 		"start": "webpack-dev-server --content-base public --host 0.0.0.0 --mode development --port 3000",
 		"build": "webpack --mode production",
