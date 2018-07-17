@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import iconError from '../../../images/icons/error.svg';
+import Error from './Error';
 
 
 export default class ImageSelector extends Component {
@@ -66,11 +66,12 @@ export default class ImageSelector extends Component {
 				</label>
 				{
 					this.state.fileTypeError ?
-						<p className="error-wrapper">
-							<img src={iconError} alt="Error: " width="18px" />
-							Invalid file format
-						</p> :
-						<p>{this.props.newImageName !== '' ? this.props.newImageName : 'No file selected'}</p>
+						<Error
+							message="Invalid file format"
+						/> :
+						<p>
+							{this.props.newImageName !== '' ? this.props.newImageName : 'No file selected'}
+						</p>
 				}
 			</div>
 		);

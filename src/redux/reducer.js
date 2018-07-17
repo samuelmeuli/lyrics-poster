@@ -13,6 +13,7 @@ export default function reducer(
 			brightness: 100,
 			contrast: 100,
 			dataURL: '', // poster (canvas) encoded as data URL
+			exceedsSizeLimit: false,
 			height: defaultPosterHeight,
 			isLoading: false
 		},
@@ -69,6 +70,15 @@ export default function reducer(
 				poster: {
 					...state.poster,
 					contrast: action.payload
+				}
+			};
+		}
+		case 'SET_EXCEEDS_SIZE_LIMIT': {
+			return {
+				...state,
+				poster: {
+					...state.poster,
+					exceedsSizeLimit: action.payload
 				}
 			};
 		}

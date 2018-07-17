@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InputNumeric from 'react-input-numeric';
 
+import Error from '../elements/Error';
 import ImageSelector from '../elements/ImageSelector';
 import NavContainer from '../elements/NavContainer';
 
@@ -162,6 +163,12 @@ export default class Image extends Component {
 							/>
 							<span className="unit">px</span>
 						</label>
+						{
+							this.props.exceedsSizeLimit &&
+								<Error
+									message="Your browser's maximum canvas size has been reached. Please try making the image smaller."
+								/>
+						}
 					</fieldset>
 				</div>
 
@@ -180,6 +187,7 @@ export default class Image extends Component {
 Image.propTypes = {
 	// Redux attributes
 	completedPages: PropTypes.arrayOf(PropTypes.bool).isRequired,
+	exceedsSizeLimit: PropTypes.bool.isRequired,
 	image: PropTypes.shape({
 		aspectRatio: PropTypes.number.isRequired,
 		dataURL: PropTypes.string.isRequired,

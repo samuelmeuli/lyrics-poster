@@ -19,6 +19,8 @@ function mapStateToProps(state) {
 // map Redux actions to component props
 function mapDispatchToProps(dispatch) {
 	return {
+		setExceedsSizeLimit: exceedsSizeLimit =>
+			dispatch(actions.setExceedsSizeLimit(exceedsSizeLimit)),
 		setIsLoading: isLoading => dispatch(actions.setIsLoading(isLoading)),
 		setPosterURL: dataURL => dispatch(actions.setPosterURL(dataURL))
 	};

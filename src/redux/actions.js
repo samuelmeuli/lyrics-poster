@@ -50,6 +50,13 @@ export function setContrast(contrast) {
 	}
 }
 
+export function setExceedsSizeLimit(exceedsSizeLimit) {
+	return {
+		type: 'SET_EXCEEDS_SIZE_LIMIT',
+		payload: exceedsSizeLimit
+	};
+}
+
 export function setPosterURL(dataURL) {
 	return {
 		type: 'SET_POSTER_URL',

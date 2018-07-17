@@ -34,54 +34,64 @@ export default class PosterGenerator extends Component {
 		// clear canvas
 		ctx.clearRect(0, 0, posterWidth, posterHeight);
 
-		// draw text
-		ctx.font = `900 ${fontSize}px ${fontFamily}`;
-		this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
-
-		// draw image (only where there is text)
-		ctx.save();
-		ctx.globalCompositeOperation = 'source-in';
-		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
-		ctx.restore();
-
-		// draw shadow behind text if background should be white
-		if (posterBackground === 'white') {
-			ctx.save();
-			ctx.globalCompositeOperation = 'destination-over';
-			ctx.shadowColor = 'rgba(0, 0, 0, .25)';
-			ctx.shadowOffsetX = 1;
-			ctx.shadowOffsetY = 1;
-			ctx.shadowBlur = 5;
-			ctx.fillStyle = 'black';
-			this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
-			ctx.restore();
-		}
-
-		// draw transparent image behind text
-		ctx.save();
-		ctx.globalCompositeOperation = 'destination-over';
-		if (posterBackground === 'white') {
-			ctx.globalAlpha = 0.2;
+		// test if empty canvas is successfully drawn (otherwise, the browser's canvas size limit has
+		// probably been exceeded)
+		const exceedsSizeLimit = canvas.toDataURL() === 'data:,';
+		if (exceedsSizeLimit) {
+			this.props.setExceedsSizeLimit(true);
+			this.props.setPosterURL('');
 		}
 		else {
-			ctx.globalAlpha = 0.1;
+			// draw text
+			ctx.font = `900 ${fontSize}px ${fontFamily}`;
+			this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
+
+			// draw image (only where there is text)
+			ctx.save();
+			ctx.globalCompositeOperation = 'source-in';
+			await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
+			ctx.restore();
+
+			// draw shadow behind text if background should be white
+			if (posterBackground === 'white') {
+				ctx.save();
+				ctx.globalCompositeOperation = 'destination-over';
+				ctx.shadowColor = 'rgba(0, 0, 0, .25)';
+				ctx.shadowOffsetX = 1;
+				ctx.shadowOffsetY = 1;
+				ctx.shadowBlur = 5;
+				ctx.fillStyle = 'black';
+				this.drawText(ctx, fontSize, lineHeight, posterHeight, posterWidth, formattedLyrics);
+				ctx.restore();
+			}
+
+			// draw transparent image behind text
+			ctx.save();
+			ctx.globalCompositeOperation = 'destination-over';
+			if (posterBackground === 'white') {
+				ctx.globalAlpha = 0.2;
+			}
+			else {
+				ctx.globalAlpha = 0.1;
+			}
+			await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
+			ctx.restore();
+
+			// draw background behind text
+			ctx.globalCompositeOperation = 'destination-over';
+			ctx.fillStyle = posterBackground;
+			ctx.fillRect(0, 0, posterWidth, posterHeight);
+
+			// apply brightness/contrast filters
+			const imageData = ctx.getImageData(0, 0, posterWidth, posterHeight);
+			ImageFilters.brightness(imageData, { amount: posterBrightness / 100 });
+			ImageFilters.contrast(imageData, { amount: posterContrast / 100 });
+			ctx.putImageData(imageData, 0, 0);
+
+			// save poster as data URL to Redux store
+			this.props.setExceedsSizeLimit(false);
+			this.props.setPosterURL(canvas.toDataURL());
 		}
-		await this.drawImage(ctx, dataURL, posterHeight, posterWidth);
-		ctx.restore();
-
-		// draw background behind text
-		ctx.globalCompositeOperation = 'destination-over';
-		ctx.fillStyle = posterBackground;
-		ctx.fillRect(0, 0, posterWidth, posterHeight);
-
-		// apply brightness/contrast filters
-		const imageData = ctx.getImageData(0, 0, posterWidth, posterHeight);
-		ImageFilters.brightness(imageData, { amount: posterBrightness / 100 });
-		ImageFilters.contrast(imageData, { amount: posterContrast / 100 });
-		ctx.putImageData(imageData, 0, 0);
-
-		// save poster as data URL to Redux store
-		this.props.setPosterURL(canvas.toDataURL());
 	}
 
 	formatText(lyrics, separator) {
@@ -163,6 +173,7 @@ PosterGenerator.propTypes = {
 	}).isRequired,
 
 	// Redux functions
+	setExceedsSizeLimit: PropTypes.func.isRequired,
 	setIsLoading: PropTypes.func.isRequired,
 	setPosterURL: PropTypes.func.isRequired
 };

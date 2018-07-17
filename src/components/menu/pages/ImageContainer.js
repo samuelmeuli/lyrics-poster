@@ -8,6 +8,7 @@ import * as actions from '../../../redux/actions';
 function mapStateToProps(state) {
 	return {
 		completedPages: state.nav.completedPages,
+		exceedsSizeLimit: state.poster.exceedsSizeLimit,
 		image: state.image,
 		navPage: state.nav.page,
 		posterHeight: state.poster.height
