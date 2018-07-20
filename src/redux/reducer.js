@@ -37,7 +37,7 @@ export default function reducer(
 			return {
 				...state,
 				image: {
-					...state.newImage,
+					...state.image,
 					aspectRatio: action.payload.aspectRatio,
 					dataURL: action.payload.dataURL,
 					name: action.payload.name

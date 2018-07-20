@@ -29,8 +29,7 @@
 		"react-redux": "^5.0.7",
 		"react-spinkit": "^3.0.0",
 		"redux": "^3.7.2",
-		"redux-logger": "^3.0.6",
-		"redux-thunk": "^2.2.0"
+		"redux-logger": "^3.0.6"
 	},
 	"devDependencies": {
 		"autoprefixer": "^8.6.4",
