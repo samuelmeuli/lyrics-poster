@@ -1,12 +1,17 @@
-# Lyrics Poster
+<h1>
+  <a href="https://lyricsposter.net">
+    <img src="src/images/logo.svg" width=300 alt="Lyrics Poster">
+  </a>
+</h1>
 
-Create posters of your favorite artists written in their lyrics!
+**Create posters of your favorite artists written in their lyrics!**
 
 You can view the web app on [lyricsposter.net](https://lyricsposter.net).
 
-<p align="center">
-  <img src="demo.png" width=600 alt="Demo poster">
-</p>
+
+## Example
+
+<img src="demo.png" width=500 alt="Demo poster">
 
 
 ## Development
