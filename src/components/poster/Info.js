@@ -13,20 +13,12 @@ export default function Info() {
 			</p>
 			<div className="credits-container">
 				<p>
-					<a
-						href="https://samuelmeuli.com"
-						target="_blank"
-						rel="noreferrer noopener"
-					>
+					<a href="https://samuelmeuli.com">
 						Created by Samuel Meuli
 					</a>
 				</p>
 				<p>
-					<a
-						href="https://github.com/samuelmeuli/lyrics-poster"
-						target="_blank"
-						rel="noreferrer noopener"
-					>
+					<a href="https://github.com/samuelmeuli/lyrics-poster">
 						<img src={iconGitHub} alt="Next" width="13px" />
 						Source code on GitHub
 					</a>
