@@ -8,13 +8,16 @@ export default function LandingPage(props) {
 	return (
 		<form noValidate>
 			<div>
-				<p>
-					Create posters of your favorite artists written in their lyrics!
+				<p className="bold">
+					Create posters of your favorite artists, written in their lyrics!
 				</p>
 				<p>
-					LyricsPoster allows you to simply select an image of an artist and add song lyrics which
+					Lyrics Poster allows you to simply select an image of an artist and add song lyrics which
 					will be used to create the image. In a simple and intuitive editor, you can then customize
 					the image, background color, font, and more.
+				</p>
+				<p>
+					Best of all: It&rsquo;s completely free!
 				</p>
 				<p>
 					Image and text are not uploaded; all editing is done locally on your device.

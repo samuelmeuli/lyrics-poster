@@ -45,7 +45,7 @@ export default class Download extends Component {
 						use it with a poster printing service.
 					</p>
 					<p>
-						Thank you for using LyricsPoster!
+						Thank you for using Lyrics Poster!
 					</p>
 					<button type="button" onClick={() => this.downloadPoster()}>
 						Download poster

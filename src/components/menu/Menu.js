@@ -22,7 +22,9 @@ export default function Menu(props) {
 	return (
 		<div className="menu-container">
 			<div className="menu-page">
-				<img src={logo} alt="LyricsPoster" className="logo" />
+				<h1>
+					<img src={logo} alt="Lyrics Poster" className="logo" />
+				</h1>
 				{pages[props.navPage]}
 			</div>
 			<div

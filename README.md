@@ -1,4 +1,4 @@
-# LyricsPoster
+# Lyrics Poster
 
 Create posters of your favorite artists written in their lyrics!
 
