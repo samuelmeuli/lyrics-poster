@@ -9,7 +9,7 @@ export default class Download extends Component {
 
 	downloadPoster() {
 		const blob = this.dataURItoBlob(this.props.posterURL);
-		FileSaver.saveAs(blob, 'lyrics-poster');
+		FileSaver.saveAs(blob, 'lyrics-poster.png');
 	}
 
 	// source: https://stackoverflow.com/questions/12168909/blob-from-dataurl
