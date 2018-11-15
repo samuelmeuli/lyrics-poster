@@ -8,5 +8,4 @@
 node_modules/
 
 # Webpack
-public/bundle.js
-public/images/
+dist/

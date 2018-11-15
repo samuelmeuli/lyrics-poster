@@ -1,10 +1,10 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
 	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
 	module: {
@@ -38,6 +38,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CleanWebpackPlugin(['public/bundle.js', 'public/images'])
+		new CopyWebpackPlugin(['./public/'])
 	]
 };
