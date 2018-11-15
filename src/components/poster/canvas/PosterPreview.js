@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Magnifier from 'react-magnifier';
 import Spinner from 'react-spinkit';
 
-import samplePoster1 from '../../../images/sample-posters/sample-poster-1.png';
-import samplePoster2 from '../../../images/sample-posters/sample-poster-2.png';
-import samplePoster3 from '../../../images/sample-posters/sample-poster-3.png';
+import samplePoster1 from '../../../images/sample-posters/sample-poster-1.jpg';
+import samplePoster2 from '../../../images/sample-posters/sample-poster-2.jpg';
+import samplePoster3 from '../../../images/sample-posters/sample-poster-3.jpg';
 
 
 export default class PosterPreview extends Component {
