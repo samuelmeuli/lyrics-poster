@@ -29,10 +29,11 @@ export default class Image extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		// settings have changed -> update form values
+		const { image, posterHeight } = nextProps;
 		if (nextProps !== this.props) {
 			this.setState({
-				newPosterHeight: nextProps.posterHeight,
-				newPosterWidth: nextProps.posterHeight * nextProps.image.aspectRatio
+				newPosterHeight: posterHeight,
+				newPosterWidth: posterHeight * image.aspectRatio
 			});
 		}
 	}

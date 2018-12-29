@@ -169,7 +169,8 @@ PosterGenerator.propTypes = {
 		fontFamily: PropTypes.string.isRequired,
 		fontSize: PropTypes.number.isRequired,
 		lineHeight: PropTypes.number.isRequired,
-		lyrics: PropTypes.string.isRequired
+		lyrics: PropTypes.string.isRequired,
+		separator: PropTypes.string.isRequired
 	}).isRequired,
 
 	// Redux functions
