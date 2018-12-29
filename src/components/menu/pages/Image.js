@@ -114,8 +114,6 @@ export default class Image extends Component {
 								id="input-image-height"
 								value={this.state.newPosterHeight}
 								decimals={0}
-								min={this.min}
-								max={this.max}
 								onBlur={(h) => {
 									let newPosterHeight = h;
 									let newPosterWidth = Math.round(newPosterHeight * this.props.image.aspectRatio);
@@ -142,8 +140,6 @@ export default class Image extends Component {
 								id="input-image-width"
 								value={this.state.newPosterWidth}
 								decimals={0}
-								min={this.min}
-								max={this.max}
 								onBlur={(w) => {
 									let newPosterWidth = w;
 									let newPosterHeight = Math.round(newPosterWidth / this.props.image.aspectRatio);
